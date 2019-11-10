@@ -103,7 +103,7 @@
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="https://jeffup.github.io/2019/11/10/%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C/%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C/index.html">
+            <a class="article-date" href="https://jeffup.github.io/2019/11/10/%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C/index.html">
     
     <i class="icon-calendar"></i>
     
@@ -126,7 +126,7 @@
 <li>问题描述：已知n个数，找出排序后第k小的数。要求平均时间复杂度为O(n)。</li>
 <li>解决思路：使用快速排序的思想解决查找问题，用随机数（舍伍德算法）解决基准问题，用分治策略搭建整体的算法结构。</li>
 <li>步骤分析：<br>(1)    使用舍伍德算法选择基准r（第r个数）<br>(2)    用快速排序算法进行下面的操作：将大于基准的数值放于基准后，将小于基准的数值放于基准前，刷新数组的排序。<br>(3)    若想要查找的第k个数值的k比基准r大，则取数组的右边再重复进行以上操作，若小于，则选择左边的，若等于，则输出。</li>
-<li>示例：<br><img src="example1.png" alt=""><blockquote>
+<li>示例：<br><img src="/2019/11/10/%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C/example1.png" alt><blockquote>
 <p>示例分析：输入10个数，分别为5 2 7 8 9 0 1 3 4 6，第5小的元素为4，验证成功。</p>
 </blockquote>
 </li>
@@ -135,7 +135,7 @@
 <li>问题描述：寻找最长递增的序列。</li>
 <li>解决思路：利用矩阵记录之前的结果，用动态规划法完成寻找</li>
 <li>算法步骤：<br>(1)    设置变量有：存储当前最长序列的值的数组tempmax，存储最长序列长度maxlen存储最长序列的最大值下标maxindex<br>(2)    从下标为1的值开始遍历<br>(3)    若i下标下的值比前一个值大，则更新tempmax[i]=tempmax[i-1]+1，即增加长度1，若此时的tempmaxp[i]比maxlen大，则更新maxlen，且更新maxindex=1</li>
-<li>示例：<br><img src="example2.png" alt=""><br>示例分析：<blockquote>
+<li>示例：<br><img src="/2019/11/10/%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C/example2.png" alt><br>示例分析：<blockquote>
 <p>输入10个数分别为1 3 2 4 5 3 7 8 9 6，其最长递增子序列为3 7 8 9，长度为4，验证成功。</p>
 </blockquote>
 </li>
@@ -159,11 +159,11 @@
 </li>
 <li><p>用稀疏矩阵表示图，定义为weight</p>
 </li>
-<li><p>具体实现示例分析：<br><img src="example3-1.png" alt=""></p>
+<li><p>具体实现示例分析：<br><img src="/2019/11/10/%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C/example3-1.png" alt></p>
 <blockquote>
 <p>其矩阵如：<br> {0,4,NoEdge,2,NoEdge},<br> {4,0,4,1,NoEdge},<br> {NoEdge,4,0,1,3},<br> {2,1,1,0,7},<br>{NoEdge,NoEdge,3,7,0}<br>最终应该得到结果：<br>a-&gt;a=0<br>a-&gt;d-&gt;b=3<br>a-&gt;d-&gt;c=3<br>a-&gt;d=2<br>a-&gt;d-&gt;c-&gt;e=6</p>
 </blockquote>
-<p> <img src="example3-2.png" alt=""><br>测试成功！</p>
+<p> <img src="/2019/11/10/%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C/example3-2.png" alt="a"><br>测试成功！</p>
 </li>
 </ol>
 
