@@ -10,7 +10,7 @@
     <title>网络流量分析（nogotofail）） | DuK_Blogs</title>
     <meta name="author" content="DuK" />
     <meta name="keywords" content="" />
-    <meta name="description" content="应用范围它包括对常见的SSL证书验证问题(HTTPS和TLS/SSL)的测试库bug、SSL和STARTTLS剥离问题、明文问题等等。" />
+    <meta name="description" content="应用范围它包括对常见的SSL证书验证问题(HTTPS和TLS/SSL)的测试库bug、SSL和STARTTLS剥离问题、明文问题等等。应用到的库：psutil模块psutil是一个跨平台库能够轻松实现获取系统运行的进程和系统利用率（包括CPU、内存、磁盘、网络等）信息。它主要用来做系统监控，性能分析，进程管理。它实现了同等命令行工具提供的功能，如ps、top、lsof、netstat、ifconfig、who、df、kill、free、nice、ionice、iostat、iotop..." />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
 
@@ -85,7 +85,7 @@
         
 
         
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#应用范围"><span class="toc-number">1.</span> <span class="toc-text">应用范围</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#应用范围"><span class="toc-number">1.</span> <span class="toc-text">应用范围</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#应用到的库："><span class="toc-number"></span> <span class="toc-text">应用到的库：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#psutil模块"><span class="toc-number"></span> <span class="toc-text">psutil模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-number"></span> <span class="toc-text">安装</span></a>
         
     </div>
 </aside>
@@ -113,7 +113,7 @@
             
 <div class="article-tag-list">
     <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F/" rel="tag">网络流量</a>
+    <a class="article-tag-link" href="/tags/python/" rel="tag">python</a>, <a class="article-tag-link" href="/tags/%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F/" rel="tag">网络流量</a>
 </div>
 
 
@@ -122,7 +122,28 @@
     
     <section class="article-body markdown-body">
         
-        <h1 id="应用范围"><a href="#应用范围" class="headerlink" title="应用范围"></a>应用范围</h1><p>它包括对常见的SSL证书验证问题(HTTPS和TLS/SSL)的测试<br>库bug、SSL和STARTTLS剥离问题、明文问题等等。</p>
+        <h4 id="应用范围"><a href="#应用范围" class="headerlink" title="应用范围"></a>应用范围</h4><p>它包括对常见的SSL证书验证问题(HTTPS和TLS/SSL)的测试<br>库bug、SSL和STARTTLS剥离问题、明文问题等等。</p>
+<a id="more"></a>
+
+<h1 id="应用到的库："><a href="#应用到的库：" class="headerlink" title="应用到的库："></a>应用到的库：</h1><h2 id="psutil模块"><a href="#psutil模块" class="headerlink" title="psutil模块"></a>psutil模块</h2><p>psutil是一个<a href="http://pythonhosted.org/psutil/" target="_blank" rel="noopener">跨平台库</a>能够轻松实现获取系统运行的进程和系统利用率（包括CPU、内存、磁盘、网络等）信息。它主要用来做系统监控，性能分析，进程管理。它实现了同等命令行工具提供的功能，如ps、top、lsof、netstat、ifconfig、who、df、kill、free、nice、ionice、iostat、iotop、uptime、pidof、tty、taskset、pmap等。目前支持32位和64位的Linux、Windows、OS X、FreeBSD和Sun Solaris等操作系统.</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plain"><figcaption><span>install psutil```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 基本使用</span><br><span class="line">#### 获取CPU时间</span><br></pre></td></tr></table></figure>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>psutil.cpu_times()<br>scputimes(user=650613.02, nice=22.14, system=154916.5, idle=16702285.26, iowait=68894.55, irq=3.38, softirq=7075.65, steal=0.0, guest=0.0)</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>```</p>
+<blockquote>
+<ol>
+<li>psutil.process_iter()<br>遍历所有进程</li>
+<li>psutil.version_info[] </li>
+<li>psutil.net_connections<br>寻找连接(用户)的个数，在<a href="https://baike.baidu.com/item/mavericks/4902413?fr=aladdin" target="_blank" rel="noopener">OSX</a>中需要root权限</li>
+<li>psutil.NoSuchProcess, psutil.AccessDenied</li>
+</ol>
+</blockquote>
+<p><a href="https://www.cnblogs.com/saneri/p/7528283.html" target="_blank" rel="noopener">参考文章</a></p>
 
         
     </section>

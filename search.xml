@@ -56,7 +56,7 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sub bx, bx</span><br><span class="line">mov bx, 0</span><br></pre></td></tr></table></figure>
 <p>两个都是可以将bx寄存器置零的指令，但是sub的机械码长度为2，而mov为3，用sub更好。<br>另外说说jmp指令，他是转移指令，具有一个操作对象的指令，而上面的具有两个。</p>
 <h2 id="3-5-栈"><a href="#3-5-栈" class="headerlink" title="3.5 栈"></a>3.5 栈</h2><p>他是一个FILO结构（先入后出），而且是从大变小（地址）。</p>
-<h3 id="1-push和pop"><a href="#1-push和pop" class="headerlink" title="1.push和pop"></a>1.push和pop</h3><blockquote>
+<h3 id="3-5-1-push和pop"><a href="#3-5-1-push和pop" class="headerlink" title="3.5.1 push和pop"></a>3.5.1 push和pop</h3><blockquote>
 <p>执行push ax命令，会把ax中的数据传入ss:sp指向的地址空间。此时<strong>sp-=2</strong><br>执行pop ax命令，会把ss:sp指向的地址空间中的数据传给ax。此时<strong>sp+=2</strong></p>
 </blockquote>
 <p>执行之后的指针变化：</p>
@@ -65,17 +65,35 @@
 <li>pop是先取出数据放到ax中，再sp+=2。称为入栈。</li>
 </ul>
 <p><img src="/2019/11/10/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80-%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0/3.5.png" alt></p>
-<h3 id="2-数据传输"><a href="#2-数据传输" class="headerlink" title="2.数据传输"></a>2.数据传输</h3><p>如8086cpu的入栈和出栈都是以<strong>字</strong>为单位进行的。</p>
-<h3 id="3-栈指针"><a href="#3-栈指针" class="headerlink" title="3.栈指针"></a>3.栈指针</h3><p>上面已经用到了：段寄存器:寄存器存储(ss:sp)<br>sp是指偏移地址，ss:sp始终指向栈顶。</p>
+<h3 id="3-5-2-数据传输"><a href="#3-5-2-数据传输" class="headerlink" title="3.5.2 数据传输"></a>3.5.2 数据传输</h3><p>如8086cpu的入栈和出栈都是以<strong>字</strong>为单位进行的。</p>
+<h3 id="3-5-3-栈指针"><a href="#3-5-3-栈指针" class="headerlink" title="3.5.3 栈指针"></a>3.5.3 栈指针</h3><p>上面已经用到了：段寄存器:寄存器存储(ss:sp)<br>sp是指偏移地址，ss:sp始终指向栈顶。</p>
 <h2 id="3-6-栈顶越界问题"><a href="#3-6-栈顶越界问题" class="headerlink" title="3.6 栈顶越界问题"></a>3.6 栈顶越界问题</h2><p>栈溢出问题都是大问题，如果栈顶越界了，那么执行push和pop会受影响吗？当然不会！直接刚，写！写！写！出！出！出！管你呢。<br>所以就会有可能读了其他程序的数据，或者<strong>修改了（覆盖）</strong>其他程序的数据（直接崩溃的说）<br>执行情况（取自《汇编语言第二版》王爽著）<br><img src="/2019/11/10/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80-%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0/3.6.jpg" alt></p>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="1-程序与数据有区别吗？"><a href="#1-程序与数据有区别吗？" class="headerlink" title="1.程序与数据有区别吗？"></a>1.程序与数据有区别吗？</h3><p>可以说有，也可以说没有。由于指令都是0和1组成的，只是用不同功能的段地址读出来的不一样，如,CS和DS都指向10000H，那么，CS会将里头的数据转化为机械码，执行指令，而DS就直接读数据，作为单纯的数据使用。</p>
+<h2 id="3-7-问题"><a href="#3-7-问题" class="headerlink" title="3.7 问题"></a>3.7 问题</h2><h3 id="1-程序与数据有区别吗？"><a href="#1-程序与数据有区别吗？" class="headerlink" title="1.程序与数据有区别吗？"></a>1.程序与数据有区别吗？</h3><p>可以说有，也可以说没有。由于指令都是0和1组成的，只是用不同功能的段地址读出来的不一样，如,CS和DS都指向10000H，那么，CS会将里头的数据转化为机械码，执行指令，而DS就直接读数据，作为单纯的数据使用。</p>
 <h3 id="2-空栈如（10000H-1000FH）此时ss-1000H，那么sp是多少？"><a href="#2-空栈如（10000H-1000FH）此时ss-1000H，那么sp是多少？" class="headerlink" title="2.空栈如（10000H~1000FH）此时ss=1000H，那么sp是多少？"></a>2.空栈如（10000H~1000FH）此时ss=1000H，那么sp是多少？</h3><p>因为是自下而上（自大到小），所以sp=0010H。<br>换一种方式看，若存储了一个数据，则一个存到000EH，一个存到000FH，此时的栈指针在栈顶，当然指向000EH了，此时是已经让sp-=2了，那么回溯一下，不就有sp=0010H了。</p>
 <ul>
 <li>好了，问题来了，如果将（10000H~1FFFFH）作为空间呢？<br>答案：sp=0000H，因为，不能变成10000H(笑)</li>
 </ul>
 <h3 id="3-栈会溢出，那么，为什么不设置栈大小"><a href="#3-栈会溢出，那么，为什么不设置栈大小" class="headerlink" title="3.栈会溢出，那么，为什么不设置栈大小"></a>3.栈会溢出，那么，为什么不设置栈大小</h3><p>emmm，可惜8086cpu就是没有，所以变成自己注意。</p>
 <h3 id="4-只有mov可以完成传输数据吗？"><a href="#4-只有mov可以完成传输数据吗？" class="headerlink" title="4.只有mov可以完成传输数据吗？"></a>4.只有mov可以完成传输数据吗？</h3><p>push也可以哦，只要把sp定位为ds:[address]那就好了哦。直接写进去。</p>
-]]></content>
+<h1 id="第四章-第一个程序"><a href="#第四章-第一个程序" class="headerlink" title="第四章 第一个程序"></a>第四章 第一个程序</h1><h2 id="4-1-一个源程序从写出到执行的过程"><a href="#4-1-一个源程序从写出到执行的过程" class="headerlink" title="4.1 一个源程序从写出到执行的过程"></a>4.1 一个源程序从写出到执行的过程</h2><p>如图：<br><a href="4.1.png"></a><br>执行过程包括：写程序-&gt;编译连接成可执行文件-&gt;执行。</p>
+<blockquote>
+<p>可执行文件文件中包括以下两部分：</p>
+</blockquote>
+<ol>
+<li>程序和数据</li>
+<li>相关的描述：程序多大，占用多少运行空间</li>
+</ol>
+<h2 id="4-2-源程序"><a href="#4-2-源程序" class="headerlink" title="4.2 源程序"></a>4.2 源程序</h2><h3 id="4-2-1-伪指令"><a href="#4-2-1-伪指令" class="headerlink" title="4.2.1 伪指令"></a>4.2.1 伪指令</h3><p>也就是只能被编译器识别的指令，如<strong>assume</strong>、<strong>segment</strong>、<strong>end</strong>等，<strong><em>这是没有机械码的</em></strong>。<br>一般的伪指令使用如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">assume cs:code  #声明（假设）cs:段名（标号）</span><br><span class="line">code segment	#段名 segment</span><br><span class="line">_指令_</span><br><span class="line">code ends		#对应segment，表示一个段结束</span><br><span class="line">end				#对应assume，表示程序结束</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-2-程序返回"><a href="#4-2-2-程序返回" class="headerlink" title="4.2.2 程序返回"></a>4.2.2 程序返回</h3><p>现在考虑，如何让上一个程序把CPU控制权交给写一个程序，这时候就要使用<strong>程序返回</strong><br>其代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mov ax, 4c00H</span><br><span class="line">int 21H</span><br></pre></td></tr></table></figure>
+<h2 id="4-3-程序生成流程"><a href="#4-3-程序生成流程" class="headerlink" title="4.3 程序生成流程"></a>4.3 程序生成流程</h2><p><strong>编程 -&gt; <em>1.asm</em> -&gt; 编译 -&gt; <em>1.obj</em> -&gt; 连接 -&gt; <em>1.exe</em> -&gt; 加载 -&gt; <em>内存中的程序</em> -&gt; 运行</strong><br>注：加载就是将程序加载到内存，执行就是在内存中执行程序的指令</p>
+<h2 id="4-4-怎么装载程序？"><a href="#4-4-怎么装载程序？" class="headerlink" title="4.4 怎么装载程序？"></a>4.4 怎么装载程序？</h2><p>操作系统是一个模块组成庞大的系统。任何通用的系统都要提供一个称为shell的程序，用户使用这个程序来操作计算机系统进行工作。</p>
+<p>如DOS中有一个程序command.com，这个程序称为：命令解释器，也就是DOS中的SHELL<br>（其实跟我们的cmd.exe差不多）</p>
+<p>先运行shell，然后在加载1.exe可执行程序的时候，cmd会自动把cpu的控制权交给1.exe，执行完成再返回cmd。</p>
+<h2 id="4-4-展示EXE的加载过程"><a href="#4-4-展示EXE的加载过程" class="headerlink" title="4.4 展示EXE的加载过程"></a>4.4 展示EXE的加载过程</h2><p><a href="4.4.png"></a></p>
+<h1 id="第五章-BX-和loop指令"><a href="#第五章-BX-和loop指令" class="headerlink" title="第五章 [BX]和loop指令"></a>第五章 [BX]和loop指令</h1>]]></content>
       <categories>
         <category>理论</category>
         <category>代码编程</category>
@@ -88,13 +106,35 @@
   <entry>
     <title>网络流量分析（nogotofail））</title>
     <url>/2019/11/10/%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90-nogotofail/</url>
-    <content><![CDATA[<h1 id="应用范围"><a href="#应用范围" class="headerlink" title="应用范围"></a>应用范围</h1><p>它包括对常见的SSL证书验证问题(HTTPS和TLS/SSL)的测试<br>库bug、SSL和STARTTLS剥离问题、明文问题等等。</p>
+    <content><![CDATA[<h4 id="应用范围"><a href="#应用范围" class="headerlink" title="应用范围"></a>应用范围</h4><p>它包括对常见的SSL证书验证问题(HTTPS和TLS/SSL)的测试<br>库bug、SSL和STARTTLS剥离问题、明文问题等等。</p>
+<a id="more"></a>
+
+<h1 id="应用到的库："><a href="#应用到的库：" class="headerlink" title="应用到的库："></a>应用到的库：</h1><h2 id="psutil模块"><a href="#psutil模块" class="headerlink" title="psutil模块"></a>psutil模块</h2><p>psutil是一个<a href="http://pythonhosted.org/psutil/" target="_blank" rel="noopener">跨平台库</a>能够轻松实现获取系统运行的进程和系统利用率（包括CPU、内存、磁盘、网络等）信息。它主要用来做系统监控，性能分析，进程管理。它实现了同等命令行工具提供的功能，如ps、top、lsof、netstat、ifconfig、who、df、kill、free、nice、ionice、iostat、iotop、uptime、pidof、tty、taskset、pmap等。目前支持32位和64位的Linux、Windows、OS X、FreeBSD和Sun Solaris等操作系统.</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plain"><figcaption><span>install psutil```</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">### 基本使用</span><br><span class="line">#### 获取CPU时间</span><br></pre></td></tr></table></figure>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>psutil.cpu_times()<br>scputimes(user=650613.02, nice=22.14, system=154916.5, idle=16702285.26, iowait=68894.55, irq=3.38, softirq=7075.65, steal=0.0, guest=0.0)</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>```</p>
+<blockquote>
+<ol>
+<li>psutil.process_iter()<br>遍历所有进程</li>
+<li>psutil.version_info[] </li>
+<li>psutil.net_connections<br>寻找连接(用户)的个数，在<a href="https://baike.baidu.com/item/mavericks/4902413?fr=aladdin" target="_blank" rel="noopener">OSX</a>中需要root权限</li>
+<li>psutil.NoSuchProcess, psutil.AccessDenied</li>
+</ol>
+</blockquote>
+<p><a href="https://www.cnblogs.com/saneri/p/7528283.html" target="_blank" rel="noopener">参考文章</a></p>
 ]]></content>
       <categories>
         <category>理论</category>
       </categories>
       <tags>
         <tag>网络流量</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
