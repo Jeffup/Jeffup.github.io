@@ -134,18 +134,63 @@
 </blockquote>
 </blockquote>
 </blockquote>
-<p>```</p>
-<blockquote>
-<ol>
-<li>psutil.process_iter()<br>遍历所有进程</li>
-<li>psutil.version_info[] </li>
-<li>psutil.net_connections<br>寻找连接(用户)的个数，在<a href="https://baike.baidu.com/item/mavericks/4902413?fr=aladdin" target="_blank" rel="noopener">OSX</a>中需要root权限</li>
-<li>psutil.NoSuchProcess, psutil.AccessDenied</li>
-</ol>
-</blockquote>
-<p><a href="https://www.cnblogs.com/saneri/p/7528283.html" target="_blank" rel="noopener">参考文章</a></p>
-<p><a href="https://www.cnblogs.com/lfs2640666960/p/9330735.html" target="_blank" rel="noopener">https://www.cnblogs.com/lfs2640666960/p/9330735.html</a> 介绍的不错</p>
+<pre><code>&gt; 1. psutil.process_iter()
+遍历所有进程
+2. psutil.version_info[] 
+3. psutil.net_connections
+寻找连接(用户)的个数，在[OSX](https://baike.baidu.com/item/mavericks/4902413?fr=aladdin)中需要root权限
+4. psutil.NoSuchProcess, psutil.AccessDenied
 
+[参考文章](https://www.cnblogs.com/saneri/p/7528283.html)
+
+https://www.cnblogs.com/lfs2640666960/p/9330735.html 介绍的不错
+
+5. bash: 未预期的符号 `newline&apos; 附近有语法错误:将&lt;&gt;换成&apos;&apos;
+
+# 关于elk
+1. 安装
+yum install -y elasticsearch
+安装在/usr/share/elasticsearch当中，启动在bin当中的elasticsearch。用./Bin...来启动
+* 测试运行：curl &apos;http://localhost:9200/?pretty&apos;
+* 会得到![](elasticsuccess.jpg)
+* Elasticsearch 的实例。 而一个 集群 是一组拥有相同 cluster.name 的节点， 他们能一起工作并共享数据，还提供容错与可伸缩性。(当然，一个单独的节点也可以组成一个集群) 你可以在 elasticsearch.yml 配置文件中 修改 cluster.name ，该文件会在节点启动时加载 (译者注：这个重启服务后才会生效)。 
+* 而elasticsearch中的.yml在/etc/elasticsearch当中
+* 设置：logstash，netflow，配置
+* 可以用端口9200，web客户端，甚至curl进行交互
+    curl -X&lt;VERB&gt; &apos;&lt;PROTOCOL&gt;://&lt;HOST&gt;:&lt;PORT&gt;/&lt;PATH&gt;?&lt;QUERY_STRING&gt;&apos; -d &apos;&lt;BODY&gt;&apos;   [使用参考](https://www.elastic.co/guide/cn/elasticsearch/guide/current/_talking_to_elasticsearch.html)
+* 
+* 会遇到问题：Exception in thread &quot;main&quot; org.elasticsearch.bootstrap.BootstrapException: java.nio.file.NoSuchFileException: /usr/share/elasticsearch/config
+Likely root cause: java.nio.file.NoSuchFileException: /usr/share/elasticsearch/config ...
+[解决方法](https://www.cnblogs.com/yswenli/p/6397351.html)
+其实就是： cp -r /etc/elasticsearch /usr/share/elasticsearch/config
+➜  ~ groupadd elsearch
+➜  ~ useradd elsearch -g elsearch -p elsearch
+➜  ~ cd /usr/share  
+➜   chown -R elsearch:elsearch elasticsearch 
+➜  su elsearch
+这是因为elasticsearch需要读写配置文件，我们需要给予config文件夹权限，上面新建了elsearch用户，elsearch用户不具备读写权限，因此还是会报错，解决方法是切换到管理员账户，赋予权限即可：
+sudo -i
+chmod -R 775 config
+[这篇讲的很全](https://www.linuxidc.com/Linux/2018-11/155518.htm)
+
+
+
+安装sense
+其实这个是Kibana的一个应用
+安装：yum install -y kibana
+测试运行也是一样的路径
+    http://localhost:5601/app/sense
+这个是emmm，测试？
+
+
+
+关于javaAPI交互
+节点客户端（Node client）
+    节点客户端作为一个非数据节点加入到本地集群中。换句话说，它本身不保存任何数据，但是它知道数据在集群中的哪个节点中，并且可以把请求转发到正确的节点。
+传输客户端（Transport client）
+    轻量级的传输客户端可以将请求发送到远程集群。它本身不加入集群，但是它可以将请求转发到集群中的一个节点上。
+两个 Java 客户端都是通过 9300 端口并使用 Elasticsearch 的原生 传输 协议和集群交互。集群中的节点通过端口 9300 彼此通信。如果这个端口没有打开，节点将无法形成一个集群。
+</code></pre>
         
     </section>
 </article>
