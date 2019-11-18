@@ -27,7 +27,7 @@
 </ol>
 </blockquote>
 <h3 id="1-2-1-影响性能的因素："><a href="#1-2-1-影响性能的因素：" class="headerlink" title="1.2.1 影响性能的因素："></a>1.2.1 影响性能的因素：</h3><h4 id="宽度（线的条数）：它决定了部件的能力（速度，控制能力等）。8086为16条，8088为8条"><a href="#宽度（线的条数）：它决定了部件的能力（速度，控制能力等）。8086为16条，8088为8条" class="headerlink" title="宽度（线的条数）：它决定了部件的能力（速度，控制能力等）。8086为16条，8088为8条"></a>宽度（线的条数）：它决定了部件的能力（速度，控制能力等）。8086为16条，8088为8条</h4><blockquote>
-<p>若CPU的寻址能力为8KB，则总线宽度：8*1024/1 = 2**13 (注意单位是B,13则为总线宽度)</p>
+<p>若CPU的寻址能力为8KB，则总线宽度：8*1024/1 = $2^13$ (注意单位是B,13则为总线宽度)</p>
 </blockquote>
 <h1 id="第二章-寄存器"><a href="#第二章-寄存器" class="headerlink" title="第二章 寄存器"></a>第二章 寄存器</h1><h2 id="2-1-通用寄存器"><a href="#2-1-通用寄存器" class="headerlink" title="2.1 通用寄存器"></a>2.1 通用寄存器</h2><p>有<strong>AX BX CX DX</strong>四种，它们分为高位和低位以兼容以前的程序，如（AX = AH(高) + AL(低)）<br><em>要注意的是：若只用AL进行运算，若超出其范围，超出的数据不会到AH当中！</em></p>
 <h2 id="2-2-CPU给出物理地址的方法"><a href="#2-2-CPU给出物理地址的方法" class="headerlink" title="2.2 CPU给出物理地址的方法"></a>2.2 CPU给出物理地址的方法</h2><blockquote>
@@ -86,7 +86,7 @@
 </ul>
 <h3 id="3-栈会溢出，那么，为什么不设置栈大小"><a href="#3-栈会溢出，那么，为什么不设置栈大小" class="headerlink" title="3.栈会溢出，那么，为什么不设置栈大小"></a>3.栈会溢出，那么，为什么不设置栈大小</h3><p>emmm，可惜8086cpu就是没有，所以变成自己注意。</p>
 <h3 id="4-只有mov可以完成传输数据吗？"><a href="#4-只有mov可以完成传输数据吗？" class="headerlink" title="4.只有mov可以完成传输数据吗？"></a>4.只有mov可以完成传输数据吗？</h3><p>push也可以哦，只要把sp定位为ds:[address]那就好了哦。直接写进去。</p>
-<h1 id="第四章-第一个程序"><a href="#第四章-第一个程序" class="headerlink" title="第四章 第一个程序"></a>第四章 第一个程序</h1><h2 id="4-1-一个源程序从写出到执行的过程"><a href="#4-1-一个源程序从写出到执行的过程" class="headerlink" title="4.1 一个源程序从写出到执行的过程"></a>4.1 一个源程序从写出到执行的过程</h2><p>如图：<br><img src="/2019/11/10/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80-%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0/4.1.png" alt><br>执行过程包括：写程序-&gt;编译连接成可执行文件-&gt;执行。</p>
+<h1 id="第四章-第一个程序"><a href="#第四章-第一个程序" class="headerlink" title="第四章 第一个程序"></a>第四章 第一个程序</h1><h2 id="4-1-一个源程序从写出到执行的过程"><a href="#4-1-一个源程序从写出到执行的过程" class="headerlink" title="4.1 一个源程序从写出到执行的过程"></a>4.1 一个源程序从写出到执行的过程</h2><p>执行过程包括：写程序-&gt;编译连接成可执行文件-&gt;执行。</p>
 <blockquote>
 <p>可执行文件文件中包括以下两部分：</p>
 </blockquote>
@@ -267,7 +267,7 @@
 <p>解析：第一条指令mov … 是三个字节，所以s段的offset为3</p>
 <h2 id="9-2-jmp指令和依据译为进行转移的jmp指令"><a href="#9-2-jmp指令和依据译为进行转移的jmp指令" class="headerlink" title="9.2 jmp指令和依据译为进行转移的jmp指令"></a>9.2 jmp指令和依据译为进行转移的jmp指令</h2><h3 id="9-2-1-jmp-short-标号-转移到标号出执行指令"><a href="#9-2-1-jmp-short-标号-转移到标号出执行指令" class="headerlink" title="9.2.1 jmp short 标号(转移到标号出执行指令)"></a>9.2.1 jmp short 标号(转移到标号出执行指令)</h3><pre><code>1. short标号下，它属于段内短转移，对IP的修改范围为-128~127。</code></pre><h3 id="9-2-2-立即数在机器码中的表示"><a href="#9-2-2-立即数在机器码中的表示" class="headerlink" title="9.2.2 立即数在机器码中的表示"></a>9.2.2 立即数在机器码中的表示</h3><p>在一般的汇编指令当中，汇编指令的idata（立即数），不论他是表示一个数据还是内存单元的偏移地址，都会在相应的机器指令中出现，因为CPU执行的是机器指令，他必须处理这些数据或地址。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mov ax,0123h		B8 23 01</span><br><span class="line">mov ax,ds:[0123h]	A1 23 01</span><br><span class="line">push ds:[0123h]		FF 36 23 01</span><br></pre></td></tr></table></figure>
-<h3 id="9-2-3-jmp转移的机制（是怎么实现转移的）"><a href="#9-2-3-jmp转移的机制（是怎么实现转移的）" class="headerlink" title="9.2.3 jmp转移的机制（是怎么实现转移的）"></a>9.2.3 jmp转移的机制（是怎么实现转移的）</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">start:	mov ax,0</span><br><span class="line">		mov bx,0</span><br><span class="line">		jmp short s</span><br><span class="line">		add ax,1</span><br><span class="line">	s:	inc ax</span><br></pre></td></tr></table></figure>
+<h3 id="9-2-3-jmp转移的机制（是怎么实现转移的）"><a href="#9-2-3-jmp转移的机制（是怎么实现转移的）" class="headerlink" title="9.2.3 jmp转移的机制（是怎么实现转移的）"></a>9.2.3 jmp转移的机制（是怎么实现转移的）<span id="jmp"></span></h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">start:	mov ax,0</span><br><span class="line">		mov bx,0</span><br><span class="line">		jmp short s</span><br><span class="line">		add ax,1</span><br><span class="line">	s:	inc ax</span><br></pre></td></tr></table></figure>
 
 <ol>
 <li>首先我们应该知道，jmp指令是2个字节，如代码中的jmp机械码是：<strong>EB 03</strong> 。这样的机械码，<strong>没有包含s段的地址</strong>！所以将jmp指令写入内存之后，IP=IP+2=0008h。</li>
@@ -296,6 +296,311 @@
 </blockquote>
 <h2 id="9-4-loop指令"><a href="#9-4-loop指令" class="headerlink" title="9.4 loop指令"></a>9.4 loop指令</h2><p>也是短转移指令，pass</p>
 <h2 id="9-5-编译器对转移位移超界的检测"><a href="#9-5-编译器对转移位移超界的检测" class="headerlink" title="9.5 编译器对转移位移超界的检测"></a>9.5 编译器对转移位移超界的检测</h2><p>编译的时候就会出错！因为，这超界，编译器可识别不了。这不存在的玩意儿。</p>
+<h1 id="第十章-CALL和RET指令"><a href="#第十章-CALL和RET指令" class="headerlink" title="第十章 CALL和RET指令"></a>第十章 CALL和RET指令</h1><h2 id="10-1-ret和retf"><a href="#10-1-ret和retf" class="headerlink" title="10.1 ret和retf"></a>10.1 ret和retf</h2><p>它们都是用栈中的指令，而ret是改变ip，而retf是改变cs:ip，实现远转移。<br>而正是因为它们是取栈中的指令，所以要和push 和pop结合起来，而ret或者retf执行完后，相当于执行了指令pop<br>如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mov ax stack	;在前面声明的stack数据段，共16B</span><br><span class="line">mov ss ax		;栈段地址</span><br><span class="line">mov sp 16		;将值（Base）设置为16，往上加。（栈的特性）</span><br><span class="line">push cx</span><br><span class="line">push ip</span><br><span class="line">retf</span><br></pre></td></tr></table></figure>
+<p>这里就相当于执行了刚放进去的机器码。</p>
+<h2 id="10-2-call指令"><a href="#10-2-call指令" class="headerlink" title="10.2 call指令"></a>10.2 call指令</h2><ul>
+<li>将打那个钱的IP或CS:IP压入栈中</li>
+<li>转移</li>
+</ul>
+<p>注意：call指令不能执行短转移，其实现方法与<a href="#jmp">jmp指令</a>相同</p>
+<h3 id="10-2-1-依据位移进行转移的call指令"><a href="#10-2-1-依据位移进行转移的call指令" class="headerlink" title="10.2.1 依据位移进行转移的call指令"></a>10.2.1 依据位移进行转移的call指令</h3><blockquote>
+<p>call 标号(将当期那的ip压入栈后，转到标号处执行指令)</p>
+</blockquote>
+<p>指令执行时会带有以下操作：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1. (sp)=(sp)-2	;压栈</span><br><span class="line"> ((ss)*16+(sp))=(IP)</span><br><span class="line">2. (IP)=(IP)+16位位移</span><br></pre></td></tr></table></figure>
+<p>这个位移之前也说过了，不多讲。<br>看到上面的代码我们也能联想到jmp的执行了，相当于：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">push IP</span><br><span class="line">jmp near ptr 标号</span><br></pre></td></tr></table></figure>
+<p>举个例子！</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">内存地址 机器码 汇编指令 </span><br><span class="line">1000:0 b8 00 00 mov ax,0 </span><br><span class="line">1000:3 e8 01 00 call s </span><br><span class="line">1000:6 40 		inc ax </span><br><span class="line">1000:7 58 		s:pop ax</span><br></pre></td></tr></table></figure>
+<p>也许你会想到：我没有push哪来的pop!?</p>
+<ol>
+<li>在call之时已经有了push ip，此时的ip=提取call s之后指向下一个执行机器码（inc ax）的ip指针，也就是ip=6。</li>
+<li>而当call转移到s，ip就变为call之后的ip。</li>
+<li>此时再pop ax，也就是ax=6。</li>
+<li>因为执行完s，没有<span id="ret"></span>回调指令pop ip。。。所以不会执行inc ax</li>
+</ol>
+<h3 id="10-2-2-转移地址在指令中的call指令"><a href="#10-2-2-转移地址在指令中的call指令" class="headerlink" title="10.2.2 转移地址在指令中的call指令"></a>10.2.2 转移地址在指令中的call指令</h3><p>这个也就是段间转移了，是相对于上头说的段内转移</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">call far ptr 标号</span><br></pre></td></tr></table></figure>
+<p>此时会执行cs和ip双压栈</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1. (sp)=(sp)-2	;压栈</span><br><span class="line"> ((ss)*16+(sp))=(CS)</span><br><span class="line">(sp)=(sp)-2	;压栈</span><br><span class="line"> ((ss)*16+(sp))=(IP)</span><br><span class="line">2. (CS)=标号所在的段地址</span><br><span class="line">(IP)=标号在段中的偏移地址</span><br><span class="line"></span><br><span class="line">即：</span><br><span class="line">push CS</span><br><span class="line">push IP</span><br><span class="line">jmp far ptr 标号</span><br></pre></td></tr></table></figure>
+<p>举个例子：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1000:0 b8 00 00 		mov ax,0</span><br><span class="line">1000:3 9a 09 00 00 10 	call far ptr s</span><br><span class="line">1000:8 40 				inc ax</span><br><span class="line">1000:9 58 			s:	pop ax</span><br><span class="line">						add ax,ax</span><br><span class="line">						pop bx</span><br><span class="line">						add ax,bx</span><br></pre></td></tr></table></figure>
+<p>ax是多少呢？</p>
+<ol>
+<li>call指令执行之后，stack中有cs和ip两个数据，CS在底部,IP在顶部。所以第一次pop ax，ax=ip=8</li>
+<li>执行add后ax=16即10H</li>
+<li>再执行pop，bx=1000H</li>
+<li>add指令执行后ax=ax+bx=1010H</li>
+</ol>
+<h3 id="10-2-3-转移指令在寄存器中的call指令"><a href="#10-2-3-转移指令在寄存器中的call指令" class="headerlink" title="10.2.3 转移指令在寄存器中的call指令"></a>10.2.3 转移指令在寄存器中的call指令</h3><pre><code>call 16位reg</code></pre><p>功能：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">push IP</span><br><span class="line">jmp 16位reg	;IP=(reg)</span><br></pre></td></tr></table></figure>
+<p>这个跟10.2.1是不是很像？段内转移。例子：call ax（当ax=6,则转到cs:6处执行）</p>
+<h3 id="10-2-4-转移指令在内存中的call指令"><a href="#10-2-4-转移指令在内存中的call指令" class="headerlink" title="10.2.4 转移指令在内存中的call指令"></a>10.2.4 转移指令在内存中的call指令</h3><pre><code>call word ptr 内存单元地址</code></pre><p>功能：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">push IP</span><br><span class="line">jmp word ptr 内存单元地址</span><br></pre></td></tr></table></figure>
+<p>其实跟10.2.3没啥两样。</p>
+<p>但是还有一种双字型：<br>    call dword ptr 内存单元地址<br>功能：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">push CS</span><br><span class="line">push IP</span><br><span class="line">jmp dword ptr 内存单元地址</span><br></pre></td></tr></table></figure>
+<p>举个例子就明白了</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mov sp,10h</span><br><span class="line">mov ax,0123h</span><br><span class="line">mov ds:[0],ax</span><br><span class="line">mov word ptr ds:[2]，0</span><br><span class="line">call dword ptr ds:[0]</span><br></pre></td></tr></table></figure>
+<p>执行后：(CS)=0, (IP)=0123H, (sp)=0CH.</p>
+<h2 id="10-3-call与ret的配合使用（敲黑板！）"><a href="#10-3-call与ret的配合使用（敲黑板！）" class="headerlink" title="10.3 call与ret的配合使用（敲黑板！）"></a>10.3 call与ret的配合使用（敲黑板！）</h2><ul>
+<li>call之时压ip到栈中!</li>
+<li>call完之后，执行转移后的指令</li>
+<li>通过ret取出栈中的地址，执行转移操作！即<strong><a href="#ret">回调</a></strong>作用！</li>
+<li>回调完成就可以执行call之后的代码了！<br>分析例子：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">assume cs:code</span><br><span class="line">code segment</span><br><span class="line">  start: mov ax,1</span><br><span class="line">         mov cx,3</span><br><span class="line">         call s</span><br><span class="line">         mov bx,ax	;(b)=?</span><br><span class="line">         mov ax,4c00h</span><br><span class="line">         int 21h</span><br><span class="line">      s: add ax,ax</span><br><span class="line">         loop s</span><br><span class="line">         ret</span><br><span class="line">code ends</span><br><span class="line">end start</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> 我们来看一下CPU执行这个程序的主要过程。<br>  (1)CPU将call s指令的机器码读入，IP指向了call s后的指令mov bx,ax.然后CPU执行call s指令，将当前的IP值(指令mov bx,ax的偏移地址)压栈，并将IP的值改变为标号s处的偏移地址:<br>  (2) CPU从标号s处开始执行指令，loop循环完毕后，(ax)=8;<br>  (3) CPU将ret指令的机器码读入，IP指向了ret指令后的内存单元，然后CPU执行ret指令，从栈中弹出一个值(即call s先前压入的mov bx,ax指令的偏移地址)送入IP中。则CS:IP指向指令mov bx,ax;<br>  (4) CPU从mov bx,ax开始执行指令，直至完成。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="10-4-mul乘法指令"><a href="#10-4-mul乘法指令" class="headerlink" title="10.4 mul乘法指令"></a>10.4 mul乘法指令</h2><p>之前说了div除法指令，现在说乘法指令。</p>
+<h3 id="10-4-1-乘法规则"><a href="#10-4-1-乘法规则" class="headerlink" title="10.4.1 乘法规则"></a>10.4.1 乘法规则</h3><p>这里跟div的除数和被除数不一样的是，乘法的两个数，要么都是8位要么都是16位！</p>
+<ol>
+<li>乘法的两个数</li>
+</ol>
+<ul>
+<li>如果是8位，一个放在<strong>AL</strong>中，一个放在8位的reg或内存字节单元中。</li>
+<li>如果是16位，一个放在<strong>AX</strong>中，一个放在16位的reg或内存字节单元中。</li>
+</ul>
+<ol start="2">
+<li>乘法的结果</li>
+</ol>
+<ul>
+<li>如果是8位乘法，结果放在<strong>AX</strong>中</li>
+<li>如果是16位乘法，<strong>高位放DX</strong>，<strong>低位放AX</strong></li>
+</ul>
+<h3 id="10-4-2-指令格式："><a href="#10-4-2-指令格式：" class="headerlink" title="10.4.2 指令格式："></a>10.4.2 指令格式：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mul reg</span><br><span class="line">mul 内存单元</span><br></pre></td></tr></table></figure>
+<p>格式说明：<br>因为有一个放在了al(以8位为例)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mov al 1</span><br><span class="line">mov byte ptr ds:[0] 2</span><br><span class="line">mul ds:[0]</span><br></pre></td></tr></table></figure>
+<p>这个就是用2*1了~<br>结果是ax=2（当然，我赋值的是十进制嘛）</p>
+<h3 id="10-4-3-用mul寻址"><a href="#10-4-3-用mul寻址" class="headerlink" title="10.4.3 用mul寻址"></a>10.4.3 用mul寻址</h3><ol>
+<li>mul byte ptr ds:[0]<br>含义：ax=al<em>(ds</em>16+0)</li>
+<li>mul word ptr [bx+si+8]<br>含义：dx=</li>
+</ol>
+<h2 id="10-5-模块化程序设计"><a href="#10-5-模块化程序设计" class="headerlink" title="10.5  模块化程序设计"></a>10.5  模块化程序设计</h2><h3 id="10-5-1-参数和结果的传递问题"><a href="#10-5-1-参数和结果的传递问题" class="headerlink" title="10.5.1 参数和结果的传递问题"></a>10.5.1 参数和结果的传递问题</h3><p>也就是说，传进来的参数是啥，返回值是个啥。</p>
+<ol>
+<li>传入的参数：<br>这个有很多，有用栈传递的，也有直接用内存单元或者寄存器。</li>
+<li>返回值：<br>这个可以存在寄存器中返回跟传入参数的方法很像</li>
+</ol>
+<p>而模块化设计，其实就是相当于c语言中的函数，把一个段中的代码当做一个函数执行。</p>
+<h3 id="10-5-2-寄存器冲突问题"><a href="#10-5-2-寄存器冲突问题" class="headerlink" title="10.5.2 寄存器冲突问题"></a>10.5.2 寄存器冲突问题</h3><p>冲突问题是什么呢？例如如果上面的模块使用的loop，即使用了寄存器cx，而call的模块也适用了loop，即也使用了cx，那么两者就将共用cx，肯定会出错！<br>解决办法有：</p>
+<ol>
+<li>让别的调用者调用其他寄存器（这个很难实现，你也不知道他会用到什么寄存器）</li>
+<li>不要使用会冲突的寄存器（这个不可能实现，只是说说理想罢了）</li>
+<li>用栈，压进去，保存，call完在出栈！（这个OK哦）</li>
+</ol>
+<h2 id="10-6-课后"><a href="#10-6-课后" class="headerlink" title="10.6 课后"></a>10.6 课后</h2><h3 id="下面的程序执行后，ax和bx中的数值为多少？"><a href="#下面的程序执行后，ax和bx中的数值为多少？" class="headerlink" title="下面的程序执行后，ax和bx中的数值为多少？"></a>下面的程序执行后，ax和bx中的数值为多少？</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">assume cs:codesg</span><br><span class="line">stack segment</span><br><span class="line">    dw 8 dup(0)</span><br><span class="line">stack ends</span><br><span class="line">codesg segment</span><br><span class="line">start:</span><br><span class="line">    mov ax,stack</span><br><span class="line">    mov ss,ax</span><br><span class="line">    mov sp,10h</span><br><span class="line">    mov word ptr ss:[0],offset s ;(ss:[0])=1ah</span><br><span class="line">    mov ss:[2],cs                ;(ss:[2])=cs</span><br><span class="line">    call dword ptr ss:[0]        ;cs入栈,ip=19h入栈,转到cs:1ah处执行指令</span><br><span class="line">                                 ;(ss:[4])=cs,(ss:[6])=ip</span><br><span class="line">    nop</span><br><span class="line">s:  mov ax,offset s              ;ax=1ah</span><br><span class="line">    sub ax,ss:[0ch]              ;ax=1ah-(ss:[0ch])=1ah-19h=1</span><br><span class="line">    mov bx,cs                    ;bx=cs＝0c5bh</span><br><span class="line">    sub bx,ss:[0eh]              ;bx=cs-cs=0</span><br><span class="line">    mov ax,4c00h</span><br><span class="line">    int 21h</span><br><span class="line">codesg ends</span><br><span class="line">end start</span><br></pre></td></tr></table></figure>
+<h3 id="实验10-1-编写子程序-之-显示字符串"><a href="#实验10-1-编写子程序-之-显示字符串" class="headerlink" title="实验10-1 编写子程序 之 显示字符串"></a>实验10-1 编写子程序 之 显示字符串</h3><p>在这次实验中，我们将要编写3个子程序，通过它们来认识几个常见的问题和掌握解决这些问题的方法.同前面的所有实验一样，这个实验是必须独立完成的，在后面的课程中，将要用到这个实验中编写的3个子程序。</p>
+<h4 id="显示字符串"><a href="#显示字符串" class="headerlink" title="显示字符串"></a>显示字符串</h4><h5 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h5><p>显示字符串是现实工作中经常要用到的功能，应该编写一个通用的子程序来实现这个功<br>能.我们应该提供灵活的调用接口，使调用者可以决定显示的位置(行、列)、内容和颜色。</p>
+<h5 id="子程序描述"><a href="#子程序描述" class="headerlink" title="子程序描述"></a>子程序描述</h5><p>名称:show str<br>功能:在指定的位置，用指定的颜色，显示一个用0结束的字符串。<br>参数:(dh)=行号(取值范围。-24), (dl)=列号(取值范围0-79),<br>      (cl)=颜色，ds:si指向字符串的首地址<br>返回:无<br>应用举例:在屏幕的8行3列，用绿色显示data段中的字符串。</p>
+<h4 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h4><ol>
+<li>子程序的入口参数是屏幕上的行号和列号，注意在子程序内部要将它们转化为显存中的地址，首先要分析一下屏幕上的行列位置和显存地址的对应关系:</li>
+<li>注意保存子程序中用到的相关寄存器:</li>
+<li>这个子程序的内部处理和显存的结构密切相关.但是向外提供了与显存结构无关的接口。通过调用这个子程序，进行字符串的显示时可以不必了解显存的结构，为编程提供了方便。在实验中，注意体会这种设计思想。</li>
+<li>其实这玩意，就是抢占了本来应该在屏幕中输出的系统信息。那么设置行列号的，就是占的信息的位置。<details>
+<summary><mark><font color="darkred">点击查看参考代码</font></mark></summary>
+<pre><code>  
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">assume cs:code,ds:data</span><br><span class="line"></span><br><span class="line">data segment</span><br><span class="line">	db &apos;Welcome to masm!&apos;,0</span><br><span class="line">data ends</span><br><span class="line"></span><br><span class="line">code segment</span><br><span class="line">start:	</span><br><span class="line">	mov dh,8	;行号</span><br><span class="line">	mov dl,3	;列号</span><br><span class="line">	mov cl,07h	;白色字	</span><br><span class="line">	mov ax,data</span><br><span class="line">	mov ds,ax</span><br><span class="line">	mov si,0	;循环加入字</span><br><span class="line">	call show_str</span><br><span class="line"></span><br><span class="line">	mov ax,4c00h</span><br><span class="line">	int 21h</span><br><span class="line">show_str:</span><br><span class="line">	push cx	;保存用到的寄存器</span><br><span class="line">	push si</span><br><span class="line">	push es</span><br><span class="line">	push di</span><br><span class="line">	push bx</span><br><span class="line"></span><br><span class="line">	mov ax,0b800h</span><br><span class="line">	mov es,ax</span><br><span class="line"></span><br><span class="line">	mov al,0a0h	;一行的总列数160字节</span><br><span class="line">	dec dh		;行号减1，因为是从0开始的</span><br><span class="line">	mul dh		;计算行开始偏移地址</span><br><span class="line">	mov bx,ax</span><br><span class="line"></span><br><span class="line">	mov al,2</span><br><span class="line">	mul dl		;计算列</span><br><span class="line">	sub ax,2	;列也是从0开始，而且一个字符占两个字节</span><br><span class="line">	add bx,ax	;求出开始位置	</span><br><span class="line">	</span><br><span class="line">	mov di,0</span><br><span class="line">	mov al,cl</span><br><span class="line">	mov ch,0	;高8位为0</span><br><span class="line">s:	</span><br><span class="line">	mov cl,ds:[si]	;判断是否到了字符结束</span><br><span class="line">	jcxz ok</span><br><span class="line">	mov es:[bx+di],cl</span><br><span class="line">	mov es:[bx+di+1],al</span><br><span class="line"></span><br><span class="line">	inc si</span><br><span class="line">	add di,2</span><br><span class="line">	jmp short s</span><br><span class="line">ok:</span><br><span class="line">	pop bx</span><br><span class="line">	pop di</span><br><span class="line">	pop es</span><br><span class="line">	pop si</span><br><span class="line">	pop cx</span><br><span class="line">	ret</span><br><span class="line"></span><br><span class="line">code ends</span><br><span class="line"></span><br><span class="line">end start</span><br></pre></td></tr></table></figure>
+</code></pre>
+</details>
+
+</li>
+</ol>
+<h3 id="解决除法溢出问题"><a href="#解决除法溢出问题" class="headerlink" title="解决除法溢出问题"></a>解决除法溢出问题</h3><h4 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h4><p>其实就是如果商超过了应该存储商的寄存器的大小，应该怎么办。emmm可以用大一点的，用dword</p>
+<h1 id="第十一章-标志寄存器"><a href="#第十一章-标志寄存器" class="headerlink" title="第十一章 标志寄存器"></a>第十一章 标志寄存器</h1><p>这是一种特殊的寄存器，一共16位：</p>
+<ol>
+<li>用来存储相关指令的执行结果</li>
+<li>用来为CPU执行相关指令提供行为依据</li>
+<li>用来控制CPU的相关工作方式<br>其分布如下：</li>
+</ol>
+<p>|15|14|13|12|11|10|9|8|7|6|5|4|3|2|1|0|<br>|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|<br>|*|*|*|*|OF|DF|IF|TF|SF|ZF|*|AF|*|PF|*|CF|<br>其中*表示都没用：1 3 5 12 13 14 15在8086CPU中都没有使用。<br>注意：对标志位有影响的指令有：add,sub,mul,div,inc,or,and等，而没有影响的有：mov,push,pop等，它们大多数为传送指令。</p>
+<h2 id="11-1-标志表"><a href="#11-1-标志表" class="headerlink" title="11.1 标志表"></a>11.1 标志表</h2><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>代号</th>
+<th>作用</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>零标志</td>
+<td>ZF</td>
+<td>判断结果是否为零</td>
+<td>若为0则ZF=1，否则ZF=0</td>
+</tr>
+<tr>
+<td>奇偶标志</td>
+<td>PF</td>
+<td>判断结果中1的个数是奇是偶</td>
+<td>若1的个数为奇数则PF=0，否则为1</td>
+</tr>
+<tr>
+<td>符号标志</td>
+<td>SF</td>
+<td>判断结果是正是负</td>
+<td>若为正数则SF=0，否则为1</td>
+</tr>
+<tr>
+<td>进位标志位</td>
+<td>CF</td>
+<td>在进行<strong>无符号</strong>运算时记录是否有向最高位<strong>进位</strong>或者<strong>借位</strong></td>
+<td>那是假想的最高位</td>
+</tr>
+<tr>
+<td>溢出标志</td>
+<td>OF</td>
+<td>判断是否超过容器所能装的最大数</td>
+<td>如al=98+99=197，197&gt;127溢出，实际结果：-59</td>
+</tr>
+<tr>
+<td>方向标志</td>
+<td>DF</td>
+<td>控制每次操作后si、di的增减</td>
+<td>df=0 每次si,di增加；df=1 每次si,di减少。经常用作字符串的传送</td>
+</tr>
+</tbody></table>
+<h2 id="11-2-与标志有关的指令"><a href="#11-2-与标志有关的指令" class="headerlink" title="11.2 与标志有关的指令"></a>11.2 与标志有关的指令</h2><h3 id="11-2-1-与CF相关的：adc-sdd指令"><a href="#11-2-1-与CF相关的：adc-sdd指令" class="headerlink" title="11.2.1 与CF相关的：adc,sdd指令"></a>11.2.1 与CF相关的：adc,sdd指令</h3><ol>
+<li>adc：带进位加法。如：adc al,8h == al+8h+CF </li>
+<li>sdd：带借位减法。如：sdd al,8h == al-8h-CF</li>
+</ol>
+<h3 id="11-2-2-与CF和ZF有关的：cmp指令（比较指令）"><a href="#11-2-2-与CF和ZF有关的：cmp指令（比较指令）" class="headerlink" title="11.2.2 与CF和ZF有关的：cmp指令（比较指令）"></a>11.2.2 与CF和ZF有关的：cmp指令（比较指令）</h3><p>指令格式：cmp <em>s1</em>,<em>s2</em><br>举个例子：cmp ax,bx<br>比对结果如下：</p>
+<p>|情况|结果分析|结果|<br>|-|-|-|-|<br>|<strong>(ax)=(bx)</strong>|则(ax)-(bx)=0|<strong>zf=1</strong>;|<br>|<strong>(ax)≠(bx)</strong>|则(ax)-(bx)≠0|<strong>zf=0</strong>;|<br>|<strong>(ax)&lt;(bx)</strong>|则(ax卜(bx)将产生借位|<strong>cf=1</strong>;|<br>|<strong>(ax)≥(bx)</strong>|则(ax)-(bx)不必借位|<strong>cf=0</strong>;|<br>|<strong>(ax)&gt;(bx)</strong>|则(ax)-(bx)既<em>不必借位<em>，</em>结果又不为0</em>|<strong>cf=0并且zf=0</strong>;|<br>|<strong>(ax)≤(bx)</strong>|则(ax)-(bx)既<em>可能借位<em>，</em>结果可能为0</em>|<strong>cf=1或zf=1</strong>.|</p>
+<h3 id="11-2-3-与CMP有关的比较结果条件转移指令"><a href="#11-2-3-与CMP有关的比较结果条件转移指令" class="headerlink" title="11.2.3 与CMP有关的比较结果条件转移指令"></a>11.2.3 与CMP有关的比较结果条件转移指令</h3><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>含义</th>
+<th>简记</th>
+<th>符号</th>
+<th>监测的相关标志位</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>je</td>
+<td>等于则转移</td>
+<td>equal</td>
+<td>=</td>
+<td>zf=1</td>
+</tr>
+<tr>
+<td>jne</td>
+<td>不等于则转移</td>
+<td>not equal</td>
+<td>≠</td>
+<td>zf=0</td>
+</tr>
+<tr>
+<td>jb</td>
+<td>低于则转移</td>
+<td>below</td>
+<td>＜</td>
+<td>cf=1</td>
+</tr>
+<tr>
+<td>jnb</td>
+<td>不低于则转移</td>
+<td>not below</td>
+<td>≥</td>
+<td>cf=0</td>
+</tr>
+<tr>
+<td>ja</td>
+<td>高于则转移</td>
+<td>above</td>
+<td>＞</td>
+<td>cf=0且zf=0</td>
+</tr>
+<tr>
+<td>jna</td>
+<td>不高于则转移</td>
+<td>not above</td>
+<td>≤</td>
+<td>cf=1或zf=1</td>
+</tr>
+</tbody></table>
+<p>注意，这个一般是与cmp配合使用，如同call和ret一样，但是没有说一定要配合使用。</p>
+<h3 id="11-2-4-与DF有关指令"><a href="#11-2-4-与DF有关指令" class="headerlink" title="11.2.4 与DF有关指令"></a>11.2.4 与DF有关指令</h3><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>功能</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>movsb</td>
+<td>mov es:[di],byte ptr ds:[si]</td>
+<td>从ds中取字符放到es指定的位置中，单位为字节，会令<strong>di和si同时±1</strong></td>
+</tr>
+<tr>
+<td>movsw</td>
+<td>mov es:[di],word ptr ds:[si]</td>
+<td>从ds中取字符放到es指定的位置中，单位为字，会令di<strong>和si同时±2</strong></td>
+</tr>
+<tr>
+<td>cld</td>
+<td>设置df=0，正向</td>
+<td>令di，si向增方向</td>
+</tr>
+<tr>
+<td>std</td>
+<td>设置df=1，逆向</td>
+<td>令di，si向减方向</td>
+</tr>
+<tr>
+<td>rep</td>
+<td>重复指令，根据CX当中的值，与LOOP相似</td>
+<td>配合movsb使用</td>
+</tr>
+</tbody></table>
+<p>例子：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">我们来看下面的两个程序。</span><br><span class="line">(1)编程，用串传送指令，将data段中的第一个字符串复制到它后面的空间中。</span><br><span class="line">data segment</span><br><span class="line">db &apos;Welcome to masm!.</span><br><span class="line">db 16 dup (0)</span><br><span class="line">data ends</span><br><span class="line">我们分析一下，使用串传送指令进行数据的传送，需要给它提供一些必要的信息</span><br><span class="line">它们是:</span><br><span class="line">1. 传送的原始位置:ds:si:</span><br><span class="line">2. 传送的目的位置:es:di;</span><br><span class="line">3. 传送的长度:CX;</span><br><span class="line">4. 传送的方向:df.</span><br><span class="line">在这个问题中，这些信息如下。</span><br><span class="line">1. 传送的原始位置:data:O;</span><br><span class="line">2. 传送的目的位置:data:0010;</span><br><span class="line">3. 传送的长度:16;</span><br><span class="line">4. 传送的方向:因为正向传送(每次串传送指令执行后，Si和di递增此较方便，所以设置df=o</span><br><span class="line">好了，明确了这些信息之后，我们来编写程序:</span><br><span class="line">mov ax,data</span><br><span class="line">mov ds,ax</span><br><span class="line">mov si,0	;ds:si指向data: 0</span><br><span class="line">mov es,ax</span><br><span class="line">mov di,16	;es.di于行向data:0010</span><br><span class="line">mov cx,16	;(cx)-16, rep循环1‘次</span><br><span class="line">cld			;设置df=0，正向传送</span><br><span class="line">rep movsb</span><br></pre></td></tr></table></figure>
+
+<h2 id="11-3-标志位有关的问题"><a href="#11-3-标志位有关的问题" class="headerlink" title="11.3 标志位有关的问题"></a>11.3 标志位有关的问题</h2><h3 id="11-3-1-单纯就符号标志位就可以判断结果的正负吗？（即判断相减的两个数的大小）"><a href="#11-3-1-单纯就符号标志位就可以判断结果的正负吗？（即判断相减的两个数的大小）" class="headerlink" title="11.3.1 单纯就符号标志位就可以判断结果的正负吗？（即判断相减的两个数的大小）"></a>11.3.1 单纯就符号标志位就可以判断结果的正负吗？（即判断相减的两个数的大小）</h3><p>当然不是！</p>
+<blockquote>
+<p>当1-2=-1&lt;0，则SF为1，表示负数，则前一个数比后一个数大<br>当34-(-96)=82H时，82H是-126的补码，所以SF=1，但是前一个数比后一个数大？当然不。</p>
+</blockquote>
+<p>为什么呢？<strong>因为发生了溢出</strong>。</p>
+<ul>
+<li>也就是说，保存结果的寄存器不足以表示那么大的数。</li>
+<li>而34-(-96)=130明显超过127（假设保存结果的是ah）。 </li>
+<li>那么结果就会表示为-126<em>（130-127=3，-128+3-1=-126）</em></li>
+<li>而此时，SF=1，同时，<strong>OF=1</strong>。</li>
+<li>所以<strong>要看结果的正负，要结合SF和OF的值</strong>.</li>
+</ul>
+<p>总结：</p>
+<table>
+<thead>
+<tr>
+<th>标志</th>
+<th>结果</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SF=1,OF=0</td>
+<td>负</td>
+<td>略</td>
+</tr>
+<tr>
+<td>SF=1,OF=1</td>
+<td>正</td>
+<td>因为溢出导致实际结果为负，那么逻辑上必定为正</td>
+</tr>
+<tr>
+<td>SF=0,OF=1</td>
+<td>负</td>
+<td>因为溢出导致实际结果为正，那么逻辑上必定为负</td>
+</tr>
+<tr>
+<td>SF=0,OF=0</td>
+<td>正</td>
+<td>略</td>
+</tr>
+</tbody></table>
+<h2 id="11-4-pushf和popf"><a href="#11-4-pushf和popf" class="headerlink" title="11.4 pushf和popf"></a>11.4 pushf和popf</h2><p>因为标志寄存器共16位，所以pushf就直接将16位当做寄存器放入栈中，popf是出栈。<br>注意，它们不需要加对象参数，入栈和出栈的对象都是标志寄存器！</p>
 ]]></content>
       <categories>
         <category>理论</category>
@@ -321,63 +626,46 @@
 </blockquote>
 </blockquote>
 </blockquote>
-<pre><code>&gt; 1. psutil.process_iter()
-遍历所有进程
-2. psutil.version_info[] 
-3. psutil.net_connections
-寻找连接(用户)的个数，在[OSX](https://baike.baidu.com/item/mavericks/4902413?fr=aladdin)中需要root权限
-4. psutil.NoSuchProcess, psutil.AccessDenied
-
-[参考文章](https://www.cnblogs.com/saneri/p/7528283.html)
-
-https://www.cnblogs.com/lfs2640666960/p/9330735.html 介绍的不错
-
-5. bash: 未预期的符号 `newline&apos; 附近有语法错误:将&lt;&gt;换成&apos;&apos;
-
-# 关于elk
-1. 安装
-yum install -y elasticsearch
-安装在/usr/share/elasticsearch当中，启动在bin当中的elasticsearch。用./Bin...来启动
-* 测试运行：curl &apos;http://localhost:9200/?pretty&apos;
-* 会得到![](elasticsuccess.jpg)
-* Elasticsearch 的实例。 而一个 集群 是一组拥有相同 cluster.name 的节点， 他们能一起工作并共享数据，还提供容错与可伸缩性。(当然，一个单独的节点也可以组成一个集群) 你可以在 elasticsearch.yml 配置文件中 修改 cluster.name ，该文件会在节点启动时加载 (译者注：这个重启服务后才会生效)。 
-* 而elasticsearch中的.yml在/etc/elasticsearch当中
-* 设置：logstash，netflow，配置
-* 可以用端口9200，web客户端，甚至curl进行交互
-    curl -X&lt;VERB&gt; &apos;&lt;PROTOCOL&gt;://&lt;HOST&gt;:&lt;PORT&gt;/&lt;PATH&gt;?&lt;QUERY_STRING&gt;&apos; -d &apos;&lt;BODY&gt;&apos;   [使用参考](https://www.elastic.co/guide/cn/elasticsearch/guide/current/_talking_to_elasticsearch.html)
-* 
-* 会遇到问题：Exception in thread &quot;main&quot; org.elasticsearch.bootstrap.BootstrapException: java.nio.file.NoSuchFileException: /usr/share/elasticsearch/config
-Likely root cause: java.nio.file.NoSuchFileException: /usr/share/elasticsearch/config ...
-[解决方法](https://www.cnblogs.com/yswenli/p/6397351.html)
-其实就是： cp -r /etc/elasticsearch /usr/share/elasticsearch/config
-➜  ~ groupadd elsearch
-➜  ~ useradd elsearch -g elsearch -p elsearch
-➜  ~ cd /usr/share  
-➜   chown -R elsearch:elsearch elasticsearch 
-➜  su elsearch
-这是因为elasticsearch需要读写配置文件，我们需要给予config文件夹权限，上面新建了elsearch用户，elsearch用户不具备读写权限，因此还是会报错，解决方法是切换到管理员账户，赋予权限即可：
-sudo -i
-chmod -R 775 config
-[这篇讲的很全](https://www.linuxidc.com/Linux/2018-11/155518.htm)
-
-
-
-安装sense
-其实这个是Kibana的一个应用
-安装：yum install -y kibana
-测试运行也是一样的路径
-    http://localhost:5601/app/sense
-这个是emmm，测试？
-
-
-
-关于javaAPI交互
-节点客户端（Node client）
-    节点客户端作为一个非数据节点加入到本地集群中。换句话说，它本身不保存任何数据，但是它知道数据在集群中的哪个节点中，并且可以把请求转发到正确的节点。
-传输客户端（Transport client）
-    轻量级的传输客户端可以将请求发送到远程集群。它本身不加入集群，但是它可以将请求转发到集群中的一个节点上。
-两个 Java 客户端都是通过 9300 端口并使用 Elasticsearch 的原生 传输 协议和集群交互。集群中的节点通过端口 9300 彼此通信。如果这个端口没有打开，节点将无法形成一个集群。
-</code></pre>]]></content>
+<p>```</p>
+<blockquote>
+<ol>
+<li>psutil.process_iter()<br>遍历所有进程</li>
+<li>psutil.version_info[] </li>
+<li>psutil.net_connections<br>寻找连接(用户)的个数，在<a href="https://baike.baidu.com/item/mavericks/4902413?fr=aladdin" target="_blank" rel="noopener">OSX</a>中需要root权限</li>
+<li>psutil.NoSuchProcess, psutil.AccessDenied</li>
+</ol>
+</blockquote>
+<p><a href="https://www.cnblogs.com/saneri/p/7528283.html" target="_blank" rel="noopener">参考文章</a></p>
+<p><a href="https://www.cnblogs.com/lfs2640666960/p/9330735.html" target="_blank" rel="noopener">https://www.cnblogs.com/lfs2640666960/p/9330735.html</a> 介绍的不错</p>
+<ol start="5">
+<li>bash: 未预期的符号 `newline’ 附近有语法错误:将&lt;&gt;换成’’</li>
+</ol>
+<h1 id="关于elk"><a href="#关于elk" class="headerlink" title="关于elk"></a>关于elk</h1><ol>
+<li>安装<br>yum install -y elasticsearch<br>安装在/usr/share/elasticsearch当中，启动在bin当中的elasticsearch。用./Bin…来启动</li>
+</ol>
+<ul>
+<li>测试运行：curl ‘<a href="http://localhost:9200/?pretty&#39;" target="_blank" rel="noopener">http://localhost:9200/?pretty&#39;</a></li>
+<li>会得到<img src="/2019/11/10/%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90-nogotofail/elasticsuccess.jpg" alt></li>
+<li>Elasticsearch 的实例。 而一个 集群 是一组拥有相同 cluster.name 的节点， 他们能一起工作并共享数据，还提供容错与可伸缩性。(当然，一个单独的节点也可以组成一个集群) 你可以在 elasticsearch.yml 配置文件中 修改 cluster.name ，该文件会在节点启动时加载 (译者注：这个重启服务后才会生效)。 </li>
+<li>而elasticsearch中的.yml在/etc/elasticsearch当中</li>
+<li>设置：logstash，netflow，配置</li>
+<li>可以用端口9200，web客户端，甚至curl进行交互<br>  curl -X<VERB> ‘<PROTOCOL>://<HOST>:<PORT>/<PATH>?<QUERY_STRING>‘ -d ‘<BODY>‘   <a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/_talking_to_elasticsearch.html" target="_blank" rel="noopener">使用参考</a></BODY></QUERY_STRING></PATH></PORT></HOST></PROTOCOL></VERB></li>
+<li></li>
+<li>会遇到问题：Exception in thread “main” org.elasticsearch.bootstrap.BootstrapException: java.nio.file.NoSuchFileException: /usr/share/elasticsearch/config<br>Likely root cause: java.nio.file.NoSuchFileException: /usr/share/elasticsearch/config …<br><a href="https://www.cnblogs.com/yswenli/p/6397351.html" target="_blank" rel="noopener">解决方法</a><br>其实就是： cp -r /etc/elasticsearch /usr/share/elasticsearch/config<br>➜  ~ groupadd elsearch<br>➜  ~ useradd elsearch -g elsearch -p elsearch<br>➜  ~ cd /usr/share<br>➜   chown -R elsearch:elsearch elasticsearch<br>➜  su elsearch<br>这是因为elasticsearch需要读写配置文件，我们需要给予config文件夹权限，上面新建了elsearch用户，elsearch用户不具备读写权限，因此还是会报错，解决方法是切换到管理员账户，赋予权限即可：<br>sudo -i<br>chmod -R 775 config<br><a href="https://www.linuxidc.com/Linux/2018-11/155518.htm" target="_blank" rel="noopener">这篇讲的很全</a></li>
+</ul>
+<p>安装sense<br>其实这个是Kibana的一个应用<br>安装：yum install -y kibana<br>测试运行也是一样的路径<br>    <a href="http://localhost:5601/app/sense" target="_blank" rel="noopener">http://localhost:5601/app/sense</a><br>这个是emmm，测试？</p>
+<p>关于javaAPI交互<br>节点客户端（Node client）<br>    节点客户端作为一个非数据节点加入到本地集群中。换句话说，它本身不保存任何数据，但是它知道数据在集群中的哪个节点中，并且可以把请求转发到正确的节点。<br>传输客户端（Transport client）<br>    轻量级的传输客户端可以将请求发送到远程集群。它本身不加入集群，但是它可以将请求转发到集群中的一个节点上。<br>两个 Java 客户端都是通过 9300 端口并使用 Elasticsearch 的原生 传输 协议和集群交互。集群中的节点通过端口 9300 彼此通信。如果这个端口没有打开，节点将无法形成一个集群。</p>
+<h2 id="安装elasticsearch-head遇到的问题"><a href="#安装elasticsearch-head遇到的问题" class="headerlink" title="安装elasticsearch-head遇到的问题"></a>安装elasticsearch-head遇到的问题</h2><ol>
+<li>warning: notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for <a href="mailto:fsevents@1.2.4" target="_blank" rel="noopener">fsevents@1.2.4</a>: wanted {“os”<br>这个证明已经安装成功了<br><img src="/2019/11/10/%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90-nogotofail/nmp2.png" alt></li>
+<li>npm WARN <a href="mailto:elasticsearch-head@0.0.0" target="_blank" rel="noopener">elasticsearch-head@0.0.0</a> license should be a valid SPDX license expression<br>这个说你的license不对口，得去找找spdx licence是个啥玩意：<br>既然知道spdx是个啥，就不难解决问题了；让我打开正确的姿势：打开elasticsearch-head目录下的package.json文件，找到license位置，修改为上面这个网站上存在Identifier，就可以了。如图所示，把原来的Apache内容修改为Apache-2.0。具体修改后的内容参考官网上的Identifier数值（防止后续更新，授之于渔了）。<br><img src="/2019/11/10/%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90-nogotofail/npm.png" alt></li>
+<li>成功！<br><img src="/2019/11/10/%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90-nogotofail/headok.jpg" alt></li>
+<li>妈的，又不成功：This account is currently not available（用户当前不可用）<br>安装完elasticsearch之后系统会自动创建一个elasticsearch用户，在启动elasticsearch的时候需要切换该用户启动，但是在我切换到elasticsearch用户的时候显示This account is currently not available。</li>
+</ol>
+<p>查资料发现是因为该用户的shell不可用，查看/etc/passwd文件发现此用户的shell是/sbin/nologin需修改成/bin/bash</p>
+<ol start="5">
+<li>elasticsearch-head中cluster health: not connected<br>修改elasticsearch安装目录中 config/elasticsearch.yml<br>http.cors.enabled: true<br>http.cors.allow-origin: “*”<br>修改elasticsearch-head下Gruntfile.js<br>connect: {<br>server: {<br>options: {<br>hostname: ‘0.0.0.0’,<br>port: 9100,<br>base: ‘.’,<br>keepalive: true<br>}<br>}<br>}<br><a href="https://blog.csdn.net/qq_30505673/article/details/85051785" target="_blank" rel="noopener">原文链接</a></li>
+</ol>
+]]></content>
       <categories>
         <category>理论</category>
       </categories>
