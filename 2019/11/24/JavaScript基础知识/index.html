@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+
+    
+
+    
+
+    <title>JavaScript基础知识 | DuK_Blogs</title>
+    <meta name="author" content="DuK" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="JavaScript的基本知识一、在html中的使用1.1 在页面中直接嵌入JavaScript1234567891011&amp;lt;!doctype html&amp;gt;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;&amp;lt;meta charset=&#34;utf-8&#34;&amp;gt;&amp;lt;script language=&#34;javascript&#34;&amp;gt;	alert(1)&amp;lt;/script&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;/html&amp;gt;执行后会直接弹出框。1.2 script标签常用..." />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'icomoon';
+        src: url("/fonts/icomoon.eot?q628ml");
+        src: url("/fonts/icomoon.eot?q628ml#iefix") format('embedded-opentype'),
+             url("/fonts/icomoon.ttf?q628ml") format('truetype'),
+             url("/fonts/icomoon.woff?q628ml") format('woff'),
+             url("/fonts/icomoon.svg?q628ml#icomoon") format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+    </style>
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!--[if lt IE 9]>
+    <style type="text/css">
+    .nav-inner {top:0;}
+    .author-meta {position:static;top:0;}
+    .search-form {height:36px;}
+    </style>
+    <script type="text/javascript" src="https://unpkg.com/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <main class="app">
+        <header id="header" class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">DuK_Blogs</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
+    </div>
+
+    <nav id="nav-inner" class="nav-inner">
+        
+            <a class="nav-item" href="/">
+                <span class="nav-text">首页</span>
+            </a>
+        
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">标签</span>
+            </a>
+        
+            <a class="nav-item" href="/archives">
+                <span class="nav-text">归档</span>
+            </a>
+        
+            <a class="nav-item" href="/about">
+                <span class="nav-text">关于</span>
+            </a>
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://jeffup.github.io"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript的基本知识"><span class="toc-number">1.</span> <span class="toc-text">JavaScript的基本知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、在html中的使用"><span class="toc-number">1.1.</span> <span class="toc-text">一、在html中的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-在页面中直接嵌入JavaScript"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 在页面中直接嵌入JavaScript</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-script标签常用的属性和说明"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 script标签常用的属性和说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-外部调用"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3 外部调用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、基础"><span class="toc-number">1.2.</span> <span class="toc-text">二、基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-变量"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 变量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-变量类型"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">2.1.1 变量类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-2-未定义值和空值"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">2.1.2 未定义值和空值</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-运算符和表达式"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 运算符和表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-1-比较运算符"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">2.2.1 比较运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-条件运算符"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">2.2.2 条件运算符</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、函数"><span class="toc-number">1.3.</span> <span class="toc-text">三、函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、对象编程"><span class="toc-number">1.4.</span> <span class="toc-text">四、对象编程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-Window对象"><span class="toc-number">1.4.1.</span> <span class="toc-text">4.1 Window对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-1-属性"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">4.1.1 属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-2-方法"><span class="toc-number">1.4.1.2.</span> <span class="toc-text">4.1.2 方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-对话框"><span class="toc-number">1.4.2.</span> <span class="toc-text">4.2 对话框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-history"><span class="toc-number">1.4.3.</span> <span class="toc-text">4.3 history</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-1-属性"><span class="toc-number">1.4.3.1.</span> <span class="toc-text">4.3.1 属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-2-方法"><span class="toc-number">1.4.3.2.</span> <span class="toc-text">4.3.2 方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-Document文档对象"><span class="toc-number">1.4.4.</span> <span class="toc-text">4.4 Document文档对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-DOM（文档对象模型）"><span class="toc-number">1.4.5.</span> <span class="toc-text">4.5 DOM（文档对象模型）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-1-DOM分层"><span class="toc-number">1.4.5.1.</span> <span class="toc-text">4.5.1 DOM分层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-2-节点属性如下："><span class="toc-number">1.4.5.2.</span> <span class="toc-text">4.5.2 节点属性如下：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-3-节点操作"><span class="toc-number">1.4.5.3.</span> <span class="toc-text">4.5.3 节点操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-4-DHTML与相应的DOM"><span class="toc-number">1.4.5.4.</span> <span class="toc-text">4.5.4 DHTML与相应的DOM</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、事件处理"><span class="toc-number">1.5.</span> <span class="toc-text">五、事件处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-DOM事件模型"><span class="toc-number">1.5.1.</span> <span class="toc-text">5.1 DOM事件模型</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content">
+            <div id="wrapper" class="wrapper" style="max-width: 800px">
+                <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            JavaScript基础知识
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://jeffup.github.io/2019/11/24/JavaScript%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-11-24T12:04:49.000Z" itemprop="datePublished">2019-11-24</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/HTML/" rel="tag">HTML</a>, <a class="article-tag-link" href="/tags/JavaScript/" rel="tag">JavaScript</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h1 id="JavaScript的基本知识"><a href="#JavaScript的基本知识" class="headerlink" title="JavaScript的基本知识"></a>JavaScript的基本知识</h1><h2 id="一、在html中的使用"><a href="#一、在html中的使用" class="headerlink" title="一、在html中的使用"></a>一、在html中的使用</h2><a id="more"></a>
+<h3 id="1-1-在页面中直接嵌入JavaScript"><a href="#1-1-在页面中直接嵌入JavaScript" class="headerlink" title="1.1 在页面中直接嵌入JavaScript"></a>1.1 在页面中直接嵌入JavaScript</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=<span class="string">"utf-8"</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;script language=<span class="string">"javascript"</span>&gt;</span><br><span class="line">	alert(<span class="number">1</span>)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;/</span>head&gt;</span><br><span class="line">&lt;<span class="regexp">/html&gt;</span></span><br></pre></td></tr></table></figure>
+<p>执行后会直接弹出框。</p>
+<h3 id="1-2-script标签常用的属性和说明"><a href="#1-2-script标签常用的属性和说明" class="headerlink" title="1.2 script标签常用的属性和说明"></a>1.2 script标签常用的属性和说明</h3><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>language</td>
+<td>设置所使用的的脚本语言及版本</td>
+</tr>
+<tr>
+<td>src</td>
+<td>设置一个外部文件的路径位置</td>
+</tr>
+<tr>
+<td>type</td>
+<td>设置所使用的脚本语言，此属性已经代替language</td>
+</tr>
+<tr>
+<td>defer</td>
+<td>此属性表示当html文档加载完毕之后再执行脚本语言</td>
+</tr>
+</tbody></table>
+<h3 id="1-3-外部调用"><a href="#1-3-外部调用" class="headerlink" title="1.3 外部调用"></a>1.3 外部调用</h3><ol>
+<li>使用src调用js文件（外部js文件不需要用<script></script>括起来）</li>
+<li>使用函数调用本文档中的script函数如：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input onclick=&quot;myjsFun()&quot; /&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="二、基础"><a href="#二、基础" class="headerlink" title="二、基础"></a>二、基础</h2><h3 id="2-1-变量"><a href="#2-1-变量" class="headerlink" title="2.1 变量"></a>2.1 变量</h3><h4 id="2-1-1-变量类型"><a href="#2-1-1-变量类型" class="headerlink" title="2.1.1 变量类型"></a>2.1.1 变量类型</h4><p>有很多，基本的都有，如果想表达十六进制，则在数据之前加上<strong>0x</strong>即可。<br>然而JavaScript是无类型语言，所以，<strong>声明变量</strong>直接用<strong>var</strong>即可</p>
+<h4 id="2-1-2-未定义值和空值"><a href="#2-1-2-未定义值和空值" class="headerlink" title="2.1.2 未定义值和空值"></a>2.1.2 未定义值和空值</h4><ul>
+<li>空值（null）不是0也不是空的字符串</li>
+<li>一个值是空值表示已经赋过值，而未定义（undefined）表示没有赋值，两者不一样。</li>
+</ul>
+<h3 id="2-2-运算符和表达式"><a href="#2-2-运算符和表达式" class="headerlink" title="2.2 运算符和表达式"></a>2.2 运算符和表达式</h3><h4 id="2-2-1-比较运算符"><a href="#2-2-1-比较运算符" class="headerlink" title="2.2.1 比较运算符"></a>2.2.1 比较运算符</h4><p>只挑一些讲</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>==</td>
+<td>等于，只涉及表面值的判断，不涉及数据类型</td>
+<td>“17”==17 return true</td>
+</tr>
+<tr>
+<td>===</td>
+<td>绝对等于，同时涉及表面值和数据类型的判断</td>
+<td>“17”==17 return false</td>
+</tr>
+</tbody></table>
+<p>注：这个在php中也适用。而不等于分别是!= 和!==</p>
+<h4 id="2-2-2-条件运算符"><a href="#2-2-2-条件运算符" class="headerlink" title="2.2.2 条件运算符"></a>2.2.2 条件运算符</h4><blockquote>
+<p>操作数？结果1：结果2</p>
+</blockquote>
+<p>这个跟C++一样啊？<br>这里来个九九乘法表练习！</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">"javascript"</span>&gt;</span></span><br><span class="line"><span class="javascript">	<span class="built_in">document</span>.write(<span class="string">"&lt;table&gt;"</span>);</span></span><br><span class="line"><span class="actionscript">	<span class="keyword">var</span> str = <span class="string">"javascript 9*9"</span>;</span></span><br><span class="line"><span class="javascript">	<span class="built_in">document</span>.write(<span class="string">"&lt;h1&gt;"</span>+str+<span class="string">"&lt;/h1&gt;"</span>);</span></span><br><span class="line"><span class="actionscript">	<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">1</span>;i&lt;<span class="number">10</span>;i++)</span></span><br><span class="line">	&#123;</span><br><span class="line"><span class="javascript">		<span class="built_in">document</span>.write(<span class="string">"&lt;tr&gt;"</span>);</span></span><br><span class="line"><span class="actionscript">		<span class="keyword">for</span>(<span class="keyword">var</span> j = <span class="number">1</span>;j&lt;=i;j++)</span></span><br><span class="line">		&#123;</span><br><span class="line"><span class="javascript">			<span class="built_in">document</span>.write(i!=j?<span class="string">"&lt;th&gt;"</span>:<span class="string">"&lt;th bgcolor='#FF0000'&gt;"</span>);</span></span><br><span class="line"><span class="javascript">			<span class="built_in">document</span>.write(i+<span class="string">"*"</span>+j+<span class="string">"="</span>+i*j);</span></span><br><span class="line"><span class="javascript">			<span class="built_in">document</span>.write(<span class="string">"&lt;/th&gt;"</span>);</span></span><br><span class="line">		&#125;</span><br><span class="line"><span class="javascript">		<span class="built_in">document</span>.write(<span class="string">"&lt;/tr&gt;"</span>);</span></span><br><span class="line">	&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="三、函数"><a href="#三、函数" class="headerlink" title="三、函数"></a>三、函数</h2><p>格式如下：</p>
+<blockquote>
+<p>function 自定义函数名（形参1，形参2…）<br>｛<br>       函数体<br>｝</p>
+</blockquote>
+<p>函数要在script标签中定义，使用的话，直接在html中调用函数名和参数即可，如onclick=”myFun()”。</p>
+<p>几种特殊内置的函数：</p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>eval()</td>
+<td>求字符串中表达式的值</td>
+</tr>
+<tr>
+<td>isFinite()</td>
+<td>判断一个数值是否是无穷大</td>
+</tr>
+<tr>
+<td>isNaN()</td>
+<td>判断一个数值时都是NaN</td>
+</tr>
+<tr>
+<td>parseInt()</td>
+<td>将字符型转化为整型</td>
+</tr>
+<tr>
+<td>parseFloat()</td>
+<td>将字符型转化为浮点型</td>
+</tr>
+<tr>
+<td>encodeURI()</td>
+<td>将字符串转化为有效的URL</td>
+</tr>
+<tr>
+<td>encodeURIComponent()</td>
+<td>将字符串转化为有效的URL组件</td>
+</tr>
+<tr>
+<td>decodeURI()</td>
+<td>对encodeURI()编码的文本进行解码</td>
+</tr>
+<tr>
+<td>decodeURIComponent()</td>
+<td>encodeURIComponent()编码的文本进行解码</td>
+</tr>
+</tbody></table>
+<h2 id="四、对象编程"><a href="#四、对象编程" class="headerlink" title="四、对象编程"></a>四、对象编程</h2><h3 id="4-1-Window对象"><a href="#4-1-Window对象" class="headerlink" title="4.1 Window对象"></a>4.1 Window对象</h3><h4 id="4-1-1-属性"><a href="#4-1-1-属性" class="headerlink" title="4.1.1 属性"></a>4.1.1 属性</h4><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>document</td>
+<td>对话框中显示的当前文档</td>
+</tr>
+<tr>
+<td>location</td>
+<td>指定当前文档的url</td>
+</tr>
+<tr>
+<td>name</td>
+<td>对话框名字</td>
+</tr>
+<tr>
+<td>navigator</td>
+<td>表示浏览器对象，用于获取与浏览器相关的信息</td>
+</tr>
+<tr>
+<td>这个可以直接调用，如document.write()</td>
+<td></td>
+</tr>
+<tr>
+<td>document.getelementById(‘test’)</td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="4-1-2-方法"><a href="#4-1-2-方法" class="headerlink" title="4.1.2 方法"></a>4.1.2 方法</h4><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>prompt</td>
+<td>弹出一个提示对话框（有输入框）</td>
+</tr>
+<tr>
+<td>alert</td>
+<td>弹出一个确认框</td>
+</tr>
+<tr>
+<td>open</td>
+<td>打开URL路径下的文件</td>
+</tr>
+<tr>
+<td>close</td>
+<td>关闭被引用的对话框</td>
+</tr>
+<tr>
+<td>navigate(URL)</td>
+<td>在对话框中显示URL下的文件内容</td>
+</tr>
+</tbody></table>
+<h3 id="4-2-对话框"><a href="#4-2-对话框" class="headerlink" title="4.2 对话框"></a>4.2 对话框</h3><ol>
+<li>prompt（带输入的）对话框</li>
+<li>alert直接提示对话框（仅仅是提示）</li>
+<li>confirm（带确认的）对话框</li>
+</ol>
+<h3 id="4-3-history"><a href="#4-3-history" class="headerlink" title="4.3 history"></a>4.3 history</h3><h4 id="4-3-1-属性"><a href="#4-3-1-属性" class="headerlink" title="4.3.1 属性"></a>4.3.1 属性</h4><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>length</td>
+<td>历史列表长度</td>
+</tr>
+<tr>
+<td>current</td>
+<td>当前文档URL（这个在火狐没有！？）</td>
+</tr>
+<tr>
+<td>next</td>
+<td>列表中下个URL</td>
+</tr>
+<tr>
+<td>previous</td>
+<td>前一个URL</td>
+</tr>
+</tbody></table>
+<h4 id="4-3-2-方法"><a href="#4-3-2-方法" class="headerlink" title="4.3.2 方法"></a>4.3.2 方法</h4><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>back</td>
+<td>回到上一个URL</td>
+</tr>
+<tr>
+<td>forward</td>
+<td>去后一个（下一页）URL</td>
+</tr>
+<tr>
+<td>go</td>
+<td>进入指定页面(go(-1)==back())</td>
+</tr>
+</tbody></table>
+<h3 id="4-4-Document文档对象"><a href="#4-4-Document文档对象" class="headerlink" title="4.4 Document文档对象"></a>4.4 Document文档对象</h3><p>常用方法及实现：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>close</td>
+<td>文档的输出流</td>
+</tr>
+<tr>
+<td>open</td>
+<td>打开一个文档并接收write和writen方法的创建页面内容</td>
+</tr>
+<tr>
+<td>write</td>
+<td>可以在文档中写入HTML语句或者JavaScript语句</td>
+</tr>
+<tr>
+<td>writeln</td>
+<td>与write一样，但是以换行符结束</td>
+</tr>
+<tr>
+<td>createElement</td>
+<td>创建一个HTML标记</td>
+</tr>
+<tr>
+<td>getElementById</td>
+<td>获取指定id的HTML标记（如果内容多则以元组形式保存，需要用[*]访问）</td>
+</tr>
+</tbody></table>
+<h3 id="4-5-DOM（文档对象模型）"><a href="#4-5-DOM（文档对象模型）" class="headerlink" title="4.5 DOM（文档对象模型）"></a>4.5 DOM（文档对象模型）</h3><h4 id="4-5-1-DOM分层"><a href="#4-5-1-DOM分层" class="headerlink" title="4.5.1 DOM分层"></a>4.5.1 DOM分层</h4><p>如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;tr&gt;</span><br><span class="line">	&lt;th&gt;&lt;/th&gt;</span><br><span class="line">	&lt;input ... /&gt;</span><br><span class="line">&lt;tr&gt;</span><br></pre></td></tr></table></figure>
+<p>这里面tr是th和input的parentNode，而返过来，input和th是tr的childNode。<br>而th和input是兄弟节点。</p>
+<h4 id="4-5-2-节点属性如下："><a href="#4-5-2-节点属性如下：" class="headerlink" title="4.5.2 节点属性如下："></a>4.5.2 节点属性如下：</h4><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>nodeName</td>
+<td>节点名称</td>
+</tr>
+<tr>
+<td>nodeType</td>
+<td>节点的类型</td>
+</tr>
+<tr>
+<td>nodeValue</td>
+<td>节点的值，通常只应用于文本节点</td>
+</tr>
+<tr>
+<td>parentNode</td>
+<td>返回当前节点的额父节点</td>
+</tr>
+<tr>
+<td>childNodes</td>
+<td>子节点列表</td>
+</tr>
+<tr>
+<td>firstChild</td>
+<td>返回第一个子节点</td>
+</tr>
+<tr>
+<td>lastChild</td>
+<td>返回最后一个子节点</td>
+</tr>
+<tr>
+<td>previousSibling</td>
+<td>返回当前节点的前一个兄弟节点</td>
+</tr>
+<tr>
+<td>nextSibling</td>
+<td>…后一个兄弟节点</td>
+</tr>
+<tr>
+<td>attributes</td>
+<td>元素的属性列表</td>
+</tr>
+</tbody></table>
+<h4 id="4-5-3-节点操作"><a href="#4-5-3-节点操作" class="headerlink" title="4.5.3 节点操作"></a>4.5.3 节点操作</h4><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>创建</td>
+<td>appendChild</td>
+</tr>
+<tr>
+<td>插入追加</td>
+<td>insertBefore(new,ref) new新节点，ref指定在哪个节点后面添加</td>
+</tr>
+<tr>
+<td>拷贝</td>
+<td>clone(bool) true深拷贝，false浅拷贝</td>
+</tr>
+<tr>
+<td>删除</td>
+<td>removeChild</td>
+</tr>
+<tr>
+<td>替换</td>
+<td>replaceChild</td>
+</tr>
+</tbody></table>
+<h4 id="4-5-4-DHTML与相应的DOM"><a href="#4-5-4-DHTML与相应的DOM" class="headerlink" title="4.5.4 DHTML与相应的DOM"></a>4.5.4 DHTML与相应的DOM</h4><ol>
+<li>innerText 返回除去标签的文本内容</li>
+<li>innerHTML 返回带有HTML标签的文本内容</li>
+</ol>
+<h2 id="五、事件处理"><a href="#五、事件处理" class="headerlink" title="五、事件处理"></a>五、事件处理</h2><p><em>注：如同onclick这种事件我就不多讲啦！</em></p>
+<h3 id="5-1-DOM事件模型"><a href="#5-1-DOM事件模型" class="headerlink" title="5.1 DOM事件模型"></a>5.1 DOM事件模型</h3>
+        
+    </section>
+</article>
+
+
+
+<a id="pagenext" href="/2019/11/10/%E5%B7%A5%E5%85%B7OllyDbg%E7%9A%84%E4%BD%BF%E7%94%A8/" class="article-next" title="工具OllyDbg的使用"><i class="icon-arrow-right"></i></a>
+
+
+
+
+
+            </div>
+        </div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e4027971a230b210f4671f485b33846a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</footer>
+
+    </main>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
+
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
+        });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
+
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle();
+        });
+
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp();
+            }, 3000);
+        }
+    });
+    </script>
+    
+        <script src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+
+        $(window).on('resize', function() {
+            var hw = $('#header').width();
+            var ww = $('#wrapper').width();
+            var space = ($(this).width() - hw - ww) / 2 / 2;
+
+            var pageprev = $('#pageprev');
+            var pagenext = $('#pagenext');
+            var avg = (pageprev.width() + pagenext.width()) / 2
+
+            if(space > avg) {
+                var len = space - avg / 2;
+                var styles = {position: 'fixed', top: '50%', marginTop: - (pageprev.width() + pagenext.width()) / 4}
+                pageprev.css($.extend({left: hw + len}, styles));
+                pagenext.css($.extend({right: len}, styles));
+            } else {
+                pageprev.removeAttr('style');
+                pagenext.removeAttr('style');
+            }
+        }).trigger('resize');
+        </script>
+    
+
+</body>
+</html>

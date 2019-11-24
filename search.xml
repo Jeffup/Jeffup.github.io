@@ -1,9 +1,404 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>JavaScript基础知识</title>
+    <url>/2019/11/24/JavaScript%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
+    <content><![CDATA[<h1 id="JavaScript的基本知识"><a href="#JavaScript的基本知识" class="headerlink" title="JavaScript的基本知识"></a>JavaScript的基本知识</h1><h2 id="一、在html中的使用"><a href="#一、在html中的使用" class="headerlink" title="一、在html中的使用"></a>一、在html中的使用</h2><a id="more"></a>
+<h3 id="1-1-在页面中直接嵌入JavaScript"><a href="#1-1-在页面中直接嵌入JavaScript" class="headerlink" title="1.1 在页面中直接嵌入JavaScript"></a>1.1 在页面中直接嵌入JavaScript</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=<span class="string">"utf-8"</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;script language=<span class="string">"javascript"</span>&gt;</span><br><span class="line">	alert(<span class="number">1</span>)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;/</span>head&gt;</span><br><span class="line">&lt;<span class="regexp">/html&gt;</span></span><br></pre></td></tr></table></figure>
+<p>执行后会直接弹出框。</p>
+<h3 id="1-2-script标签常用的属性和说明"><a href="#1-2-script标签常用的属性和说明" class="headerlink" title="1.2 script标签常用的属性和说明"></a>1.2 script标签常用的属性和说明</h3><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>language</td>
+<td>设置所使用的的脚本语言及版本</td>
+</tr>
+<tr>
+<td>src</td>
+<td>设置一个外部文件的路径位置</td>
+</tr>
+<tr>
+<td>type</td>
+<td>设置所使用的脚本语言，此属性已经代替language</td>
+</tr>
+<tr>
+<td>defer</td>
+<td>此属性表示当html文档加载完毕之后再执行脚本语言</td>
+</tr>
+</tbody></table>
+<h3 id="1-3-外部调用"><a href="#1-3-外部调用" class="headerlink" title="1.3 外部调用"></a>1.3 外部调用</h3><ol>
+<li>使用src调用js文件（外部js文件不需要用<script></script>括起来）</li>
+<li>使用函数调用本文档中的script函数如：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;input onclick=&quot;myjsFun()&quot; /&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="二、基础"><a href="#二、基础" class="headerlink" title="二、基础"></a>二、基础</h2><h3 id="2-1-变量"><a href="#2-1-变量" class="headerlink" title="2.1 变量"></a>2.1 变量</h3><h4 id="2-1-1-变量类型"><a href="#2-1-1-变量类型" class="headerlink" title="2.1.1 变量类型"></a>2.1.1 变量类型</h4><p>有很多，基本的都有，如果想表达十六进制，则在数据之前加上<strong>0x</strong>即可。<br>然而JavaScript是无类型语言，所以，<strong>声明变量</strong>直接用<strong>var</strong>即可</p>
+<h4 id="2-1-2-未定义值和空值"><a href="#2-1-2-未定义值和空值" class="headerlink" title="2.1.2 未定义值和空值"></a>2.1.2 未定义值和空值</h4><ul>
+<li>空值（null）不是0也不是空的字符串</li>
+<li>一个值是空值表示已经赋过值，而未定义（undefined）表示没有赋值，两者不一样。</li>
+</ul>
+<h3 id="2-2-运算符和表达式"><a href="#2-2-运算符和表达式" class="headerlink" title="2.2 运算符和表达式"></a>2.2 运算符和表达式</h3><h4 id="2-2-1-比较运算符"><a href="#2-2-1-比较运算符" class="headerlink" title="2.2.1 比较运算符"></a>2.2.1 比较运算符</h4><p>只挑一些讲</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>==</td>
+<td>等于，只涉及表面值的判断，不涉及数据类型</td>
+<td>“17”==17 return true</td>
+</tr>
+<tr>
+<td>===</td>
+<td>绝对等于，同时涉及表面值和数据类型的判断</td>
+<td>“17”==17 return false</td>
+</tr>
+</tbody></table>
+<p>注：这个在php中也适用。而不等于分别是!= 和!==</p>
+<h4 id="2-2-2-条件运算符"><a href="#2-2-2-条件运算符" class="headerlink" title="2.2.2 条件运算符"></a>2.2.2 条件运算符</h4><blockquote>
+<p>操作数？结果1：结果2</p>
+</blockquote>
+<p>这个跟C++一样啊？<br>这里来个九九乘法表练习！</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">"javascript"</span>&gt;</span></span><br><span class="line"><span class="javascript">	<span class="built_in">document</span>.write(<span class="string">"&lt;table&gt;"</span>);</span></span><br><span class="line"><span class="actionscript">	<span class="keyword">var</span> str = <span class="string">"javascript 9*9"</span>;</span></span><br><span class="line"><span class="javascript">	<span class="built_in">document</span>.write(<span class="string">"&lt;h1&gt;"</span>+str+<span class="string">"&lt;/h1&gt;"</span>);</span></span><br><span class="line"><span class="actionscript">	<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">1</span>;i&lt;<span class="number">10</span>;i++)</span></span><br><span class="line">	&#123;</span><br><span class="line"><span class="javascript">		<span class="built_in">document</span>.write(<span class="string">"&lt;tr&gt;"</span>);</span></span><br><span class="line"><span class="actionscript">		<span class="keyword">for</span>(<span class="keyword">var</span> j = <span class="number">1</span>;j&lt;=i;j++)</span></span><br><span class="line">		&#123;</span><br><span class="line"><span class="javascript">			<span class="built_in">document</span>.write(i!=j?<span class="string">"&lt;th&gt;"</span>:<span class="string">"&lt;th bgcolor='#FF0000'&gt;"</span>);</span></span><br><span class="line"><span class="javascript">			<span class="built_in">document</span>.write(i+<span class="string">"*"</span>+j+<span class="string">"="</span>+i*j);</span></span><br><span class="line"><span class="javascript">			<span class="built_in">document</span>.write(<span class="string">"&lt;/th&gt;"</span>);</span></span><br><span class="line">		&#125;</span><br><span class="line"><span class="javascript">		<span class="built_in">document</span>.write(<span class="string">"&lt;/tr&gt;"</span>);</span></span><br><span class="line">	&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="三、函数"><a href="#三、函数" class="headerlink" title="三、函数"></a>三、函数</h2><p>格式如下：</p>
+<blockquote>
+<p>function 自定义函数名（形参1，形参2…）<br>｛<br>       函数体<br>｝</p>
+</blockquote>
+<p>函数要在script标签中定义，使用的话，直接在html中调用函数名和参数即可，如onclick=”myFun()”。</p>
+<p>几种特殊内置的函数：</p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>eval()</td>
+<td>求字符串中表达式的值</td>
+</tr>
+<tr>
+<td>isFinite()</td>
+<td>判断一个数值是否是无穷大</td>
+</tr>
+<tr>
+<td>isNaN()</td>
+<td>判断一个数值时都是NaN</td>
+</tr>
+<tr>
+<td>parseInt()</td>
+<td>将字符型转化为整型</td>
+</tr>
+<tr>
+<td>parseFloat()</td>
+<td>将字符型转化为浮点型</td>
+</tr>
+<tr>
+<td>encodeURI()</td>
+<td>将字符串转化为有效的URL</td>
+</tr>
+<tr>
+<td>encodeURIComponent()</td>
+<td>将字符串转化为有效的URL组件</td>
+</tr>
+<tr>
+<td>decodeURI()</td>
+<td>对encodeURI()编码的文本进行解码</td>
+</tr>
+<tr>
+<td>decodeURIComponent()</td>
+<td>encodeURIComponent()编码的文本进行解码</td>
+</tr>
+</tbody></table>
+<h2 id="四、对象编程"><a href="#四、对象编程" class="headerlink" title="四、对象编程"></a>四、对象编程</h2><h3 id="4-1-Window对象"><a href="#4-1-Window对象" class="headerlink" title="4.1 Window对象"></a>4.1 Window对象</h3><h4 id="4-1-1-属性"><a href="#4-1-1-属性" class="headerlink" title="4.1.1 属性"></a>4.1.1 属性</h4><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>document</td>
+<td>对话框中显示的当前文档</td>
+</tr>
+<tr>
+<td>location</td>
+<td>指定当前文档的url</td>
+</tr>
+<tr>
+<td>name</td>
+<td>对话框名字</td>
+</tr>
+<tr>
+<td>navigator</td>
+<td>表示浏览器对象，用于获取与浏览器相关的信息</td>
+</tr>
+<tr>
+<td>这个可以直接调用，如document.write()</td>
+<td></td>
+</tr>
+<tr>
+<td>document.getelementById(‘test’)</td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="4-1-2-方法"><a href="#4-1-2-方法" class="headerlink" title="4.1.2 方法"></a>4.1.2 方法</h4><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>prompt</td>
+<td>弹出一个提示对话框（有输入框）</td>
+</tr>
+<tr>
+<td>alert</td>
+<td>弹出一个确认框</td>
+</tr>
+<tr>
+<td>open</td>
+<td>打开URL路径下的文件</td>
+</tr>
+<tr>
+<td>close</td>
+<td>关闭被引用的对话框</td>
+</tr>
+<tr>
+<td>navigate(URL)</td>
+<td>在对话框中显示URL下的文件内容</td>
+</tr>
+</tbody></table>
+<h3 id="4-2-对话框"><a href="#4-2-对话框" class="headerlink" title="4.2 对话框"></a>4.2 对话框</h3><ol>
+<li>prompt（带输入的）对话框</li>
+<li>alert直接提示对话框（仅仅是提示）</li>
+<li>confirm（带确认的）对话框</li>
+</ol>
+<h3 id="4-3-history"><a href="#4-3-history" class="headerlink" title="4.3 history"></a>4.3 history</h3><h4 id="4-3-1-属性"><a href="#4-3-1-属性" class="headerlink" title="4.3.1 属性"></a>4.3.1 属性</h4><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>length</td>
+<td>历史列表长度</td>
+</tr>
+<tr>
+<td>current</td>
+<td>当前文档URL（这个在火狐没有！？）</td>
+</tr>
+<tr>
+<td>next</td>
+<td>列表中下个URL</td>
+</tr>
+<tr>
+<td>previous</td>
+<td>前一个URL</td>
+</tr>
+</tbody></table>
+<h4 id="4-3-2-方法"><a href="#4-3-2-方法" class="headerlink" title="4.3.2 方法"></a>4.3.2 方法</h4><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>back</td>
+<td>回到上一个URL</td>
+</tr>
+<tr>
+<td>forward</td>
+<td>去后一个（下一页）URL</td>
+</tr>
+<tr>
+<td>go</td>
+<td>进入指定页面(go(-1)==back())</td>
+</tr>
+</tbody></table>
+<h3 id="4-4-Document文档对象"><a href="#4-4-Document文档对象" class="headerlink" title="4.4 Document文档对象"></a>4.4 Document文档对象</h3><p>常用方法及实现：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>close</td>
+<td>文档的输出流</td>
+</tr>
+<tr>
+<td>open</td>
+<td>打开一个文档并接收write和writen方法的创建页面内容</td>
+</tr>
+<tr>
+<td>write</td>
+<td>可以在文档中写入HTML语句或者JavaScript语句</td>
+</tr>
+<tr>
+<td>writeln</td>
+<td>与write一样，但是以换行符结束</td>
+</tr>
+<tr>
+<td>createElement</td>
+<td>创建一个HTML标记</td>
+</tr>
+<tr>
+<td>getElementById</td>
+<td>获取指定id的HTML标记（如果内容多则以元组形式保存，需要用[*]访问）</td>
+</tr>
+</tbody></table>
+<h3 id="4-5-DOM（文档对象模型）"><a href="#4-5-DOM（文档对象模型）" class="headerlink" title="4.5 DOM（文档对象模型）"></a>4.5 DOM（文档对象模型）</h3><h4 id="4-5-1-DOM分层"><a href="#4-5-1-DOM分层" class="headerlink" title="4.5.1 DOM分层"></a>4.5.1 DOM分层</h4><p>如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;tr&gt;</span><br><span class="line">	&lt;th&gt;&lt;/th&gt;</span><br><span class="line">	&lt;input ... /&gt;</span><br><span class="line">&lt;tr&gt;</span><br></pre></td></tr></table></figure>
+<p>这里面tr是th和input的parentNode，而返过来，input和th是tr的childNode。<br>而th和input是兄弟节点。</p>
+<h4 id="4-5-2-节点属性如下："><a href="#4-5-2-节点属性如下：" class="headerlink" title="4.5.2 节点属性如下："></a>4.5.2 节点属性如下：</h4><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>nodeName</td>
+<td>节点名称</td>
+</tr>
+<tr>
+<td>nodeType</td>
+<td>节点的类型</td>
+</tr>
+<tr>
+<td>nodeValue</td>
+<td>节点的值，通常只应用于文本节点</td>
+</tr>
+<tr>
+<td>parentNode</td>
+<td>返回当前节点的额父节点</td>
+</tr>
+<tr>
+<td>childNodes</td>
+<td>子节点列表</td>
+</tr>
+<tr>
+<td>firstChild</td>
+<td>返回第一个子节点</td>
+</tr>
+<tr>
+<td>lastChild</td>
+<td>返回最后一个子节点</td>
+</tr>
+<tr>
+<td>previousSibling</td>
+<td>返回当前节点的前一个兄弟节点</td>
+</tr>
+<tr>
+<td>nextSibling</td>
+<td>…后一个兄弟节点</td>
+</tr>
+<tr>
+<td>attributes</td>
+<td>元素的属性列表</td>
+</tr>
+</tbody></table>
+<h4 id="4-5-3-节点操作"><a href="#4-5-3-节点操作" class="headerlink" title="4.5.3 节点操作"></a>4.5.3 节点操作</h4><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>创建</td>
+<td>appendChild</td>
+</tr>
+<tr>
+<td>插入追加</td>
+<td>insertBefore(new,ref) new新节点，ref指定在哪个节点后面添加</td>
+</tr>
+<tr>
+<td>拷贝</td>
+<td>clone(bool) true深拷贝，false浅拷贝</td>
+</tr>
+<tr>
+<td>删除</td>
+<td>removeChild</td>
+</tr>
+<tr>
+<td>替换</td>
+<td>replaceChild</td>
+</tr>
+</tbody></table>
+<h4 id="4-5-4-DHTML与相应的DOM"><a href="#4-5-4-DHTML与相应的DOM" class="headerlink" title="4.5.4 DHTML与相应的DOM"></a>4.5.4 DHTML与相应的DOM</h4><ol>
+<li>innerText 返回除去标签的文本内容</li>
+<li>innerHTML 返回带有HTML标签的文本内容</li>
+</ol>
+<h2 id="五、事件处理"><a href="#五、事件处理" class="headerlink" title="五、事件处理"></a>五、事件处理</h2><p><em>注：如同onclick这种事件我就不多讲啦！</em></p>
+<h3 id="5-1-DOM事件模型"><a href="#5-1-DOM事件模型" class="headerlink" title="5.1 DOM事件模型"></a>5.1 DOM事件模型</h3>]]></content>
+      <categories>
+        <category>理论</category>
+        <category>代码编程</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>HTML</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>工具OllyDbg的使用</title>
     <url>/2019/11/10/%E5%B7%A5%E5%85%B7OllyDbg%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h1 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h1><p>OllyDbg简称OD，是一款具有可视化界面的用户模式调试器，<a id="more"></a>结合了动态调试和静态分析，具有强大的反汇编引擎，能够识别数千个被C和Windows所使用的函数，并能将其参数注释出，能自动分析函数过程，循环语句，代码中的字符串等，非常容易上手，并且对异常的跟踪处理相当灵活，这些特性使得OllyDbg成为调试ring3级程序的首选工具，爱好者不断地修改，扩充OllyDbg，脚本执行能力和开发插件接口使得其变得越来越强大。</p>
+<h1 id="二、界面构成"><a href="#二、界面构成" class="headerlink" title="二、界面构成"></a>二、界面构成</h1><h2 id="2-1-开始页面"><a href="#2-1-开始页面" class="headerlink" title="2.1 开始页面"></a>2.1 开始页面</h2><p>开始页面如图：<br><img src="/2019/11/10/%E5%B7%A5%E5%85%B7OllyDbg%E7%9A%84%E4%BD%BF%E7%94%A8/%E7%95%8C%E9%9D%A2.jpg" alt></p>
+<h2 id="2-2-实验准备"><a href="#2-2-实验准备" class="headerlink" title="2.2 实验准备"></a>2.2 实验准备</h2><p>现在我编译一个很简单的C++程序（normal.exe）：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> flag = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span>(flag)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"hello world!"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"you have cracked it!"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;	</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其正常输出如下：<br><img src="/2019/11/10/%E5%B7%A5%E5%85%B7OllyDbg%E7%9A%84%E4%BD%BF%E7%94%A8/%E6%AD%A3%E5%B8%B8.jpg" alt></p>
+<h2 id="2-3-载入程序，解释界面"><a href="#2-3-载入程序，解释界面" class="headerlink" title="2.3 载入程序，解释界面"></a>2.3 载入程序，解释界面</h2><p>单击“File”-&gt;“open”选项，打开一个EXE文件，这次打开的是之前编译过的C++程序。</p>
+<p>载入程序后的界面如下：<br><img src="/2019/11/10/%E5%B7%A5%E5%85%B7OllyDbg%E7%9A%84%E4%BD%BF%E7%94%A8/%E8%BF%90%E8%A1%8C%E7%95%8C%E9%9D%A2.jpg" alt><br>下面解释各个部分的功能含义：</p>
+<ol>
+<li><p>标题栏<br>显示当前线程（main）和当前运行的程序名（normal）</p>
+</li>
+<li><p>菜单栏</p>
+</li>
+<li><p>快捷入口<br>里面集成了许多系统工具，如文本编辑器(notepad)，计算器(calc)等</p>
+</li>
+<li><p>调试快捷键</p>
+<blockquote>
+<p>(1)   打开新的可执行文件[快捷键F3]<br>(2)   重新载入程序[快捷键Ctrl+F2]<br>(3)   关闭程序 [快捷键Alt+F2]<br>(4)   运行程序[快捷键F9]<br>(5)   暂停执行程序 [快捷键F12]<br>(6)   单步步入[快捷键F7]<br>(7)   单步步过[快捷键F8]<br>(8)   跟踪步入[快捷键Ctrl+F11]<br>(9)   跟踪步过[快捷键Ctrl+F12]<br>(10)  执行到返回[快捷键Ctrl+F9]<br>(11)  转到反汇编窗中口的地址(转到表达式)[快捷键Ctrl+G]</p>
+</blockquote>
+</li>
+<li><p>窗口快捷键<br>使用OD打开目标程序后，OD会打开多个子窗口，单击各个标签按钮可以在各个子窗口之间切换，这些按钮依次对应Log窗口，Executable modules窗口，Memory窗口，Threads窗口，Windows窗口，Handles窗口，CPU窗口，Patches窗口，Call stack窗口，Breakpoints窗口，References窗口，Run trace窗口，Source窗口。</p>
+</li>
+<li><p>反汇编面板窗口</p>
+<ul>
+<li>Address列：显示被双击行地址的<strong>相对地址</strong>，再次双击返回<strong>标准地址模式</strong></li>
+<li>Hex dump列:设置或取消无条件断点，对应的快捷键是“F2”键。</li>
+<li>Disassembly列:调用汇编器，可直接修改汇编代码，对应的快捷键是空格键。</li>
+<li>Comment列:允许增加或编辑注释，对应的快捷键是“；”键。</li>
+</ul>
+</li>
+<li><p>寄存器面板窗口<br>寄存器面板窗口（ Registers window）显示CP各寄存器的值，支持浮点、MM和3DNow寄存器。可以单击右键或窗口标题切换显示寄存器的方式。</p>
+</li>
+<li><p>信息面板窗口<br>在进行动态跟踪时，信息面板窗口（Information window）将显示与指令相关的各寄存器的值、API函数调用提示和跳转提示等信息。</p>
+</li>
+<li><p>数据面板窗口<br>数据面板窗口（ Dump window）以十六进制和字符方式显示文件在内存中的数据。要显示指定内存地址的数据，可单击右键快捷菜单中的Go to expression命令或按“Ctrl+G”快捷键，打开地址窗口，输入地址。</p>
+</li>
+<li><p>栈面板窗口<br>栈面板窗口（Stack window）显示栈的内容，即ESP指向地址的内容。将数据放入栈的操作称为入栈（push），从栈中取出数据的操作称为出栈（pop）栈窗口非常重要，各API函数和子程序都利用它传递参数和变量等。</p>
+</li>
+</ol>
+<h1 id="三、实战：运用OD"><a href="#三、实战：运用OD" class="headerlink" title="三、实战：运用OD"></a>三、实战：运用OD</h1>]]></content>
+      <tags>
+        <tag>课程</tag>
+        <tag>工具</tag>
+      </tags>
   </entry>
   <entry>
     <title>汇编语言(入门学习)</title>
@@ -678,7 +1073,43 @@
 <td>略</td>
 </tr>
 </tbody></table>
-<h2 id="11-4-pushf和popf"><a href="#11-4-pushf和popf" class="headerlink" title="11.4 pushf和popf"></a>11.4 pushf和popf</h2><p>因为标志寄存器共16位，所以pushf就直接将16位当做寄存器放入栈中，popf是出栈。<br>注意，它们不需要加对象参数，入栈和出栈的对象都是标志寄存器！</p>
+<h2 id="11-4-pushf和popf"><a href="#11-4-pushf和popf" class="headerlink" title="11.4 pushf和popf"></a>11.4 pushf和popf</h2><p>因为标志寄存器共16位，所以pushf就直接将16位当做寄存器放入栈中，popf是出栈。<br>注意，它们不需要加对象参数，<strong>入栈和出栈的对象都是标志寄存器</strong>！</p>
+<h1 id="第十二章-内中断"><a href="#第十二章-内中断" class="headerlink" title="第十二章 内中断"></a>第十二章 内中断</h1><p>也就是CPU不再往下执行下去。而CPU内部的四种中断信息是：</p>
+<ol>
+<li>除法错误，如div指令产生的除法溢出（中断类型码：0）</li>
+<li>单步执行（中断类型码：1）</li>
+<li>执行into指令（中断类型码：4）</li>
+<li>执行int指令（指令格式：int n，其中n是中断类型码，是字节型立即数）</li>
+</ol>
+<h2 id="12-1-中断一条龙（中断程序，中断向量表，中断过程）"><a href="#12-1-中断一条龙（中断程序，中断向量表，中断过程）" class="headerlink" title="12.1 中断一条龙（中断程序，中断向量表，中断过程）"></a>12.1 中断一条龙（中断程序，中断向量表，中断过程）</h2><p>中断过程：</p>
+<ol>
+<li>取得中断类型码（即中断向量表中的中断程序位置）</li>
+<li>标志位入栈（因为执行中断过程要改变标志寄存器的值）</li>
+<li>设置寄存器的<strong>TF</strong>和<strong>IF</strong>的值为0</li>
+<li>CS内容入栈</li>
+<li>IP内容入栈（结束中断程序回调的时候用，和call差不多）</li>
+<li>从内存地址为中断类型码*4和中断类型码*4+2的两个字单元中读取中断处理程序的入口地址设置IP和CS。（用来取得<strong>中断程序在内存中的位置</strong>）</li>
+</ol>
+<p>其实就是：</p>
+<ol>
+<li>get N</li>
+<li>pushf</li>
+<li>TF=0, IF=0</li>
+<li>push CS</li>
+<li>push IP</li>
+<li>(IP)=(N*4), (CS)=(N/4+2)</li>
+<li>执行程序！</li>
+</ol>
+<h2 id="12-2-中断处理程序，安装，中断向量等"><a href="#12-2-中断处理程序，安装，中断向量等" class="headerlink" title="12.2 中断处理程序，安装，中断向量等"></a>12.2 中断处理程序，安装，中断向量等</h2><p>这个只是稍微述说，额，因为我不太能用到这个，作为了解而已。<br>中断处理程序就如同除法溢出程序一样（输出‘…overflow’），如何处理后续的事物做中断处理，然后返回系统程序。<br>而如果想要自己编一个中断处理程序，首先</p>
+<ol>
+<li>把中断码想好，把程序要放的地方想好，<em>*放入中断向量表</em></li>
+<li>编程序，安装（写到相应位置）</li>
+<li>测试</li>
+</ol>
+<p>这里当然要用到之前学的几乎所有内容（包括ret,movsb等）</p>
+<h2 id="12-3-单步中断和TF-DF标志"><a href="#12-3-单步中断和TF-DF标志" class="headerlink" title="12.3 单步中断和TF,DF标志"></a>12.3 单步中断和TF,DF标志</h2><p>说到这里，你看标题就知道，TF肯定与单步中断有关，具体有什么关系呢？<br>首先说说<strong>单步中断</strong>，也就是不停止（退出）运行的程序，却能返回其实时的寄存器信息（也就是还在运行，只不过暂时停止了）。<br>而TF就是实现单步中断的重要标志，当<strong>TF=1</strong>时将引发单步中断，所以要想中断就先置TF=1。<br>这就是为什么中断执行（刚开始）就要把<strong>TF置0，就是为了防止步步中断</strong>！</p>
+<h2 id="12-4-int指令"><a href="#12-4-int指令" class="headerlink" title="12.4 int指令"></a>12.4 int指令</h2><p>int指令引发的内中断很重要。虽然其过程与12.1所说的别无二致。<br>接下来就深入理解理解int、iret和栈：</p>
+<h3 id="12-4-1-int、iret和栈"><a href="#12-4-1-int、iret和栈" class="headerlink" title="12.4.1 int、iret和栈"></a>12.4.1 int、iret和栈</h3><p>暂时停更<br>2019/11/20 9:21:47 </p>
 ]]></content>
       <categories>
         <category>理论</category>
@@ -807,6 +1238,7 @@
       <tags>
         <tag>算法</tag>
         <tag>C++</tag>
+        <tag>课程</tag>
       </tags>
   </entry>
   <entry>
