@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+
+    
+
+    
+
+    <title>DNSTunnel技术攻防 | DuK_Blogs</title>
+    <meta name="author" content="DuK" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="1. DNS概述DNS在我们的网络世界中是一个非常重要的协议，它将长串的不适合记忆的IP地址映射成可读性较强的字符域名。整个域名空间呈层次化的树状结构，顶层是根域，全球一共有13个根域。根域下为我们平常熟悉的顶级域，如.com,.net,.org等。域名的存储、解析和管理都要通过域名服务器来实现。根据域名所属域和授权范围可以划分Zone，Zone上的主服务器和辅服务器均被称为权威域名服务器。权威域名服务器上保存了该域的所有主机信息。DNS的记录类型有很多，大家常见的有A，AAAA,CN..." />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'icomoon';
+        src: url("/fonts/icomoon.eot?q628ml");
+        src: url("/fonts/icomoon.eot?q628ml#iefix") format('embedded-opentype'),
+             url("/fonts/icomoon.ttf?q628ml") format('truetype'),
+             url("/fonts/icomoon.woff?q628ml") format('woff'),
+             url("/fonts/icomoon.svg?q628ml#icomoon") format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+    </style>
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!--[if lt IE 9]>
+    <style type="text/css">
+    .nav-inner {top:0;}
+    .author-meta {position:static;top:0;}
+    .search-form {height:36px;}
+    </style>
+    <script type="text/javascript" src="https://unpkg.com/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <main class="app">
+        <header id="header" class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">DuK_Blogs</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
+    </div>
+
+    <nav id="nav-inner" class="nav-inner">
+        
+            <a class="nav-item" href="/">
+                <span class="nav-text">首页</span>
+            </a>
+        
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">标签</span>
+            </a>
+        
+            <a class="nav-item" href="/archives">
+                <span class="nav-text">归档</span>
+            </a>
+        
+            <a class="nav-item" href="/about">
+                <span class="nav-text">关于</span>
+            </a>
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://jeffup.github.io"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-DNS概述"><span class="toc-number">1.</span> <span class="toc-text">1. DNS概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-隧道技术"><span class="toc-number">2.</span> <span class="toc-text">2. 隧道技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-DNS隧道介绍"><span class="toc-number">3.</span> <span class="toc-text">3. DNS隧道介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-DNS隧道分类"><span class="toc-number">4.</span> <span class="toc-text">4. DNS隧道分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-IP直连型"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 IP直连型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-域名解析型"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 域名解析型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-IP直连型和域名解析型异同点"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 IP直连型和域名解析型异同点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-DNS隧道案例"><span class="toc-number">5.</span> <span class="toc-text">5. DNS隧道案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-XshellGhost"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 XshellGhost</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-ALMA-Communicator"><span class="toc-number">5.2.</span> <span class="toc-text">5.2 ALMA Communicator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-Trojan-Win32-Ismdoor-gen"><span class="toc-number">5.3.</span> <span class="toc-text">5.3 Trojan.Win32.Ismdoor.gen</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-PlugX"><span class="toc-number">5.4.</span> <span class="toc-text">5.4 PlugX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5-DarkHydrus-APT组织"><span class="toc-number">5.5.</span> <span class="toc-text">5.5 DarkHydrus APT组织</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-防御检测"><span class="toc-number">6.</span> <span class="toc-text">6. 防御检测</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-DNS-Query-Type成分组成异常检测"><span class="toc-number">6.1.</span> <span class="toc-text">6.1 DNS Query Type成分组成异常检测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-基于Zipf定律的异常检测"><span class="toc-number">6.2.</span> <span class="toc-text">6.2 基于Zipf定律的异常检测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-DNS会话时长检测"><span class="toc-number">6.3.</span> <span class="toc-text">6.3 DNS会话时长检测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4-DNS会话中数据包总数"><span class="toc-number">6.4.</span> <span class="toc-text">6.4 DNS会话中数据包总数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-“上行大包”请求比例"><span class="toc-number">6.5.</span> <span class="toc-text">6.3 “上行大包”请求比例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4-“下行小包”响应比例"><span class="toc-number">6.6.</span> <span class="toc-text">6.4 “下行小包”响应比例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-5-域名对应的主机名数量"><span class="toc-number">6.7.</span> <span class="toc-text">6.5. 域名对应的主机名数量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-6-FQDN数异常检测"><span class="toc-number">6.8.</span> <span class="toc-text">6.6. FQDN数异常检测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-7-响应时间特征"><span class="toc-number">6.9.</span> <span class="toc-text">6.7 响应时间特征</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-8-发包频率行为"><span class="toc-number">6.10.</span> <span class="toc-text">6.8 发包频率行为</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-总结"><span class="toc-number">7.</span> <span class="toc-text">7. 总结</span></a></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content">
+            <div id="wrapper" class="wrapper" style="max-width: 800px">
+                <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            DNSTunnel技术攻防
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://jeffup.github.io/2019/12/01/DNSTunnel%E6%8A%80%E6%9C%AF%E6%94%BB%E9%98%B2/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2019-12-01T03:16:30.000Z" itemprop="datePublished">2019-12-01</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/DNS/" rel="tag">DNS</a>, <a class="article-tag-link" href="/tags/%E6%94%BB%E9%98%B2/" rel="tag">攻防</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="1-DNS概述"><a href="#1-DNS概述" class="headerlink" title="1. DNS概述"></a>1. DNS概述</h2><p>DNS在我们的网络世界中是一个非常重要的协议，它将长串的不适合记忆的IP地址映射成可读性较强的字符域名。整个域名空间呈层次化的树状结构，顶层是根域，全球一共有13个根域。根域下为我们平常熟悉的顶级域，如.com,.net,.org等。域名的存储、解析和管理都要通过域名服务器来实现。根据域名所属域和授权范围可以划分Zone，Zone上的主服务器和辅服务器均被称为权威域名服务器。权威域名服务器上保存了该域的所有主机信息。</p>
+<a id="more"></a>
+<p>DNS的记录类型有很多，大家常见的有A，AAAA,CNAME,MX,SOA,NS等。DNS的解析过程可以分为两种类型：迭代查询和递归查询。通常本机到Local DNS Server的过程属于递归查询，而Local DNS Server对查询域名的解析过程属于迭代查询。为了减轻Local DNS Server的压力，提高解析速度，引入了缓存机制。缓存和TTL紧密相连，当TTL过期，Local DNS Server则会丢弃缓存的数据，重新从权威域名服务器上获取新的数据。</p>
+<h2 id="2-隧道技术"><a href="#2-隧道技术" class="headerlink" title="2. 隧道技术"></a>2. 隧道技术</h2><p>为了逃避监测，绕过杀软，更好的隐藏自身，很多木马的传输层都使用了隧道技术，隧道技术是一种通过使用互联网络的基础设施在网络之间传递数据的方式，使用隧道传递的Data(数据)或Payload(负载）可以是不同协议的数据帧或包。</p>
+<p>隧道协议将其它协议的数据帧或包，重新封装然后通过隧道发送，新的帧头提供路由信息，以便通过互联网传递被封装的 Payload。其数据传输特点（Feature）就是不通过网络直接发送数据包，通过封装技术在另一个(通常是加密的)连接中发送数据。</p>
+<p>常见基于数据包隧道有IPsec、L2TP、PPTP、PPPoE、SSH、TLS、SOCKS等等，其主要作用是规避防火墙。</p>
+<p>一个被防火墙阻挡的协议可被包在另一个没被防火墙阻挡的协议里，如HTTP。如果防火墙并没有排除此种包装，这技巧可用来逃避防火墙政策。隧道可按要求创建起一条与其他服务器的通信线路，届时使用SSL等加密手段进行通信。</p>
+<h2 id="3-DNS隧道介绍"><a href="#3-DNS隧道介绍" class="headerlink" title="3. DNS隧道介绍"></a>3. DNS隧道介绍</h2><p>DNS隧道技术就是指利用DNS协议建立隐蔽信道，实现隐蔽数据传输。</p>
+<p>传统socket隧道已极少，TCP、UDP大量被防御系统拦截，DNS、ICMP、HTTP/HTTPS等难于禁止的协议已成为黑客控制隧道的主流。比如在安全策略严格的内网环境中，常见的C&amp;C通讯端口都被众多安全设备所监控。在对目标内网的终端进行渗透时，网段只允许白名单流量出站，同时其它端口都被屏蔽时，传统C&amp;C通讯手段无法建立，反弹Shell变得十分困难。</p>
+<p>在这种情况下，DNS隧道往往可以成功，一方面是因为 DNS 报文具有天然的穿透防火墙的能力;另一方面,目前的杀毒软件、IDS 等安全策略很少对 DNS 报文进行有效的监控管理。<br> <br>最早是在2004年DanKaminsky在Defcon大会上发布的基于NSTX的DNS隐蔽隧道工具，之后出现了越来越多的DNS隐蔽通道工具</p>
+<ol>
+<li>iodine: <a href="https://github.com/yarrick/iodine" target="_blank" rel="noopener">https://github.com/yarrick/iodine</a></li>
+<li>Dns2tcp: <a href="https://www.aldeid.com/wiki/Dns2tcp" target="_blank" rel="noopener">https://www.aldeid.com/wiki/Dns2tcp</a></li>
+<li>tcp-over-dns: <a href="http://analogbit.com/software/tcp-over-dns/" target="_blank" rel="noopener">http://analogbit.com/software/tcp-over-dns/</a></li>
+<li>Heyoka: <a href="http://heyoka.sourceforge.net/" target="_blank" rel="noopener">http://heyoka.sourceforge.net/</a></li>
+<li>Dnscat: <a href="https://wiki.skullsecurity.org/Dnscat" target="_blank" rel="noopener">https://wiki.skullsecurity.org/Dnscat</a></li>
+<li>OzymanDNS <a href="https://dnstunnel.de/" target="_blank" rel="noopener">https://dnstunnel.de/</a></li>
+<li>DNSScapy <a href="https://code.google.com/archive/p/dnscapy/" target="_blank" rel="noopener">https://code.google.com/archive/p/dnscapy/</a></li>
+<li>DnsShell <a href="https://github.com/sensepost/DNS-Shell" target="_blank" rel="noopener">https://github.com/sensepost/DNS-Shell</a></li>
+<li>ReverseDnsShell <a href="https://github.com/ahhh/Reverse_DNS_Shell" target="_blank" rel="noopener">https://github.com/ahhh/Reverse_DNS_Shell</a></li>
+<li>…</li>
+</ol>
+<h2 id="4-DNS隧道分类"><a href="#4-DNS隧道分类" class="headerlink" title="4. DNS隧道分类"></a>4. DNS隧道分类</h2><h3 id="4-1-IP直连型"><a href="#4-1-IP直连型" class="headerlink" title="4.1 IP直连型"></a>4.1 IP直连型</h3><p>如果DNS隧道的服务器可以与本地主机通过IP直接通信，传输协议采用DNS协议，则称为IP直连型。</p>
+<p>IP直连型DNS隧道木马的服务器端开放53端口，被控端利用UDP Socket套接字直接与C&amp;C服务建立连接。在这种情况下，两者传输的内容实际上是基于UDP服务。<br>这种木马与传统UDP木马的几点不同</p>
+<ol>
+<li>利用53端口进行传输交互数据，而53端口的外联基本上在所有机器上都必须开放，否则则无法使用互联网DNS服务；</li>
+<li>精心构造传输的载荷内容，使其至少从格式上是符合DNS query包格式，因为如果攻击者构造的UDP载荷内容不符合DNS报文格式，在Wireshark等流量分析工具的流量解析下，很容易出现DNS报文异常的情况。</li>
+</ol>
+<h3 id="4-2-域名解析型"><a href="#4-2-域名解析型" class="headerlink" title="4.2 域名解析型"></a>4.2 域名解析型</h3><p>域名解析型也可以叫做DNS迭代查询中继型，基本通信架构如下图所示<br><img src="/2019/12/01/DNSTunnel%E6%8A%80%E6%9C%AF%E6%94%BB%E9%98%B2/4.1.png" alt></p>
+<ol>
+<li>被控端把要传输的内容封装在DNS请求包中，发起一次正常的DNS解析请求；</li>
+<li>当被控端向任意一台DNS服务器请求该域名下的子域名时，本地DNS服务器无论是通过递归查询还是迭代查询，都会向外转发这个DNS请求，最终这个DNS请求都会被送到黑客控制的权威NS服务器中（这意味着黑客必须事先配置好NS以及A记录解析）；</li>
+<li>DNS服务器控制端解析请求报文，得到被控端传来的信息，然后将攻击控制命令通过封装在DNS响应报文中；</li>
+<li>从而实现双方通信，所有的通信都必须由被控端（Client端）主动发起，不断回传数据并接受新指令。</li>
+</ol>
+<p>中继过程中的一个关键点是对DNS缓存机制的规避，因为如果需要解析的域名在Local DNS Server中已经有缓存时，Local DNS Server就不会转发数据包。所以在我们构造的请求中，每次查询的域名都是不一样的或者是已经是过期的。</p>
+<p>这个特征同时也包含了一个可用于检测的规律，即在DNS Tunnel的会话中，Dns Query Host的数量会比正常情况下要多，对DNS载荷的编码是DNS Tunnel的另一个核心技术，从高层来看，载荷只是客户端和服务器通信的正常流量。</p>
+<p>例如客户端发送一个A记录请求给服务器，查询的主机名为<strong>2roAUwBaCGRuc3R1bm5lbGluZwo.test.domain.com</strong>,其中<strong>2roAUwBaCGRuc3R1bm5lbGluZwo</strong>则是客户端传递给服务器的信息，这串字符解码后的信息便是<strong>dnstunneling</strong>。</p>
+<p>在大多数场景下，内网的Client位于防火墙后，Server不可能发起连接。所以大多数工具，Client会定时向Server发送请求，保证二者之间的通信状态。</p>
+<h3 id="4-3-IP直连型和域名解析型异同点"><a href="#4-3-IP直连型和域名解析型异同点" class="headerlink" title="4.3 IP直连型和域名解析型异同点"></a>4.3 IP直连型和域名解析型异同点</h3><p>这2种方法虽然工作原理上存在差别，但是从流量角度上来看都是基于DNS协议，但是这里在实际工程中也要注意，你旁路采集的方式可能会影响到你最终能否采集到完整的通信日志，例如如果你是采用记录DNS解析的方法，则可能会漏过UDP IP直连的这种通信方式，如果直接在网关上进行“端口和协议解析”则可以保证全流量采集。</p>
+<p>IP直连型DNS隧道木马直接与DNS服务器通过UDP Socket通信，因此通信效率要比域名型DNS隧道木马高，但是这种DNS隧道木马致命的弱点是直接把IP暴露在网络流量中，如果客户端指定信任的DNS服务器解析DNS服务，那么IP直连型DNS隧道木马就很容易被IP黑白名单封杀；</p>
+<p>对于域名型DNS隧道木马而言，只要客户机能与任意一台外网的DNS服务器通信，那么域名型DNS隧道木马就可以工作，因此域名型 DNS隧道木马生存能力更强，隐蔽性更高，更适合进行隐蔽的控制渗透任务。</p>
+<h2 id="5-DNS隧道案例"><a href="#5-DNS隧道案例" class="headerlink" title="5. DNS隧道案例"></a>5. DNS隧道案例</h2><p>DNS隧道有诸多优点，也被各种黑客组织所用，经过各种变形、加密，制作各种后门和木马程序，复杂程度越来越高。</p>
+<h3 id="5-1-XshellGhost"><a href="#5-1-XshellGhost" class="headerlink" title="5.1 XshellGhost"></a>5.1 XshellGhost</h3><p>2017年8月NetSarang旗下多款软件的关键模块被植入了高级后门，这是一起入侵感染供应链软件的大规模攻击事件，被称为为“XshellGhost”。</p>
+<p>后门会将主机的用户信息通过特定DGA(域名生成算法)产生的DNS域名传送至黑客的远程命令控制服务器，同时黑客的服务器会动态下发任意的恶意代码至用户机器执行，其中具有TCP、HTTP、UDP、DNS、HTTPS、SSL网络协议进行远程控制能力，其中DNS通信模块因主动运行被发现。</p>
+<p>在发送数据包时，会将数据嵌套到 DNS 协议中发送，其中数据会编码成特定的字符串，添加在要配置文件中的 CCDNS URL前，实现DNS隧道通讯。</p>
+<p>也是因为该事件的爆发，DNS隧道的防御逐渐被重视，各大公司纷纷启动对DNS隧道的监控。
+ </p>
+<h3 id="5-2-ALMA-Communicator"><a href="#5-2-ALMA-Communicator" class="headerlink" title="5.2 ALMA Communicator"></a>5.2 ALMA Communicator</h3><p>ALMA Communicator在2017年12月被发现来自OilRig黑客组织，它使用了DNS隧道来作为C2通信信道，使用了专门的子域名来给C2服务器传输数据，服务器使用了专门的IPv4地址来给木马发送数据。</p>
+<p>在构建这种专门的子域名时，木马会生成一个随机的四位数字，并连接一个硬编码字符串，最后再在字符串末尾添加一个用于标识受感染系统的唯一标识符。最后，它会添加硬编码的-0-2D-2D字符串来结束子域名（用于C2服务器通信）的构造，下图显示的是域名的结构<br><img src="/2019/12/01/DNSTunnel%E6%8A%80%E6%9C%AF%E6%94%BB%E9%98%B2/5.2.png" alt><br>该木马在向C2服务器发送数据时所使用的DNS查询语句的结构，其中每一次DNS请求一次只能发送10个字节的数据，下图是DNS查询时的结构<br><img src="/2019/12/01/DNSTunnel%E6%8A%80%E6%9C%AF%E6%94%BB%E9%98%B2/5.2.1.png" alt><br>目前OilRig黑客组织仍在他们的攻击活动中使用这种技术，并不断变种更新</p>
+<h3 id="5-3-Trojan-Win32-Ismdoor-gen"><a href="#5-3-Trojan-Win32-Ismdoor-gen" class="headerlink" title="5.3 Trojan.Win32.Ismdoor.gen"></a>5.3 Trojan.Win32.Ismdoor.gen</h3><p>该木马在2017年被发现，是一个有多层的C2通信协议结构，使用DNS隧道传输，并将传出“datagrams”（数据报）的长度被限制在60字符，C2服务器的命令解析到IPv6地址，一个典型的查询发送到C2服务器如下:n.n.c.<Session id>.<Serverdomain>.com<br><img src="/2019/12/01/DNSTunnel%E6%8A%80%E6%9C%AF%E6%94%BB%E9%98%B2/5.3.png" alt></Serverdomain></Session></p>
+<p>在DNS隧道传输层上面适当的位置有一个会话层协议,这意味着交换“短”和“长”数据包的能力。会话层与传输层的不同之处在于,它有一种机制来检查丢失的消息。当传输层通过一种数据交换关闭会话时（该数据交换是关于发送和接收数据包的数量），会话层便检查确保每一个发送的数据包已经被正确接收进而关闭。由服务器决定使用哪个选项；例如,“长”数据包协议是用来从受感染的电脑上传文件。</p>
+<blockquote>
+<ul>
+<li>短消息<br>在这个层次上,机器人的操作可分为五个步骤:</li>
+</ul>
+<ol>
+<li>向服务器声明会话ID;</li>
+<li>在数据包中发送消息;</li>
+<li>发送已发送数据包数量;</li>
+<li>接收传入数据包的数量;</li>
+<li>接收传入的数据包。</li>
+</ol>
+<ul>
+<li>长消息<br>在这种情况下,与服务器通信可以分为以下步骤:</li>
+</ul>
+<ol>
+<li>发送文件分成的数据包的数量;</li>
+<li>发送文件;</li>
+<li>向服务器发送周期查询以检查丢失的数据包;</li>
+<li>重新发送丢失的数据包。</li>
+</ol>
+</blockquote>
+<h3 id="5-4-PlugX"><a href="#5-4-PlugX" class="headerlink" title="5.4 PlugX"></a>5.4 PlugX</h3><p>该后门木马结合DNS隧道传输技术和PlugX远控程序，通过建立的DNS隧道进行攻击控制，和XshellGhost相似，将用户信息编码到子域名部分发起TXT类型的DNS查询进行受控端上线。但不同的是它将编码后的全域名发送到公共DNS服务器来建立通信隧道，并且也是通过查询TXT来返回数据。</p>
+<p>程序就对接收到的TXT回包进行校验和解码，除了正常编码的TXT数据外，还添加一条长度为0的空Text作为结尾才可以通过程序检查到达下一步控制流程<br><img src="/2019/12/01/DNSTunnel%E6%8A%80%E6%9C%AF%E6%94%BB%E9%98%B2/5.4.png" alt></p>
+<h3 id="5-5-DarkHydrus-APT组织"><a href="#5-5-DarkHydrus-APT组织" class="headerlink" title="5.5 DarkHydrus APT组织"></a>5.5 DarkHydrus APT组织</h3><p>2019年1月被发现针对中东地区的定向攻击活动，后门程序利用了复杂的DNS隧道技术与C2进行通信并执行指令，且通过GoogleDrive API实现文件的上传下载。</p>
+<p>后门使用了第二类也就是域名型隧道，而且会根据不同的查询类型，使用不同的正则表达式去匹配DNS服务器返回的结果数据。</p>
+<p>木马先会通过向攻击者控制的DNS服务器发送DNS查询请求来发送当前木马的上线ID给攻击者接着根据当前DNS请求的类型分别用不同的正则表达式规则匹配其返回的数据结果，并取取其中的数据<br><img src="/2019/12/01/DNSTunnel%E6%8A%80%E6%9C%AF%E6%94%BB%E9%98%B2/5.5.png" alt><br>比如执行nslookup并使用查询类型为A进行查询，最终使用以下正则表达式匹配返回的数据结果<br><img src="/2019/12/01/DNSTunnel%E6%8A%80%E6%9C%AF%E6%94%BB%E9%98%B2/5.5.1.png" alt><br>使用查询类型AC得到返回的数据，并使用以下正则表达式匹配返回的数据结果<br><img src="/2019/12/01/DNSTunnel%E6%8A%80%E6%9C%AF%E6%94%BB%E9%98%B2/5.5.2.png" alt><br>使用查询类型为AAAA得到的数据使用以下正则表达式匹配返回的数据结果<br><img src="/2019/12/01/DNSTunnel%E6%8A%80%E6%9C%AF%E6%94%BB%E9%98%B2/5.5.3.png" alt><br>使用其他DNS查询类型得到的数据使用以下正则表达式匹配返回的数据结果<br><img src="/2019/12/01/DNSTunnel%E6%8A%80%E6%9C%AF%E6%94%BB%E9%98%B2/5.5.4.png" alt><br>该木马共使用了A、AAAA、AC、CNAME、TXT、SRV、SOA、MX等DNS查询类型</p>
+<h2 id="6-防御检测"><a href="#6-防御检测" class="headerlink" title="6. 防御检测"></a>6. 防御检测</h2><p>目前安全产品多是基于监控终端请求异常长度的域名等规则方式进行DNS隧道检测，但可以通过修改域名长度、请求频率等特征轻易绕过传统基于规则的DNS隧道的检测模型，相比于基于规则的静态阈值检测误报高，易被绕过等问题，还可以使用机器学习技术从历史数据中学习出一个DNS隧道模式用于检测。</p>
+<p>主要可以从以下几个方面对DNS隧道进行检测。</p>
+<h3 id="6-1-DNS-Query-Type成分组成异常检测"><a href="#6-1-DNS-Query-Type成分组成异常检测" class="headerlink" title="6.1 DNS Query Type成分组成异常检测"></a>6.1 DNS Query Type成分组成异常检测</h3><ol>
+<li>DNS Tunnel<br>很多DNS Tunneling使用TXT记录类型发送请求和响应（例如文件上传等大数据量功能），而在正常的DNS网络流量中，TXT记录的比例可能只有1%-2%，如果时间窗口内，TXT记录的比例激增，那么也意味着可能存在异常。</li>
+<li>DNS FF Botnet<br>另外，在FF Botnet中，NXDOMAIN的比例也会比正常情况下要高。</li>
+<li>DNS Query Types Numbers<br>僵尸网络的DNS查询主要是查找C2的IP地址，查询类型的数量是有限的，四种主要的查询类型是A，AAAA，MX和NS。但是，良性名称查询的类型多于那些，其可能还包括ANY，TXT，SRV，SOA，CNAME，A6等。那么可以统计一个会话中的DNS Type数量，判断异常</li>
+</ol>
+<h3 id="6-2-基于Zipf定律的异常检测"><a href="#6-2-基于Zipf定律的异常检测" class="headerlink" title="6.2 基于Zipf定律的异常检测"></a>6.2 基于Zipf定律的异常检测</h3><p>根据Zipf定律，在自然语言的语料库里，词频往往会集中于某些小子集中，并且高频词到低频次的频率逐渐下降。<br><img src="/2019/12/01/DNSTunnel%E6%8A%80%E6%9C%AF%E6%94%BB%E9%98%B2/6.2.png" alt></p>
+<p>DNS Tunneling中由于域名做了编码，不符合Zipf定律（例如dns2tcp），整个分布趋于平稳。我们可以通过检测排序后的词频平均斜率来检测是否符合Zipf定律。
+ </p>
+<h3 id="6-3-DNS会话时长检测"><a href="#6-3-DNS会话时长检测" class="headerlink" title="6.3 DNS会话时长检测"></a>6.3 DNS会话时长检测</h3><p>TCP会话在建立通信过程中存在“三次握手”和断开连接的“四次握手”行为，因此TCP会话可以计算会话时长。</p>
+<p>DNS会话属于UDP会话的其中一种，由于UDP无连接的特性，DNS没有会话时长的严格定义。定义在一次DNS会话中，最后一个DNS报文的时间和第一个DNS报文的时间差就作为这个DNS会话的时长。</p>
+<p>正常情况下，一次DNS解析过程首先由客户机在本地随机开启一个UDP端口，然后向指定的DNS服务器53端口发送DNS请求报文，两者由此建立一个UDP通道。客户机一旦得到相应DNS回复报文，这个 DNS解析过程就结束了，如果没有后继的DNS解析任务，创建的UDP套接字会保存一段时间然后关闭，完成一次DNS会话，再次进行DNS解析的时候，再随机开启另一个UDP端口，重复上述过程。因此，正常域名解析DNS会话的时间短；</p>
+<p>对于DNS隧道木马而言，创建的UDP套接字通常会等到木马下线或者木马生命结束才关闭，UDP套接字会被复用，导致DNS隧道木马的DNS会话时长远大于正常DNS会话时长。</p>
+<h3 id="6-4-DNS会话中数据包总数"><a href="#6-4-DNS会话中数据包总数" class="headerlink" title="6.4 DNS会话中数据包总数"></a>6.4 DNS会话中数据包总数</h3><p>因为DNS隧道木马的会话一般随着木马生命周期的结束而结束，在整个木马的生命周期里会向外发送心跳报文、传输本机敏感信息、资源文件等，控制端会下达相关的远程控制指令等。所以在DNS隧道木马会话中DNS报文数量大。<br>然而，正常客户端产生的DNS会话随着一次DNS解析任务结束而结束，DNS会话比较简短。大多数情况是2个，由1个DNS请求报文和1个DNS响应报文组成。</p>
+<h3 id="6-3-“上行大包”请求比例"><a href="#6-3-“上行大包”请求比例" class="headerlink" title="6.3 “上行大包”请求比例"></a>6.3 “上行大包”请求比例</h3><p>在DNS请求报文中，如果Queries字段大于50字节，那么定义该DNS请求报文为上行大包。</p>
+<p>DNS隧道木马被控端把要传输的内容封装在Queries字段的域名中，DNS隧道木马为了在一次传输过程中携带尽可能多的隐蔽信息，往往造成Queries字段中的域名长度偏长。与正常DNS会话相比，DNS隧道木马会话中“上行大包”占请求报文总数的比例较大。</p>
+<p>另一方面，如果攻击者为规避检测，强制拆分构造相对短小的域名，从而减少每次发送的报文携带的隐蔽通信内容。当被控端传送某一固定的敏感资源文件，由于传送的资源文件大小是固定的,如果牺牲一次携带的隐蔽信息的内容，势必造成整个DNS会话的DNS报文总数的增加，所以在一次DNS隧道木马的会话中，DNS报文总数和DNS报文长度是负相关的。</p>
+<h3 id="6-4-“下行小包”响应比例"><a href="#6-4-“下行小包”响应比例" class="headerlink" title="6.4 “下行小包”响应比例"></a>6.4 “下行小包”响应比例</h3><p>将DNS应答报文中Answers字段小于50字节的数据包称为“下行小包”。</p>
+<p>DNS隧道木马在交互过程中，控制端发送的控制命令一般有特定含义，且短小精简，因此DNS隧道回复报文一般是“下行小包”。</p>
+<p>对于正常本机DNS解析请求而言，客户机是资源请求者，DNS服务器返回的数据除了Answers字段外，还经常返回授权和额外信息字段信息，因此正常的DNS响应报文相对较大。</p>
+<h3 id="6-5-域名对应的主机名数量"><a href="#6-5-域名对应的主机名数量" class="headerlink" title="6.5. 域名对应的主机名数量"></a>6.5. 域名对应的主机名数量</h3><p>对于DNS隧道木马而言，控制端要不断借助DNS Query的Query_name来承载要传输的内容，所以从主机数量这个维度来看，在一个DNS Tunnel会话中，域名对应的主机名数量会明显大于正常的DNS通信。</p>
+<h3 id="6-6-FQDN数异常检测"><a href="#6-6-FQDN数异常检测" class="headerlink" title="6.6. FQDN数异常检测"></a>6.6. FQDN数异常检测</h3><p>域名有全称和简称的区别。全称的域名，直译为”完全的合格的域名”(FQDN，Fully Qualified Domain Name)，表现为由”.”隔开的点分式层次结构，叫名称空间，它指定了一台主机和它所属域的隶属关系，而简称通常就是这台主机的计算机名，在域名的最左边。</p>
+<p>可以这么说FQDN(完全合格的域名)，是域加计算机名的总称。比如:  <a href="http://www.microsoft.com" target="_blank" rel="noopener">www.microsoft.com</a> 这个FQDN中，www是主机名，microsoft.com是域。 www+microsoft.com 组合在一块就成了一个完整的域名(FQDN)。</p>
+<p>可以通过分析一定时间窗口内所产生的FQDN数，通常DNS Tunneling的FQDN数在一定时间窗口内会远高于正常的DNS流量。</p>
+<h3 id="6-7-响应时间特征"><a href="#6-7-响应时间特征" class="headerlink" title="6.7 响应时间特征"></a>6.7 响应时间特征</h3><p>正常的DNS Server会在较短时间内完成DNS响应，而DNS Tunnel由于需要进行数据的解码以及后续处理逻辑，响应时间会稍微较长。</p>
+<h3 id="6-8-发包频率行为"><a href="#6-8-发包频率行为" class="headerlink" title="6.8 发包频率行为"></a>6.8 发包频率行为</h3><p>DNS Tunnel中DNS请求数量会很大，可以作为检测依据，但在实际的环境中，存在一些DNS Flood攻击行为，这部分攻击触发的行为日志很容易命中到DNS Tunnel模型，对于这种情况，需要将所有DNS会话包之前的间隔统计出来，计算它们的均值/方差等特征</p>
+<h2 id="7-总结"><a href="#7-总结" class="headerlink" title="7. 总结"></a>7. 总结</h2><p>DNS隧道技术由于隐蔽性高，穿透性强，备受黑客组织青睐，逐渐发展出复杂的通信技术手段。又由于防御手段有限，传统规则检测技术高误报，易绕过，数据科学和机器学习技术逐渐被使用，同时也出现了对抗数据分析和机器学习的更高级设计，但总能在统计分析上找到一些特定的规律。</p>
+
+        
+    </section>
+</article>
+
+
+
+<a id="pagenext" href="/2019/11/24/JavaScript%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="article-next" title="JavaScript基础知识"><i class="icon-arrow-right"></i></a>
+
+
+
+
+
+            </div>
+        </div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e4027971a230b210f4671f485b33846a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</footer>
+
+    </main>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
+
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
+        });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
+
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle();
+        });
+
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp();
+            }, 3000);
+        }
+    });
+    </script>
+    
+        <script src="/js/scrollspy.min.js"></script>
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+
+        $(window).on('resize', function() {
+            var hw = $('#header').width();
+            var ww = $('#wrapper').width();
+            var space = ($(this).width() - hw - ww) / 2 / 2;
+
+            var pageprev = $('#pageprev');
+            var pagenext = $('#pagenext');
+            var avg = (pageprev.width() + pagenext.width()) / 2
+
+            if(space > avg) {
+                var len = space - avg / 2;
+                var styles = {position: 'fixed', top: '50%', marginTop: - (pageprev.width() + pagenext.width()) / 4}
+                pageprev.css($.extend({left: hw + len}, styles));
+                pagenext.css($.extend({right: len}, styles));
+            } else {
+                pageprev.removeAttr('style');
+                pagenext.removeAttr('style');
+            }
+        }).trigger('resize');
+        </script>
+    
+
+</body>
+</html>

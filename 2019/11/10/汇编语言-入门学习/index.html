@@ -85,7 +85,7 @@
         
 
         
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#简介：本篇旨在对汇编的基础知识进行汇总，汇总的都是要点（简明扼要），目前还在更新中。"><span class="toc-number">1.</span> <span class="toc-text">简介：本篇旨在对汇编的基础知识进行汇总，汇总的都是要点（简明扼要），目前还在更新中。</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第一章-基础知识"><span class="toc-number"></span> <span class="toc-text">第一章 基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-存储单元"><span class="toc-number"></span> <span class="toc-text">1.1 存储单元</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-CPU对存储器的读写"><span class="toc-number"></span> <span class="toc-text">1.2 CPU对存储器的读写</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-影响性能的因素："><span class="toc-number"></span> <span class="toc-text">1.2.1 影响性能的因素：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#宽度（线的条数）：它决定了部件的能力（速度，控制能力等）。8086为16条，8088为8条"><span class="toc-number">1.</span> <span class="toc-text">宽度（线的条数）：它决定了部件的能力（速度，控制能力等）。8086为16条，8088为8条</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第二章-寄存器"><span class="toc-number"></span> <span class="toc-text">第二章 寄存器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-通用寄存器"><span class="toc-number"></span> <span class="toc-text">2.1 通用寄存器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-CPU给出物理地址的方法"><span class="toc-number"></span> <span class="toc-text">2.2 CPU给出物理地址的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-段寄存器"><span class="toc-number"></span> <span class="toc-text">2.3 段寄存器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1-CS和IP"><span class="toc-number"></span> <span class="toc-text">2.3.1 CS和IP</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-疑问"><span class="toc-number"></span> <span class="toc-text">2.4 疑问</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-为什么偏移地址只能在64Kb内？"><span class="toc-number"></span> <span class="toc-text">1. 为什么偏移地址只能在64Kb内？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-暂留"><span class="toc-number"></span> <span class="toc-text">2.暂留</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第三章-寄存器（内存访问）"><span class="toc-number"></span> <span class="toc-text">第三章 寄存器（内存访问）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-内存中字的存储"><span class="toc-number"></span> <span class="toc-text">3.1 内存中字的存储</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-DS和-address"><span class="toc-number"></span> <span class="toc-text">3.2 DS和[address]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-字的传送（mov指令）"><span class="toc-number"></span> <span class="toc-text">3.3 字的传送（mov指令）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-mov、add、sub指令"><span class="toc-number"></span> <span class="toc-text">3.4 mov、add、sub指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-栈"><span class="toc-number"></span> <span class="toc-text">3.5 栈</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-1-push和pop"><span class="toc-number"></span> <span class="toc-text">3.5.1 push和pop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-2-数据传输"><span class="toc-number"></span> <span class="toc-text">3.5.2 数据传输</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-3-栈指针"><span class="toc-number"></span> <span class="toc-text">3.5.3 栈指针</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-6-栈顶越界问题"><span class="toc-number"></span> <span class="toc-text">3.6 栈顶越界问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-7-问题"><span class="toc-number"></span> <span class="toc-text">3.7 问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-程序与数据有区别吗？"><span class="toc-number"></span> <span class="toc-text">1.程序与数据有区别吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-空栈如（10000H-1000FH）此时ss-1000H，那么sp是多少？"><span class="toc-number"></span> <span class="toc-text">2.空栈如（10000H~1000FH）此时ss=1000H，那么sp是多少？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-栈会溢出，那么，为什么不设置栈大小"><span class="toc-number"></span> <span class="toc-text">3.栈会溢出，那么，为什么不设置栈大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-只有mov可以完成传输数据吗？"><span class="toc-number"></span> <span class="toc-text">4.只有mov可以完成传输数据吗？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第四章-第一个程序"><span class="toc-number"></span> <span class="toc-text">第四章 第一个程序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-一个源程序从写出到执行的过程"><span class="toc-number"></span> <span class="toc-text">4.1 一个源程序从写出到执行的过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-源程序"><span class="toc-number"></span> <span class="toc-text">4.2 源程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-1-伪指令"><span class="toc-number"></span> <span class="toc-text">4.2.1 伪指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-2-程序返回"><span class="toc-number"></span> <span class="toc-text">4.2.2 程序返回</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-程序生成流程"><span class="toc-number"></span> <span class="toc-text">4.3 程序生成流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-怎么装载程序？"><span class="toc-number"></span> <span class="toc-text">4.4 怎么装载程序？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-展示EXE的加载过程"><span class="toc-number"></span> <span class="toc-text">4.4 展示EXE的加载过程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第五章-BX-和loop指令"><span class="toc-number"></span> <span class="toc-text">第五章 [BX]和loop指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-BX"><span class="toc-number"></span> <span class="toc-text">5.1 [BX]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-loop"><span class="toc-number"></span> <span class="toc-text">5.2 loop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-loop和-bx-的联合运用"><span class="toc-number"></span> <span class="toc-text">5.3 loop和[bx]的联合运用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-段前缀与其使用"><span class="toc-number"></span> <span class="toc-text">5.4 段前缀与其使用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第六章-包含多个段的程序"><span class="toc-number"></span> <span class="toc-text">第六章 包含多个段的程序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-在代码段中使用数据"><span class="toc-number"></span> <span class="toc-text">6.1 在代码段中使用数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2-将数据、代码、栈放入不同的段"><span class="toc-number"></span> <span class="toc-text">6.2 将数据、代码、栈放入不同的段</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第七章-更灵活的定位内存地址的方法"><span class="toc-number"></span> <span class="toc-text">第七章 更灵活的定位内存地址的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1-and和or指令"><span class="toc-number"></span> <span class="toc-text">7.1 and和or指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2-以字符型给出数据"><span class="toc-number"></span> <span class="toc-text">7.2 以字符型给出数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3-以-bx-idata-的方式寻址"><span class="toc-number"></span> <span class="toc-text">7.3 以[bx+idata]的方式寻址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-4-si与di寄存器和多重循环"><span class="toc-number"></span> <span class="toc-text">7.4 si与di寄存器和多重循环</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第八章-数据处理的两个基本问题"><span class="toc-number"></span> <span class="toc-text">第八章 数据处理的两个基本问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-1-bx、si、di和bp"><span class="toc-number"></span> <span class="toc-text">8.1 bx、si、di和bp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-2-机器指令处理的数据在什么地方"><span class="toc-number"></span> <span class="toc-text">8.2 机器指令处理的数据在什么地方</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-3-指令处理的数据长度"><span class="toc-number"></span> <span class="toc-text">8.3 指令处理的数据长度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-4-div指令"><span class="toc-number"></span> <span class="toc-text">8.4 div指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-5-实例"><span class="toc-number"></span> <span class="toc-text">8.5 实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-6-伪指令dd"><span class="toc-number"></span> <span class="toc-text">8.6 伪指令dd</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-7-dup"><span class="toc-number"></span> <span class="toc-text">8.7 dup</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第九章-转移指令的原理"><span class="toc-number"></span> <span class="toc-text">第九章 转移指令的原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#9-1-操作符offset"><span class="toc-number"></span> <span class="toc-text">9.1 操作符offset</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-2-jmp指令和依据译为进行转移的jmp指令"><span class="toc-number"></span> <span class="toc-text">9.2 jmp指令和依据译为进行转移的jmp指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#9-2-1-jmp-short-标号-转移到标号出执行指令"><span class="toc-number"></span> <span class="toc-text">9.2.1 jmp short 标号(转移到标号出执行指令)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-2-2-立即数在机器码中的表示"><span class="toc-number"></span> <span class="toc-text">9.2.2 立即数在机器码中的表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-2-3-jmp转移的机制（是怎么实现转移的）"><span class="toc-number"></span> <span class="toc-text">9.2.3 jmp转移的机制（是怎么实现转移的）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-2-4-继续上面的，8位位移是怎么得出来的？"><span class="toc-number"></span> <span class="toc-text">9.2.4 继续上面的，8位位移是怎么得出来的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-2-5-jmp-far-ptr-标号（段间转移-远转移）"><span class="toc-number"></span> <span class="toc-text">9.2.5 jmp far ptr 标号（段间转移/远转移）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-2-6-转移地址在寄存器的jmp指令-这就相当于总结了，上面废话有点多"><span class="toc-number"></span> <span class="toc-text">9.2.6 转移地址在寄存器的jmp指令(这就相当于总结了，上面废话有点多)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-3-jcxz指令"><span class="toc-number"></span> <span class="toc-text">9.3 jcxz指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-4-loop指令"><span class="toc-number"></span> <span class="toc-text">9.4 loop指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-5-编译器对转移位移超界的检测"><span class="toc-number"></span> <span class="toc-text">9.5 编译器对转移位移超界的检测</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第十章-CALL和RET指令"><span class="toc-number"></span> <span class="toc-text">第十章 CALL和RET指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#10-1-ret和retf"><span class="toc-number"></span> <span class="toc-text">10.1 ret和retf</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-2-call指令"><span class="toc-number"></span> <span class="toc-text">10.2 call指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#10-2-1-依据位移进行转移的call指令"><span class="toc-number"></span> <span class="toc-text">10.2.1 依据位移进行转移的call指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-2-2-转移地址在指令中的call指令"><span class="toc-number"></span> <span class="toc-text">10.2.2 转移地址在指令中的call指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-2-3-转移指令在寄存器中的call指令"><span class="toc-number"></span> <span class="toc-text">10.2.3 转移指令在寄存器中的call指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-2-4-转移指令在内存中的call指令"><span class="toc-number"></span> <span class="toc-text">10.2.4 转移指令在内存中的call指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-3-call与ret的配合使用（敲黑板！）"><span class="toc-number"></span> <span class="toc-text">10.3 call与ret的配合使用（敲黑板！）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-4-mul乘法指令"><span class="toc-number"></span> <span class="toc-text">10.4 mul乘法指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#10-4-1-乘法规则"><span class="toc-number"></span> <span class="toc-text">10.4.1 乘法规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-4-2-指令格式："><span class="toc-number"></span> <span class="toc-text">10.4.2 指令格式：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-4-3-用mul寻址"><span class="toc-number"></span> <span class="toc-text">10.4.3 用mul寻址</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-5-模块化程序设计"><span class="toc-number"></span> <span class="toc-text">10.5  模块化程序设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#10-5-1-参数和结果的传递问题"><span class="toc-number"></span> <span class="toc-text">10.5.1 参数和结果的传递问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-5-2-寄存器冲突问题"><span class="toc-number"></span> <span class="toc-text">10.5.2 寄存器冲突问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-6-课后"><span class="toc-number"></span> <span class="toc-text">10.6 课后</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#下面的程序执行后，ax和bx中的数值为多少？"><span class="toc-number"></span> <span class="toc-text">下面的程序执行后，ax和bx中的数值为多少？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实验10-1-编写子程序-之-显示字符串"><span class="toc-number"></span> <span class="toc-text">实验10-1 编写子程序 之 显示字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#显示字符串"><span class="toc-number">1.</span> <span class="toc-text">显示字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#问题"><span class="toc-number">1.1.</span> <span class="toc-text">问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#子程序描述"><span class="toc-number">1.2.</span> <span class="toc-text">子程序描述</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#提示"><span class="toc-number">2.</span> <span class="toc-text">提示</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决除法溢出问题"><span class="toc-number"></span> <span class="toc-text">解决除法溢出问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#问题："><span class="toc-number">1.</span> <span class="toc-text">问题：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第十一章-标志寄存器"><span class="toc-number"></span> <span class="toc-text">第十一章 标志寄存器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#11-1-标志表"><span class="toc-number"></span> <span class="toc-text">11.1 标志表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-2-与标志有关的指令"><span class="toc-number"></span> <span class="toc-text">11.2 与标志有关的指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#11-2-1-与CF相关的：adc-sdd指令"><span class="toc-number"></span> <span class="toc-text">11.2.1 与CF相关的：adc,sdd指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-2-2-与CF和ZF有关的：cmp指令（比较指令）"><span class="toc-number"></span> <span class="toc-text">11.2.2 与CF和ZF有关的：cmp指令（比较指令）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-2-3-与CMP有关的比较结果条件转移指令"><span class="toc-number"></span> <span class="toc-text">11.2.3 与CMP有关的比较结果条件转移指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-2-4-与DF有关指令"><span class="toc-number"></span> <span class="toc-text">11.2.4 与DF有关指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-3-标志位有关的问题"><span class="toc-number"></span> <span class="toc-text">11.3 标志位有关的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#11-3-1-单纯就符号标志位就可以判断结果的正负吗？（即判断相减的两个数的大小）"><span class="toc-number"></span> <span class="toc-text">11.3.1 单纯就符号标志位就可以判断结果的正负吗？（即判断相减的两个数的大小）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-4-pushf和popf"><span class="toc-number"></span> <span class="toc-text">11.4 pushf和popf</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第十二章-内中断"><span class="toc-number"></span> <span class="toc-text">第十二章 内中断</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#12-1-中断一条龙（中断程序，中断向量表，中断过程）"><span class="toc-number"></span> <span class="toc-text">12.1 中断一条龙（中断程序，中断向量表，中断过程）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-2-中断处理程序，安装，中断向量等"><span class="toc-number"></span> <span class="toc-text">12.2 中断处理程序，安装，中断向量等</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-3-单步中断和TF-DF标志"><span class="toc-number"></span> <span class="toc-text">12.3 单步中断和TF,DF标志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-4-int指令"><span class="toc-number"></span> <span class="toc-text">12.4 int指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#12-4-1-int、iret和栈"><span class="toc-number"></span> <span class="toc-text">12.4.1 int、iret和栈</span></a>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#简介：本篇旨在对汇编的基础知识进行汇总，汇总的都是要点（简明扼要），目前还在更新中。"><span class="toc-number">1.</span> <span class="toc-text">简介：本篇旨在对汇编的基础知识进行汇总，汇总的都是要点（简明扼要），目前还在更新中。</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第一章-基础知识"><span class="toc-number"></span> <span class="toc-text">第一章 基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-存储单元"><span class="toc-number"></span> <span class="toc-text">1.1 存储单元</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-CPU对存储器的读写"><span class="toc-number"></span> <span class="toc-text">1.2 CPU对存储器的读写</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-影响性能的因素："><span class="toc-number"></span> <span class="toc-text">1.2.1 影响性能的因素：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#宽度（线的条数）：它决定了部件的能力（速度，控制能力等）。8086为16条，8088为8条"><span class="toc-number">1.</span> <span class="toc-text">宽度（线的条数）：它决定了部件的能力（速度，控制能力等）。8086为16条，8088为8条</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第二章-寄存器"><span class="toc-number"></span> <span class="toc-text">第二章 寄存器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-通用寄存器"><span class="toc-number"></span> <span class="toc-text">2.1 通用寄存器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-CPU给出物理地址的方法"><span class="toc-number"></span> <span class="toc-text">2.2 CPU给出物理地址的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-段寄存器"><span class="toc-number"></span> <span class="toc-text">2.3 段寄存器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1-CS和IP"><span class="toc-number"></span> <span class="toc-text">2.3.1 CS和IP</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-疑问"><span class="toc-number"></span> <span class="toc-text">2.4 疑问</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-为什么偏移地址只能在64Kb内？"><span class="toc-number"></span> <span class="toc-text">1. 为什么偏移地址只能在64Kb内？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-暂留"><span class="toc-number"></span> <span class="toc-text">2.暂留</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第三章-寄存器（内存访问）"><span class="toc-number"></span> <span class="toc-text">第三章 寄存器（内存访问）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-内存中字的存储"><span class="toc-number"></span> <span class="toc-text">3.1 内存中字的存储</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-DS和-address"><span class="toc-number"></span> <span class="toc-text">3.2 DS和[address]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-字的传送（mov指令）"><span class="toc-number"></span> <span class="toc-text">3.3 字的传送（mov指令）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-mov、add、sub指令"><span class="toc-number"></span> <span class="toc-text">3.4 mov、add、sub指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-栈"><span class="toc-number"></span> <span class="toc-text">3.5 栈</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-1-push和pop"><span class="toc-number"></span> <span class="toc-text">3.5.1 push和pop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-2-数据传输"><span class="toc-number"></span> <span class="toc-text">3.5.2 数据传输</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-3-栈指针"><span class="toc-number"></span> <span class="toc-text">3.5.3 栈指针</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-6-栈顶越界问题"><span class="toc-number"></span> <span class="toc-text">3.6 栈顶越界问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-7-问题"><span class="toc-number"></span> <span class="toc-text">3.7 问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-程序与数据有区别吗？"><span class="toc-number"></span> <span class="toc-text">1.程序与数据有区别吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-空栈如（10000H-1000FH）此时ss-1000H，那么sp是多少？"><span class="toc-number"></span> <span class="toc-text">2.空栈如（10000H~1000FH）此时ss=1000H，那么sp是多少？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-栈会溢出，那么，为什么不设置栈大小"><span class="toc-number"></span> <span class="toc-text">3.栈会溢出，那么，为什么不设置栈大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-只有mov可以完成传输数据吗？"><span class="toc-number"></span> <span class="toc-text">4.只有mov可以完成传输数据吗？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第四章-第一个程序"><span class="toc-number"></span> <span class="toc-text">第四章 第一个程序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-一个源程序从写出到执行的过程"><span class="toc-number"></span> <span class="toc-text">4.1 一个源程序从写出到执行的过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-源程序"><span class="toc-number"></span> <span class="toc-text">4.2 源程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-1-伪指令"><span class="toc-number"></span> <span class="toc-text">4.2.1 伪指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-2-程序返回"><span class="toc-number"></span> <span class="toc-text">4.2.2 程序返回</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-程序生成流程"><span class="toc-number"></span> <span class="toc-text">4.3 程序生成流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-怎么装载程序？"><span class="toc-number"></span> <span class="toc-text">4.4 怎么装载程序？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-展示EXE的加载过程"><span class="toc-number"></span> <span class="toc-text">4.4 展示EXE的加载过程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第五章-BX-和loop指令"><span class="toc-number"></span> <span class="toc-text">第五章 [BX]和loop指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-BX"><span class="toc-number"></span> <span class="toc-text">5.1 [BX]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-loop"><span class="toc-number"></span> <span class="toc-text">5.2 loop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-loop和-bx-的联合运用"><span class="toc-number"></span> <span class="toc-text">5.3 loop和[bx]的联合运用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-段前缀与其使用"><span class="toc-number"></span> <span class="toc-text">5.4 段前缀与其使用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第六章-包含多个段的程序"><span class="toc-number"></span> <span class="toc-text">第六章 包含多个段的程序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-在代码段中使用数据"><span class="toc-number"></span> <span class="toc-text">6.1 在代码段中使用数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2-将数据、代码、栈放入不同的段"><span class="toc-number"></span> <span class="toc-text">6.2 将数据、代码、栈放入不同的段</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第七章-更灵活的定位内存地址的方法"><span class="toc-number"></span> <span class="toc-text">第七章 更灵活的定位内存地址的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1-and和or指令"><span class="toc-number"></span> <span class="toc-text">7.1 and和or指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2-以字符型给出数据"><span class="toc-number"></span> <span class="toc-text">7.2 以字符型给出数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3-以-bx-idata-的方式寻址"><span class="toc-number"></span> <span class="toc-text">7.3 以[bx+idata]的方式寻址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-4-si与di寄存器和多重循环"><span class="toc-number"></span> <span class="toc-text">7.4 si与di寄存器和多重循环</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第八章-数据处理的两个基本问题"><span class="toc-number"></span> <span class="toc-text">第八章 数据处理的两个基本问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-1-bx、si、di和bp"><span class="toc-number"></span> <span class="toc-text">8.1 bx、si、di和bp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-2-机器指令处理的数据在什么地方"><span class="toc-number"></span> <span class="toc-text">8.2 机器指令处理的数据在什么地方</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-3-指令处理的数据长度"><span class="toc-number"></span> <span class="toc-text">8.3 指令处理的数据长度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-4-div指令"><span class="toc-number"></span> <span class="toc-text">8.4 div指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-5-实例"><span class="toc-number"></span> <span class="toc-text">8.5 实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-6-伪指令dd"><span class="toc-number"></span> <span class="toc-text">8.6 伪指令dd</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-7-dup"><span class="toc-number"></span> <span class="toc-text">8.7 dup</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第九章-转移指令的原理"><span class="toc-number"></span> <span class="toc-text">第九章 转移指令的原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#9-1-操作符offset"><span class="toc-number"></span> <span class="toc-text">9.1 操作符offset</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-2-jmp指令和依据译为进行转移的jmp指令"><span class="toc-number"></span> <span class="toc-text">9.2 jmp指令和依据译为进行转移的jmp指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#9-2-1-jmp-short-标号-转移到标号出执行指令"><span class="toc-number"></span> <span class="toc-text">9.2.1 jmp short 标号(转移到标号出执行指令)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-2-2-立即数在机器码中的表示"><span class="toc-number"></span> <span class="toc-text">9.2.2 立即数在机器码中的表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-2-3-jmp转移的机制（是怎么实现转移的）"><span class="toc-number"></span> <span class="toc-text">9.2.3 jmp转移的机制（是怎么实现转移的）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-2-4-继续上面的，8位位移是怎么得出来的？"><span class="toc-number"></span> <span class="toc-text">9.2.4 继续上面的，8位位移是怎么得出来的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-2-5-jmp-far-ptr-标号（段间转移-远转移）"><span class="toc-number"></span> <span class="toc-text">9.2.5 jmp far ptr 标号（段间转移/远转移）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-2-6-转移地址在寄存器的jmp指令-这就相当于总结了，上面废话有点多"><span class="toc-number"></span> <span class="toc-text">9.2.6 转移地址在寄存器的jmp指令(这就相当于总结了，上面废话有点多)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-3-jcxz指令"><span class="toc-number"></span> <span class="toc-text">9.3 jcxz指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-4-loop指令"><span class="toc-number"></span> <span class="toc-text">9.4 loop指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-5-编译器对转移位移超界的检测"><span class="toc-number"></span> <span class="toc-text">9.5 编译器对转移位移超界的检测</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第十章-CALL和RET指令"><span class="toc-number"></span> <span class="toc-text">第十章 CALL和RET指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#10-1-ret和retf"><span class="toc-number"></span> <span class="toc-text">10.1 ret和retf</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-2-call指令"><span class="toc-number"></span> <span class="toc-text">10.2 call指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#10-2-1-依据位移进行转移的call指令"><span class="toc-number"></span> <span class="toc-text">10.2.1 依据位移进行转移的call指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-2-2-转移地址在指令中的call指令"><span class="toc-number"></span> <span class="toc-text">10.2.2 转移地址在指令中的call指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-2-3-转移指令在寄存器中的call指令"><span class="toc-number"></span> <span class="toc-text">10.2.3 转移指令在寄存器中的call指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-2-4-转移指令在内存中的call指令"><span class="toc-number"></span> <span class="toc-text">10.2.4 转移指令在内存中的call指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-3-call与ret的配合使用（敲黑板！）"><span class="toc-number"></span> <span class="toc-text">10.3 call与ret的配合使用（敲黑板！）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-4-mul乘法指令"><span class="toc-number"></span> <span class="toc-text">10.4 mul乘法指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#10-4-1-乘法规则"><span class="toc-number"></span> <span class="toc-text">10.4.1 乘法规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-4-2-指令格式："><span class="toc-number"></span> <span class="toc-text">10.4.2 指令格式：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-4-3-用mul寻址"><span class="toc-number"></span> <span class="toc-text">10.4.3 用mul寻址</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-5-模块化程序设计"><span class="toc-number"></span> <span class="toc-text">10.5  模块化程序设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#10-5-1-参数和结果的传递问题"><span class="toc-number"></span> <span class="toc-text">10.5.1 参数和结果的传递问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-5-2-寄存器冲突问题"><span class="toc-number"></span> <span class="toc-text">10.5.2 寄存器冲突问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-6-课后"><span class="toc-number"></span> <span class="toc-text">10.6 课后</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#下面的程序执行后，ax和bx中的数值为多少？"><span class="toc-number"></span> <span class="toc-text">下面的程序执行后，ax和bx中的数值为多少？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实验10-1-编写子程序-之-显示字符串"><span class="toc-number"></span> <span class="toc-text">实验10-1 编写子程序 之 显示字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#显示字符串"><span class="toc-number">1.</span> <span class="toc-text">显示字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#问题"><span class="toc-number">1.1.</span> <span class="toc-text">问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#子程序描述"><span class="toc-number">1.2.</span> <span class="toc-text">子程序描述</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#提示"><span class="toc-number">2.</span> <span class="toc-text">提示</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决除法溢出问题"><span class="toc-number"></span> <span class="toc-text">解决除法溢出问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#问题："><span class="toc-number">1.</span> <span class="toc-text">问题：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第十一章-标志寄存器"><span class="toc-number"></span> <span class="toc-text">第十一章 标志寄存器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#11-1-标志表"><span class="toc-number"></span> <span class="toc-text">11.1 标志表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-2-与标志有关的指令"><span class="toc-number"></span> <span class="toc-text">11.2 与标志有关的指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#11-2-1-与CF相关的：adc-sdd指令"><span class="toc-number"></span> <span class="toc-text">11.2.1 与CF相关的：adc,sdd指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-2-2-与CF和ZF有关的：cmp指令（比较指令）"><span class="toc-number"></span> <span class="toc-text">11.2.2 与CF和ZF有关的：cmp指令（比较指令）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-2-3-与CMP有关的比较结果条件转移指令"><span class="toc-number"></span> <span class="toc-text">11.2.3 与CMP有关的比较结果条件转移指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-2-4-与DF有关指令"><span class="toc-number"></span> <span class="toc-text">11.2.4 与DF有关指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-3-标志位有关的问题"><span class="toc-number"></span> <span class="toc-text">11.3 标志位有关的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#11-3-1-单纯就符号标志位就可以判断结果的正负吗？（即判断相减的两个数的大小）"><span class="toc-number"></span> <span class="toc-text">11.3.1 单纯就符号标志位就可以判断结果的正负吗？（即判断相减的两个数的大小）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-4-pushf和popf"><span class="toc-number"></span> <span class="toc-text">11.4 pushf和popf</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第十二章-内中断"><span class="toc-number"></span> <span class="toc-text">第十二章 内中断</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#12-1-中断一条龙（中断程序，中断向量表，中断过程）"><span class="toc-number"></span> <span class="toc-text">12.1 中断一条龙（中断程序，中断向量表，中断过程）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-2-中断处理程序，安装，中断向量等"><span class="toc-number"></span> <span class="toc-text">12.2 中断处理程序，安装，中断向量等</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-3-单步中断和TF-DF标志"><span class="toc-number"></span> <span class="toc-text">12.3 单步中断和TF,DF标志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-4-int指令"><span class="toc-number"></span> <span class="toc-text">12.4 int指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#12-4-1-int、iret和栈"><span class="toc-number"></span> <span class="toc-text">12.4.1 int、iret和栈</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第十三章-汇编语言重点知识总结"><span class="toc-number"></span> <span class="toc-text">第十三章 汇编语言重点知识总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#13-1寄存器与存储器"><span class="toc-number"></span> <span class="toc-text">13.1寄存器与存储器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-2-指令系统与寻址方式"><span class="toc-number"></span> <span class="toc-text">13.2 指令系统与寻址方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-3-汇编程序和汇编语言"><span class="toc-number"></span> <span class="toc-text">13.3 汇编程序和汇编语言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-4-程序设计基础"><span class="toc-number"></span> <span class="toc-text">13.4 程序设计基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-5-输入-输出与中断系统"><span class="toc-number"></span> <span class="toc-text">13.5 输入/输出与中断系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-6-8088-汇编速查手册"><span class="toc-number"></span> <span class="toc-text">13.6 8088 汇编速查手册</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#13-6-1-数据传输指令"><span class="toc-number"></span> <span class="toc-text">13.6.1 数据传输指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-6-2-算术运算指令"><span class="toc-number"></span> <span class="toc-text">13.6.2 算术运算指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-6-3-逻辑运算指令"><span class="toc-number"></span> <span class="toc-text">13.6.3 逻辑运算指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-6-4-串指令"><span class="toc-number"></span> <span class="toc-text">13.6.4 串指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-6-5-程序转移指令"><span class="toc-number"></span> <span class="toc-text">13.6.5 程序转移指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#13-6-6-伪指令"><span class="toc-number"></span> <span class="toc-text">13.6.6 伪指令</span></a>
         
     </div>
 </aside>
@@ -828,7 +828,796 @@
 <p>这里当然要用到之前学的几乎所有内容（包括ret,movsb等）</p>
 <h2 id="12-3-单步中断和TF-DF标志"><a href="#12-3-单步中断和TF-DF标志" class="headerlink" title="12.3 单步中断和TF,DF标志"></a>12.3 单步中断和TF,DF标志</h2><p>说到这里，你看标题就知道，TF肯定与单步中断有关，具体有什么关系呢？<br>首先说说<strong>单步中断</strong>，也就是不停止（退出）运行的程序，却能返回其实时的寄存器信息（也就是还在运行，只不过暂时停止了）。<br>而TF就是实现单步中断的重要标志，当<strong>TF=1</strong>时将引发单步中断，所以要想中断就先置TF=1。<br>这就是为什么中断执行（刚开始）就要把<strong>TF置0，就是为了防止步步中断</strong>！</p>
 <h2 id="12-4-int指令"><a href="#12-4-int指令" class="headerlink" title="12.4 int指令"></a>12.4 int指令</h2><p>int指令引发的内中断很重要。虽然其过程与12.1所说的别无二致。<br>接下来就深入理解理解int、iret和栈：</p>
-<h3 id="12-4-1-int、iret和栈"><a href="#12-4-1-int、iret和栈" class="headerlink" title="12.4.1 int、iret和栈"></a>12.4.1 int、iret和栈</h3><p>暂时停更<br>2019/11/20 9:21:47 </p>
+<h3 id="12-4-1-int、iret和栈"><a href="#12-4-1-int、iret和栈" class="headerlink" title="12.4.1 int、iret和栈"></a>12.4.1 int、iret和栈</h3><h1 id="第十三章-汇编语言重点知识总结"><a href="#第十三章-汇编语言重点知识总结" class="headerlink" title="第十三章 汇编语言重点知识总结"></a>第十三章 汇编语言重点知识总结</h1><h2 id="13-1寄存器与存储器"><a href="#13-1寄存器与存储器" class="headerlink" title="13.1寄存器与存储器"></a>13.1寄存器与存储器</h2><ol>
+<li>寄存器功能</li>
+</ol>
+<ul>
+<li>寄存器的一般用途和专用用途</li>
+<li>CS:IP 控制程序执行流程</li>
+<li>SS:SP 提供堆栈栈顶单元地址</li>
+<li>DS:BX(SI,DI) 提供数据段内单元地址</li>
+<li>SS:BP 提供堆栈内单元地址</li>
+<li>ES:BX(SI,DI) 提供附加段内单元地址</li>
+<li>AX,CX,BX 和CX 寄存器多用于运算和暂存中间计算结果,但又专用于某些指令(查阅指令<br>表)。</li>
+<li>PSW 程序状态字寄存器只能通过专用指令（LAHF, SAHF)和堆栈(PUSHF,POPF)进行存取。</li>
+</ul>
+<ol start="2">
+<li>存储器分段管理</li>
+</ol>
+<ul>
+<li>解决了16 位寄存器构成20 位地址的问题</li>
+<li>便于程序重定位</li>
+<li>20 位物理地址=段地址* 16 + 偏移地址</li>
+<li>程序分段组织: 一般由代码段,堆栈段,数据段和附加段组成,不设置堆栈段时则使用系统<br>内部的堆栈。</li>
+</ul>
+<ol start="3">
+<li>堆栈</li>
+</ol>
+<ul>
+<li>堆栈是一种先进后出的数据结构, 数据的存取在栈顶进行, 数据入栈使堆栈向地址减小<br>的方向扩展。</li>
+<li>堆栈常用于保存子程序调用和中断响应时的断点以及暂存数据或中间计算结果。</li>
+<li>堆栈总是以字为单位存取</li>
+</ul>
+<h2 id="13-2-指令系统与寻址方式"><a href="#13-2-指令系统与寻址方式" class="headerlink" title="13.2 指令系统与寻址方式"></a>13.2 指令系统与寻址方式</h2><ol>
+<li>指令系统</li>
+</ol>
+<ul>
+<li>计算机提供给用户使用的机器指令集称为指令系统,大多数指令为双操作数指令。执行指令<br>后,一般源操作数不变,目的操作数被计算结果替代。</li>
+<li>机器指令由CPU 执行,完成某种运算或操作,8086/8088 指令系统中的指令分为6 类: 数据传<br>送,算术运算,逻辑运算,串操作,控制转移和处理机控制。</li>
+</ul>
+<ol start="2">
+<li>寻址方式</li>
+</ol>
+<ul>
+<li>寻址方式确定执行指令时获得操作数地址的方法</li>
+<li>分为与数据有关的寻址方式(7 种)和与转移地址有关的寻址方式(4)种。</li>
+<li>与数据有关的寻址方式的一般用途:</li>
+</ul>
+<blockquote>
+<p>(1) 立即数寻址方式–将常量赋给寄存器或存储单元<br>(2) 直接寻址方式–存取单个变量<br>(3) 寄存器寻址方式–访问寄存器的速度快于访问存储单元的速度<br>(4) 寄存器间接寻址方式–访问数组元素<br>(5) 变址寻址方式<br>(6) 基址变址寻址方式<br>(7) 相对基址变址寻址方式<br>(5),(6),(7)都便于处理数组元素</p>
+</blockquote>
+<p>. 与数据有关的寻址方式中,提供地址的寄存器只能是BX,SI,DI 或BP<br>. 与转移地址有关的寻址方式的一般用途:</p>
+<blockquote>
+<p>(1) 段内直接寻址–段内直接转移或子程序调用<br>(2) 段内间接寻址–段内间接转移或子程序调用<br>(3) 段间直接寻址–段间直接转移或子程序调用<br>(4) 段间间接寻址–段间间接转移或子程序调用</p>
+</blockquote>
+<h2 id="13-3-汇编程序和汇编语言"><a href="#13-3-汇编程序和汇编语言" class="headerlink" title="13.3 汇编程序和汇编语言"></a>13.3 汇编程序和汇编语言</h2><ol>
+<li>汇编程序</li>
+</ol>
+<ul>
+<li>汇编程序是将汇编语言源程序翻译成二进制代码程序的语言处理程序,翻译的过程称为汇<br>编。</li>
+</ul>
+<ol start="2">
+<li>汇编语言</li>
+</ol>
+<ul>
+<li>汇编语言是用指令助记符,各种标识变量,地址,过程等的标识符书写程序的语言, 汇编语言<br>指令与机器指令一一对应。</li>
+<li>伪指令,宏指令不是由CPU 执行的指令,而是由汇编程序在汇编期间处理的指令。</li>
+<li>伪指令指示汇编程序如何完成数据定义,存储空间分配,组织段等工作。</li>
+<li>宏指令可简化程序并减少程序书写量。</li>
+<li>条件汇编伪指令的功能是确定是否汇编某段源程序,而不是实现程序分支,对未汇编的程序<br>将不产生相应的目标代码。</li>
+<li>结构作为一种数据结构可将一组类型不同但有逻辑关联的数据组织在一起,便于整体处理<br>数据。</li>
+<li>记录可用于提高存储单元的利用率,将若干不足一个字节或字且有逻辑关联的信息压缩存<br>放在一个字节或字中。</li>
+<li>指令中的表达式在汇编期间计算,并且只能对常量或地址进行计算。</li>
+</ul>
+<h2 id="13-4-程序设计基础"><a href="#13-4-程序设计基础" class="headerlink" title="13.4 程序设计基础"></a>13.4 程序设计基础</h2><ol>
+<li>分支程序设计</li>
+</ol>
+<ul>
+<li>程序分支由条件转移指令或无条件转移指令实现</li>
+<li>存放若干目的转移地址或跳转指令的跳转表常用于实现多路分支</li>
+<li>条件转移指令只能实现偏移量为-128 至+127 字节范围的转移</li>
+<li>无条件转移指令根据寻址方式可实现短转移(偏移量为-128 至+127 字节),段内转移,段间<br>转移。</li>
+</ul>
+<ol start="2">
+<li>循环程序设计</li>
+</ol>
+<ul>
+<li>可由循环控制指令或条件转移指令组织循环结构</li>
+<li>内层循环结构必须完全包含在外层循环结构内,并不能发生从循环结构外向循环结构内的<br>转移。</li>
+</ul>
+<ol start="3">
+<li>子程序设计</li>
+</ol>
+<ul>
+<li>子程序中应保护寄存器内容,并正确使用堆栈, 成对执行PUSH 和POP 指令，保证执行RET<br>指令时堆栈栈顶为返回地址。</li>
+<li>主程序可通过寄存器,参数表,或堆栈传递参数给子程序</li>
+</ul>
+<ol start="4">
+<li>EXE 文件和COM 文件</li>
+</ol>
+<ul>
+<li>二者都是可执行文件</li>
+<li>COM 文件源程序的特点是: 第一条可执行指令的起始存放地址必须是100H,不能分段,不用<br>定义堆栈,所有过程为NEAR 类型,直接用INT 20H 指令返回DOS。</li>
+</ul>
+<ol start="5">
+<li>DOS 功能调用与BIOS 中断调用</li>
+</ol>
+<ul>
+<li>二者都是完成DOS 系统提供给用户的输入/输出等常用功能,通过执行软中断指令完成一<br>次软中断服务。</li>
+<li>DOS 功能调用的中断服务程序是操作系统的一部分,存于RAM 中; 而BIOS 中断调用的中<br>断服务程序存放在ROM 中。</li>
+</ul>
+<h2 id="13-5-输入-输出与中断系统"><a href="#13-5-输入-输出与中断系统" class="headerlink" title="13.5 输入/输出与中断系统"></a>13.5 输入/输出与中断系统</h2><ol>
+<li>输入/输出的方式</li>
+</ol>
+<ul>
+<li>程序直接I/O 方式: 用IN 和OUT 指令直接在端口级上进行I/O 操作,数据传送方式分为无<br>条件传送方式和查询传送方式。</li>
+<li>中断传送方式: 由CPU 响应中断请求完成中断服务。</li>
+<li>DMA 传送方式: 直接在存储器与外设之间传送数据。</li>
+</ul>
+<ol start="2">
+<li>有关中断的概念</li>
+</ol>
+<ul>
+<li>中断、中断源、中断请求、中断服务、中断向量、中断向量表、中断响应过程、中断指令、<br>开中断、关中断、内部中断、外部中断、可屏蔽中断、非屏蔽中断。</li>
+</ul>
+<ol start="3">
+<li>键盘I/O、显示器I/O 操作</li>
+</ol>
+<ul>
+<li>键盘的输入操作用BIOS 的16H 中断调用控制,也可直接访问60H 端口(数据端口), 61H 端<br>口(状态端口)检测键盘的按键操作。</li>
+<li>对于特殊键（如Shift , Ctrl , Alt , NumLock , ScrollLock 等键）的按动情况，可以直接从来<br>40:17H 单元取得有关信息。</li>
+<li>显示器的图形显示可以用BIOS 的10H 中断调用实现,另一种速度更快的方法是直接读写<br>视频缓冲区。</li>
+</ul>
+<ol start="4">
+<li>打印机I/O 操作由INT 17H 中断调用实现， 串行通讯口操作由INT 14H 中断调用实现。<br>CLD Clear the direction flag (set to forward direction)<br>将方向标志置0，使si 和di 增量，串处理从低地址向高地址处理</li>
+</ol>
+<h2 id="13-6-8088-汇编速查手册"><a href="#13-6-8088-汇编速查手册" class="headerlink" title="13.6 8088 汇编速查手册"></a>13.6 8088 汇编速查手册</h2><h3 id="13-6-1-数据传输指令"><a href="#13-6-1-数据传输指令" class="headerlink" title="13.6.1 数据传输指令"></a>13.6.1 数据传输指令</h3><p>它们在存贮器和寄存器、寄存器和输入输出端口之间传送数据.</p>
+<ol>
+<li>通用数据传送指令.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MOV</td>
+<td>传送字或字节.</td>
+</tr>
+<tr>
+<td>MOVSX</td>
+<td>先符号扩展,再传送.</td>
+</tr>
+<tr>
+<td>MOVZX</td>
+<td>先零扩展,再传送.</td>
+</tr>
+<tr>
+<td>PUSH</td>
+<td>把字压入堆栈.</td>
+</tr>
+<tr>
+<td>POP</td>
+<td>把字弹出堆栈.</td>
+</tr>
+<tr>
+<td>PUSHA</td>
+<td>把AX,CX,DX,BX,SP,BP,SI,DI 依次压入堆栈.</td>
+</tr>
+<tr>
+<td>POPA</td>
+<td>把DI,SI,BP,SP,BX,DX,CX,AX 依次弹出堆栈.</td>
+</tr>
+<tr>
+<td>PUSHAD</td>
+<td>把EAX,ECX,EDX, EBX,ESP,EBP,ESI,EDI 依次压入堆栈.</td>
+</tr>
+<tr>
+<td>POPAD</td>
+<td>把EDI,ESI,EBP,ESP,EBX,EDX, ECX,EAX 依次弹出堆栈.</td>
+</tr>
+<tr>
+<td>BSWAP</td>
+<td>交换32 位寄存器里字节的顺序</td>
+</tr>
+<tr>
+<td>XCHG</td>
+<td>交换字或字节.( 至少有一个操作数为寄存器,段寄存器不可作为操作数)</td>
+</tr>
+<tr>
+<td>CMPXCHG</td>
+<td>比较并交换操作数.( 第二个操作数必须为累加器AL/AX/EAX )</td>
+</tr>
+<tr>
+<td>XADD</td>
+<td>先交换再累加.( 结果在第一个操作数里)</td>
+</tr>
+<tr>
+<td>XLAT</td>
+<td>字节查表转换.── BX 指向一张256 字节的表的起点, AL 为表的索引值(0-255,即0-FFH); 返回AL 为查表结果. ( [BX+AL]-&gt;AL )</td>
+</tr>
+</tbody></table>
+<ol start="2">
+<li>输入输出端口传送指令.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IN</td>
+<td>I/O 端口输入. ( 语法: IN 累加器, {端口号│DX} )</td>
+</tr>
+<tr>
+<td>OUT</td>
+<td>I/O 端口输出. ( 语法: OUT {端口号│DX},累加器)</td>
+</tr>
+<tr>
+<td>输入输出端口由立即方式指定时, 其范围是0-255; 由寄存器DX 指定时,其范</td>
+<td></td>
+</tr>
+<tr>
+<td>围是0-65535.</td>
+<td></td>
+</tr>
+</tbody></table>
+<ol start="3">
+<li>目的地址传送指令.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>描述</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LEA</td>
+<td>装入有效地址.</td>
+<td>例: LEA DX,string ;把偏移地址存到DX.</td>
+</tr>
+<tr>
+<td>LDS</td>
+<td>传送目标指针,把指针内容装入DS.</td>
+<td>例: LDS SI,string ;把段地址:偏移地址存到DS:SI.</td>
+</tr>
+<tr>
+<td>LES</td>
+<td>传送目标指针,把指针内容装入ES.</td>
+<td>例: LES DI,string ;把段地址:偏移地址存到ES:DI.</td>
+</tr>
+<tr>
+<td>LFS</td>
+<td>传送目标指针,把指针内容装入FS.</td>
+<td>例: LFS DI,string ;把段地址:偏移地址存到FS:DI.</td>
+</tr>
+<tr>
+<td>LGS</td>
+<td>传送目标指针,把指针内容装入GS.</td>
+<td>例: LGS DI,string ;把段地址:偏移地址存到GS:DI.</td>
+</tr>
+<tr>
+<td>LSS</td>
+<td>传送目标指针,把指针内容装入SS.</td>
+<td>例: LSS DI,string ;把段地址:偏移地址存到SS:DI.</td>
+</tr>
+</tbody></table>
+<ol start="4">
+<li>标志传送指令. </li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LAHF</td>
+<td>标志寄存器传送,把标志装入AH.</td>
+</tr>
+<tr>
+<td>SAHF</td>
+<td>标志寄存器传送,把AH 内容装入标志寄存器.</td>
+</tr>
+<tr>
+<td>PUSHF</td>
+<td>标志入栈.</td>
+</tr>
+<tr>
+<td>POPF</td>
+<td>标志出栈.</td>
+</tr>
+<tr>
+<td>PUSHD</td>
+<td>32 位标志入栈.</td>
+</tr>
+<tr>
+<td>POPD</td>
+<td>32 位标志出栈.</td>
+</tr>
+</tbody></table>
+<h3 id="13-6-2-算术运算指令"><a href="#13-6-2-算术运算指令" class="headerlink" title="13.6.2 算术运算指令"></a>13.6.2 算术运算指令</h3><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ADD</td>
+<td>加法.</td>
+</tr>
+<tr>
+<td>ADC</td>
+<td>带进位加法.</td>
+</tr>
+<tr>
+<td>INC</td>
+<td>加1.</td>
+</tr>
+<tr>
+<td>AAA</td>
+<td>加法的ASCII 码调整.</td>
+</tr>
+<tr>
+<td>DAA</td>
+<td>加法的十进制调整.</td>
+</tr>
+<tr>
+<td>SUB</td>
+<td>减法.</td>
+</tr>
+<tr>
+<td>SBB</td>
+<td>带借位减法.</td>
+</tr>
+<tr>
+<td>DEC</td>
+<td>减1.</td>
+</tr>
+<tr>
+<td>NEC</td>
+<td>求反(以0 减之).</td>
+</tr>
+<tr>
+<td>CMP</td>
+<td>比较.(两操作数作减法,仅修改标志位,不回送结果).</td>
+</tr>
+<tr>
+<td>AAS</td>
+<td>减法的ASCII 码调整.</td>
+</tr>
+<tr>
+<td>DAS</td>
+<td>减法的十进制调整.</td>
+</tr>
+<tr>
+<td>MUL</td>
+<td>无符号乘法.</td>
+</tr>
+<tr>
+<td>IMUL</td>
+<td>整数乘法.以上两条,结果回送AH 和AL(字节运算),或DX 和AX(字运算),</td>
+</tr>
+<tr>
+<td>AAM</td>
+<td>乘法的ASCII 码调整.</td>
+</tr>
+<tr>
+<td>DIV</td>
+<td>无符号除法.</td>
+</tr>
+<tr>
+<td>IDIV</td>
+<td>整数除法.以上两条,结果回送:商回送AL,余数回送AH, (字节运算);或商回送AX,余数回送DX, (字运算).</td>
+</tr>
+<tr>
+<td>AAD</td>
+<td>除法的ASCII 码调整.</td>
+</tr>
+<tr>
+<td>CBW</td>
+<td>字节转换为字. (把AL 中字节的符号扩展到AH 中去)</td>
+</tr>
+<tr>
+<td>CWD</td>
+<td>字转换为双字. (把AX 中的字的符号扩展到DX 中去)</td>
+</tr>
+<tr>
+<td>CWDE</td>
+<td>字转换为双字. (把AX 中的字符号扩展到EAX 中去)</td>
+</tr>
+<tr>
+<td>CDQ</td>
+<td>双字扩展. (把EAX 中的字的符号扩展到EDX 中去)</td>
+</tr>
+</tbody></table>
+<h3 id="13-6-3-逻辑运算指令"><a href="#13-6-3-逻辑运算指令" class="headerlink" title="13.6.3 逻辑运算指令"></a>13.6.3 逻辑运算指令</h3><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AND</td>
+<td>与运算.</td>
+</tr>
+<tr>
+<td>OR</td>
+<td>或运算.</td>
+</tr>
+<tr>
+<td>XOR</td>
+<td>异或运算.</td>
+</tr>
+<tr>
+<td>NOT</td>
+<td>取反.</td>
+</tr>
+<tr>
+<td>TEST</td>
+<td>测试.(两操作数作与运算,仅修改标志位,不回送结果).</td>
+</tr>
+<tr>
+<td>SHL</td>
+<td>逻辑左移.</td>
+</tr>
+<tr>
+<td>SAL</td>
+<td>算术左移.(=SHL)</td>
+</tr>
+<tr>
+<td>SHR</td>
+<td>逻辑右移.</td>
+</tr>
+<tr>
+<td>SAR</td>
+<td>算术右移.(=SHR)</td>
+</tr>
+<tr>
+<td>ROL</td>
+<td>循环左移.</td>
+</tr>
+<tr>
+<td>ROR</td>
+<td>循环右移.</td>
+</tr>
+<tr>
+<td>RCL</td>
+<td>通过进位的循环左移.</td>
+</tr>
+<tr>
+<td>RCR</td>
+<td>通过进位的循环右移.</td>
+</tr>
+</tbody></table>
+<p>以上八种移位指令,其移位次数可达255 次.<br>移位一次时, 可直接用操作码. 如SHL AX,1.<br>移位&gt;1 次时, 则由寄存器CL 给出移位次数.<br>如MOV CL,04<br>SHL AX,CL</p>
+<h3 id="13-6-4-串指令"><a href="#13-6-4-串指令" class="headerlink" title="13.6.4 串指令"></a>13.6.4 串指令</h3><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DS:SI</td>
+<td>源串段寄存器:源串变址.</td>
+</tr>
+<tr>
+<td>ES:DI</td>
+<td>目标串段寄存器:目标串变址.</td>
+</tr>
+<tr>
+<td>CX</td>
+<td>重复次数计数器.</td>
+</tr>
+<tr>
+<td>AL/AX 扫描值.</td>
+<td></td>
+</tr>
+<tr>
+<td>D</td>
+<td>标志0 表示重复操作中SI 和DI 应自动增量; 1 表示应自动减量.</td>
+</tr>
+<tr>
+<td>Z</td>
+<td>标志用来控制扫描或比较操作的结束.</td>
+</tr>
+<tr>
+<td>MOVS</td>
+<td>串传送.( MOVSB 传送字符. MOVSW 传送字. MOVSD 传送双字. )</td>
+</tr>
+<tr>
+<td>CMPS</td>
+<td>串比较.( CMPSB 比较字符. CMPSW 比较字. )</td>
+</tr>
+<tr>
+<td>SCAS</td>
+<td>串扫描.把AL 或AX 的内容与目标串作比较,比较结果反映在标志位.</td>
+</tr>
+<tr>
+<td>LODS</td>
+<td>装入串.把源串中的元素(字或字节)逐一装入AL 或AX 中.( LODSB 传送字符. LODSW 传送字. LODSD 传送双字. )</td>
+</tr>
+<tr>
+<td>STOS</td>
+<td>保存串. 是LODS 的逆过程.</td>
+</tr>
+<tr>
+<td>REP</td>
+<td>当CX/ECX&lt;&gt;0 时重复.</td>
+</tr>
+<tr>
+<td>REPE/REPZ</td>
+<td>当ZF=1 或比较结果相等,且CX/ECX&lt;&gt;0 时重复.</td>
+</tr>
+<tr>
+<td>REPNE/REPNZ</td>
+<td>当ZF=0 或比较结果不相等,且CX/ECX&lt;&gt;0 时重复.</td>
+</tr>
+<tr>
+<td>REPC</td>
+<td>当CF=1 且CX/ECX&lt; &gt;0 时重复.</td>
+</tr>
+<tr>
+<td>REPNC</td>
+<td>当CF=0 且CX/ECX&lt;&gt;0 时重复.</td>
+</tr>
+</tbody></table>
+<h2 id="13-6-5-程序转移指令"><a href="#13-6-5-程序转移指令" class="headerlink" title="13.6.5 程序转移指令"></a>13.6.5 程序转移指令</h2><ol>
+<li><p>无条件转移指令(长转移)</p>
+</li>
+<li><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>JMP</td>
+<td>无条件转移指令</td>
+</tr>
+<tr>
+<td>CALL</td>
+<td>过程调用</td>
+</tr>
+<tr>
+<td>RET/RETF</td>
+<td>过程返回.</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>条件转移指令(短转移,-128 到+127 的距离内)<br>( 当且仅当(SF XOR OF)=1 时,OP1&lt;OP2 )</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>JA/JNBE</td>
+<td>不小于或不等于时转移.</td>
+</tr>
+<tr>
+<td>JAE/JNB</td>
+<td>大于或等于转移.</td>
+</tr>
+<tr>
+<td>JB/JNAE</td>
+<td>小于转移.</td>
+</tr>
+<tr>
+<td>JBE/JNA</td>
+<td>小于或等于转移.<br>以上四条,测试无符号整数运算的结果(标志C 和Z).</td>
+</tr>
+<tr>
+<td>JG/JNLE</td>
+<td>大于转移.</td>
+</tr>
+<tr>
+<td>JGE/JNL</td>
+<td>大于或等于转移.</td>
+</tr>
+<tr>
+<td>JL/JNGE</td>
+<td>小于转移.</td>
+</tr>
+<tr>
+<td>JLE/JNG</td>
+<td>小于或等于转移.<br>以上四条,测试带符号整数运算的结果(标志S,O 和Z).</td>
+</tr>
+<tr>
+<td>JE/JZ</td>
+<td>等于转移.</td>
+</tr>
+<tr>
+<td>JNE/JNZ</td>
+<td>不等于时转移.</td>
+</tr>
+<tr>
+<td>JC</td>
+<td>有进位时转移.</td>
+</tr>
+<tr>
+<td>JNC</td>
+<td>无进位时转移.</td>
+</tr>
+<tr>
+<td>JNO</td>
+<td>不溢出时转移.</td>
+</tr>
+<tr>
+<td>JNP/JPO</td>
+<td>奇偶性为奇数时转移.</td>
+</tr>
+<tr>
+<td>JNS</td>
+<td>符号位为”0” 时转移.</td>
+</tr>
+<tr>
+<td>JO</td>
+<td>溢出转移.</td>
+</tr>
+<tr>
+<td>JP/JPE</td>
+<td>奇偶性为偶数时转移.</td>
+</tr>
+<tr>
+<td>JS</td>
+<td>符号位为”1” 时转移.</td>
+</tr>
+</tbody></table>
+<ol start="3">
+<li>循环控制指令(短转移)</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LOOP</td>
+<td>CX 不为零时循环.</td>
+</tr>
+<tr>
+<td>LOOPE/LOOPZ</td>
+<td>CX 不为零且标志Z=1 时循环.</td>
+</tr>
+<tr>
+<td>LOOPNE/LOOPNZ</td>
+<td>CX 不为零且标志Z=0 时循环.</td>
+</tr>
+<tr>
+<td>JCXZ</td>
+<td>CX 为零时转移.</td>
+</tr>
+<tr>
+<td>JECXZ</td>
+<td>ECX 为零时转移.</td>
+</tr>
+</tbody></table>
+<ol start="4">
+<li>中断指令</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>INT</td>
+<td>中断指令</td>
+</tr>
+<tr>
+<td>INTO</td>
+<td>溢出中断</td>
+</tr>
+<tr>
+<td>IRET</td>
+<td>中断返回</td>
+</tr>
+</tbody></table>
+<ol start="5">
+<li>处理器控制指令</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HLT</td>
+<td>处理器暂停, 直到出现中断或复位信号才继续.</td>
+</tr>
+<tr>
+<td>WAIT</td>
+<td>当芯片引线TEST 为高电平时使CPU 进入等待状态.</td>
+</tr>
+<tr>
+<td>ESC</td>
+<td>转换到外处理器.</td>
+</tr>
+<tr>
+<td>LOCK</td>
+<td>封锁总线.</td>
+</tr>
+<tr>
+<td>NOP</td>
+<td>空操作.</td>
+</tr>
+<tr>
+<td>STC</td>
+<td>置进位标志位.</td>
+</tr>
+<tr>
+<td>CLC</td>
+<td>清进位标志位.</td>
+</tr>
+<tr>
+<td>CMC</td>
+<td>进位标志取反.</td>
+</tr>
+<tr>
+<td>STD</td>
+<td>置方向标志位.</td>
+</tr>
+<tr>
+<td>CLD</td>
+<td>清方向标志位.</td>
+</tr>
+<tr>
+<td>STI</td>
+<td>置中断允许位.</td>
+</tr>
+<tr>
+<td>CLI</td>
+<td>清中断允许位.</td>
+</tr>
+</tbody></table>
+<h3 id="13-6-6-伪指令"><a href="#13-6-6-伪指令" class="headerlink" title="13.6.6 伪指令"></a>13.6.6 伪指令</h3><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DW</td>
+<td>定义字(2 字节).</td>
+</tr>
+<tr>
+<td>PROC</td>
+<td>定义过程.</td>
+</tr>
+<tr>
+<td>ENDP</td>
+<td>过程结束.</td>
+</tr>
+<tr>
+<td>SEGMENT</td>
+<td>定义段.</td>
+</tr>
+<tr>
+<td>ASSUME</td>
+<td>建立段寄存器寻址.</td>
+</tr>
+<tr>
+<td>ENDS</td>
+<td>段结束.</td>
+</tr>
+<tr>
+<td>END</td>
+<td>程序结束.</td>
+</tr>
+</tbody></table>
 
         
     </section>
