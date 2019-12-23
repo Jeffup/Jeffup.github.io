@@ -1,6 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>实现python爬虫的简单细节分析</title>
+    <url>/2019/12/23/%E5%AE%9E%E7%8E%B0python%E7%88%AC%E8%99%AB%E7%9A%84%E7%AE%80%E5%8D%95%E7%BB%86%E8%8A%82%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<p>实现python爬虫的简单细节分析</p>
+<a id="more"></a>
+<h2 id="爬虫部分"><a href="#爬虫部分" class="headerlink" title="爬虫部分"></a>爬虫部分</h2><h3 id="1-这肯定得加个User-Agent，不然连不上"><a href="#1-这肯定得加个User-Agent，不然连不上" class="headerlink" title="1. 这肯定得加个User-Agent，不然连不上"></a>1. 这肯定得加个User-Agent，不然连不上</h3><p>这里面可能还要加上cookie，这个有点诡异。你说，有一个值等于 0, 60 ，怎么办？把它变成[]，还是””？？？</p>
+<h3 id="2-常规路数，使用bs4"><a href="#2-常规路数，使用bs4" class="headerlink" title="2. 常规路数，使用bs4"></a>2. 常规路数，使用bs4</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def getHtml(url):</span><br><span class="line">    try:</span><br><span class="line">        r = requests.get(url, headers=&#123;&apos;User-Agent&apos;: &apos;Mozilla/5.0&apos;&#125;)</span><br><span class="line">        r.raise_for_status()</span><br><span class="line">        r.encoding = &quot;utf-8&quot;</span><br><span class="line">        return r.text</span><br><span class="line">    except:</span><br><span class="line">        print(&quot;Failed!!!&quot;)</span><br><span class="line"></span><br><span class="line">url = BASE_URL + str(year) + &apos;.html&apos;</span><br><span class="line">html = getHtml(url)</span><br><span class="line">soup = BeautifulSoup(html, &quot;html.parser&quot;)</span><br></pre></td></tr></table></figure>
+<p>然后用find和find_all找到所有相关标签，当然可以指定class=？？？</p>
+<h3 id="3-爬取表格"><a href="#3-爬取表格" class="headerlink" title="3. 爬取表格"></a>3. 爬取表格</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">comment_list = soup.find(&apos;table&apos;, attrs=&#123;&apos;class&apos;: &apos;table&apos;&#125;).find_all(&apos;tr&apos;)</span><br><span class="line"></span><br><span class="line">for j in comment_list[1:]:  # tr2[1:]遍历第1列到最后一列，表头为第0列</span><br><span class="line">    td = j.find_all(&apos;td&apos;)  # td表格</span><br><span class="line">    Rate = td[0].get_text().strip()  # 遍历排名</span><br><span class="line">    Country = td[1].get_text().strip()  # 遍历国家</span><br><span class="line">    Area = td[2].get_text().strip()  # 遍历洲</span><br><span class="line">    Num = td[3].get_text().strip()  # 遍历人数</span><br></pre></td></tr></table></figure>
+<p>自己看，因为有的会带有列名，注意。</p>
+<h3 id="4-正则表达"><a href="#4-正则表达" class="headerlink" title="4. 正则表达"></a>4. 正则表达</h3><p>提取括号内的内容：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">re.findall(r&quot;.*\((.*)\)&quot;, Num)</span><br></pre></td></tr></table></figure>
+<p>由于提取之后会变成123,123这样的玩意，所以，将其replace替换</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">tNum = &quot;&quot;.join(re.findall(r&quot;.*\((.*)\)&quot;, Num)).replace(&apos;,&apos;, &apos;&apos;)</span><br></pre></td></tr></table></figure>
+<p>好了，这里又将遇到问题：因为有的数据因数字较小，所以不会有()，那么re.findall之后的内容就只有<strong>None</strong>，如果再进行float，将会报错：ValueError。这时我们可以运用异常处理来解决：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">try:</span><br><span class="line">    fNum = float(tNum)</span><br><span class="line">except ValueError:</span><br><span class="line">    fNum = float(Num)</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-字典与列表的基本应用"><a href="#5-字典与列表的基本应用" class="headerlink" title="5. 字典与列表的基本应用"></a>5. 字典与列表的基本应用</h3><p>这里我只用了很少，不管了，先写下来：</p>
+<ol>
+<li>添加字典：直接dict[yourkey]=？？就可以</li>
+<li>添加列表数据：listData.append(youwant)</li>
+<li>删除字典：dict.pop(key)</li>
+</ol>
+<h2 id="数据读写部分"><a href="#数据读写部分" class="headerlink" title="数据读写部分"></a>数据读写部分</h2><p>这里都是对excel表格的操作。</p>
+<h3 id="1-读excel"><a href="#1-读excel" class="headerlink" title="1. 读excel"></a>1. 读excel</h3><h4 id="打开文件并且选择相应的sheet"><a href="#打开文件并且选择相应的sheet" class="headerlink" title="打开文件并且选择相应的sheet"></a>打开文件并且选择相应的sheet</h4><p>注意，因为我存的是xls，所以不能用openxls来进行读，而应该用xlrd</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">workbook= xlrd.open_workbook(filepath)</span><br><span class="line">worksheet=workbook.sheet_by_name(&apos;ALLdata&apos;)</span><br></pre></td></tr></table></figure>
+<h4 id="获取最大行列数"><a href="#获取最大行列数" class="headerlink" title="获取最大行列数"></a>获取最大行列数</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mrow=worksheet.nrows</span><br><span class="line">mcol=worksheet.ncols</span><br></pre></td></tr></table></figure>
+
+<h4 id="读单元格"><a href="#读单元格" class="headerlink" title="读单元格"></a>读单元格</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">worksheet.cell(row, colum).value</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-写excel"><a href="#2-写excel" class="headerlink" title="2. 写excel"></a>2. 写excel</h3><h4 id="新建"><a href="#新建" class="headerlink" title="新建"></a>新建</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">workbook = xlwt.Workbook()</span><br><span class="line">#添加sheet表</span><br><span class="line">sheet = workbook.add_sheet(&apos;ALLdata&apos;, cell_overwrite_ok=True)</span><br></pre></td></tr></table></figure>
+<h4 id="写入"><a href="#写入" class="headerlink" title="写入"></a>写入</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sheet.write(row, col, str(value))</span><br></pre></td></tr></table></figure>
+<p>这里value必须是str类型，不然会报错！</p>
+<h4 id="保存"><a href="#保存" class="headerlink" title="保存"></a>保存</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">workbook.save(filename)</span><br></pre></td></tr></table></figure>
+
+<h2 id="数据分析部分"><a href="#数据分析部分" class="headerlink" title="数据分析部分"></a>数据分析部分</h2><h3 id="1-数据拟合及预测"><a href="#1-数据拟合及预测" class="headerlink" title="1. 数据拟合及预测"></a>1. 数据拟合及预测</h3><h4 id="拟合函数生成"><a href="#拟合函数生成" class="headerlink" title="拟合函数生成"></a>拟合函数生成</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">f1= np.polyfit(xdata, ydata, 3)</span><br><span class="line">p1 = np.poly1d(f1)</span><br><span class="line">yvals1 = p1(xdata)</span><br></pre></td></tr></table></figure>
+<p>注：xdata，ydata是x，y坐标点的系列值，3是曲线拟合次数，此时p1即3次多项式。先把xdata代入p1多项式中，将会生成yvals1相应的值，这个可以作为预测值。</p>
+<h4 id="2-图像生成"><a href="#2-图像生成" class="headerlink" title="2. 图像生成"></a>2. 图像生成</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ln1 = plt.plot(xdata, ydata, color=&apos;red&apos;, label=&apos;original values&apos;)</span><br><span class="line">pln1 = plt.plot(xdata, yvals1, color=&apos;blue&apos;, linewidth=2.0, linestyle=&apos;-.&apos;, label=&apos;polyfit  values&apos;)</span><br><span class="line"># yvals1 = p1(xdata)  # 拟合y值</span><br><span class="line">plt.xlabel(&apos;year&apos;)</span><br><span class="line">plt.ylabel(&apos;population&apos;)</span><br><span class="line">plt.legend(loc=4)</span><br><span class="line"># plt.show()</span><br><span class="line">plt.savefig(country+&quot;.png&quot;)</span><br><span class="line">plt.close()</span><br></pre></td></tr></table></figure>
+<p>注：</p>
+<ol>
+<li>ln1是原来的图，那个label是标签（指定这个曲线是啥玩意）</li>
+<li>pln1是拟合之后的值，使用拟合之后的yvals1。</li>
+<li>linestyle=’-.’是线的类型，有– -. - 空等等</li>
+<li>而plt.xlabel是指定x轴是啥</li>
+<li>plt.show()展示图像</li>
+<li>plt.savefig(filename)保存图像为filename</li>
+<li>如果不关闭，那么这些xlabel和ylabel会混杂在一起，所以必须使用plt.close()</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>python</tag>
+        <tag>爬虫</tag>
+        <tag>数据读写</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>UltraEdit的使用及文件类型判定</title>
     <url>/2019/12/02/UltraEdit%E7%9A%84%E4%BD%BF%E7%94%A8%E5%8F%8A%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B%E5%88%A4%E5%AE%9A/</url>
     <content><![CDATA[<h2 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h2><h3 id="1-文件格式定义"><a href="#1-文件格式定义" class="headerlink" title="1. 文件格式定义"></a>1. 文件格式定义</h3><p>　　文件格式（或文件类型）是指电脑为了存储信息而使用的对信息的特殊编码方式，是用于识别内部储存的资料。比如有的储存图片，有的储存程序，有的储存文字信息。<a id="more"></a>每一类信息，都可以一种或多种文件格式保存在电脑存储中。每一种文件格式通常会有一种或多种扩展名可以用来识别，但也可能没有扩展名。扩展名可以帮助应用程序识别的文件格式。对于硬盘机或任何电脑存储来说，有效的信息只有0和1两种。所以电脑必须设计有相应的方式进行信息-位元的转换。对于不同的信息有不同的存储格式。</p>
@@ -23,8 +78,8 @@
 <p>2.3 我们可以再UltraEdit软件中查找到1-3.rar中包含的格式以及1-3.rar里的文件格式。如图所示：<br><img src="/2019/12/02/UltraEdit%E7%9A%84%E4%BD%BF%E7%94%A8%E5%8F%8A%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B%E5%88%A4%E5%AE%9A/12.png" alt><br>　<br>2.4 使用UltraEdit打开1-3.zip文件，操作如1-3.rar一样的步骤。<br><img src="/2019/12/02/UltraEdit%E7%9A%84%E4%BD%BF%E7%94%A8%E5%8F%8A%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B%E5%88%A4%E5%AE%9A/13.png" alt></p>
 ]]></content>
       <tags>
-        <tag>工具</tag>
         <tag>课程</tag>
+        <tag>工具</tag>
       </tags>
   </entry>
   <entry>
@@ -235,8 +290,8 @@
 </blockquote>
 ]]></content>
       <tags>
-        <tag>课程</tag>
         <tag>操作系统</tag>
+        <tag>课程</tag>
       </tags>
   </entry>
   <entry>
@@ -788,8 +843,8 @@
 <p>现在可以呼出内存映射页面<strong>M</strong>，并在CODE代码处下断点：<br><img src="/2019/11/10/%E5%B7%A5%E5%85%B7OllyDbg%E7%9A%84%E4%BD%BF%E7%94%A8/%E6%B6%88%E6%81%AF8.jpg" alt><br>然后回到反汇编页面，运行，直达页面：<br><img src="/2019/11/10/%E5%B7%A5%E5%85%B7OllyDbg%E7%9A%84%E4%BD%BF%E7%94%A8/%E6%B6%88%E6%81%AF9.jpg" alt><br>还可以查看RUN跟踪，选择统计（profile）：<br><img src="/2019/11/10/%E5%B7%A5%E5%85%B7OllyDbg%E7%9A%84%E4%BD%BF%E7%94%A8/%E6%B6%88%E6%81%AF10.jpg" alt><br>这样就可以看到那些指令被执行过<br><img src="/2019/11/10/%E5%B7%A5%E5%85%B7OllyDbg%E7%9A%84%E4%BD%BF%E7%94%A8/%E6%B6%88%E6%81%AF11.jpg" alt><br>双击后便可以直达指令处：<br><img src="/2019/11/10/%E5%B7%A5%E5%85%B7OllyDbg%E7%9A%84%E4%BD%BF%E7%94%A8/%E6%B6%88%E6%81%AF12.jpg" alt></p>
 ]]></content>
       <tags>
-        <tag>工具</tag>
         <tag>课程</tag>
+        <tag>工具</tag>
       </tags>
   </entry>
   <entry>
@@ -2360,8 +2415,8 @@
         <category>理论</category>
       </categories>
       <tags>
-        <tag>网络流量</tag>
         <tag>python</tag>
+        <tag>网络流量</tag>
       </tags>
   </entry>
   <entry>
